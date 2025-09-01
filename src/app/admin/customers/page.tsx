@@ -5,6 +5,7 @@ import { MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
+import Link from "next/link";
 
 export default function AdminCustomersPage() {
     return (
@@ -46,7 +47,9 @@ export default function AdminCustomersPage() {
                                             </DropdownMenuTrigger>
                                             <DropdownMenuContent align="end">
                                                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                                                <DropdownMenuItem>View Profile</DropdownMenuItem>
+                                                <DropdownMenuItem asChild>
+                                                    <Link href={`/admin/customers/${customer.id}`}>View Profile</Link>
+                                                </DropdownMenuItem>
                                                 <DropdownMenuItem>Edit</DropdownMenuItem>
                                                 <DropdownMenuItem className="text-destructive">Delete</DropdownMenuItem>
                                             </DropdownMenuContent>
