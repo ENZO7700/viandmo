@@ -5,7 +5,7 @@ import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
 import { useMemo } from 'react'
-import { bookings } from '@/lib/data'
+import { calendarBookings } from '@/lib/data'
 
 const localizer = momentLocalizer(moment)
 
@@ -52,7 +52,7 @@ export default function BookingCalendar() {
         <div className="h-[70vh]">
             <Calendar
               localizer={localizer}
-              events={bookings}
+              events={calendarBookings}
               startAccessor="start"
               endAccessor="end"
               defaultDate={defaultDate}

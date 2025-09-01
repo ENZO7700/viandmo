@@ -4,17 +4,34 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { ArrowUpRight, DollarSign, Calendar, Users, Truck } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { bookings } from "@/lib/data";
+import moment from "moment";
 
-
-const stats = [
-    { title: "Mesačné tržby", value: "4,850 €", change: "+20.1%", icon: <DollarSign className="h-4 w-4 text-muted-foreground"/> },
-    { title: "Zákazky tento mesiac", value: "25", change: "+12", icon: <Truck className="h-4 w-4 text-muted-foreground"/> },
-    { title: "Noví klienti", value: "6", change: "+2", icon: <Users className="h-4 w-4 text-muted-foreground"/> },
-]
 
 export default function AdminDashboardPage() {
-    // Show the 4 most recent bookings
+    // --- Dynamic Stats Calculation ---
+
+    const currentMonth = new Date().getMonth();
+    const currentYear = new Date().getFullYear();
+
+    // 1. Monthly Revenue
+    const monthlyRevenue = bookings
+        .filter(b => b.status === 'Completed' && b.start.getMonth() === currentMonth && b.start.getFullYear() === currentYear)
+        .reduce((sum, b) => sum + b.price, 0);
+
+    // 2. Bookings this month
+    const monthlyBookingsCount = bookings
+        .filter(b => b.start.getMonth() === currentMonth && b.start.getFullYear() === currentYear)
+        .length;
+
+    // 3. Recent Jobs (last 4)
     const recentJobs = bookings.sort((a, b) => b.start.getTime() - a.start.getTime()).slice(0, 4);
+
+    const stats = [
+        { title: "Mesačné tržby", value: `${monthlyRevenue.toLocaleString('sk-SK')} €`, change: "+20.1%", icon: <DollarSign className="h-4 w-4 text-muted-foreground"/> },
+        { title: "Zákazky tento mesiac", value: `${monthlyBookingsCount}`, change: "+12", icon: <Truck className="h-4 w-4 text-muted-foreground"/> },
+        { title: "Noví klienti", value: "6", change: "+2", icon: <Users className="h-4 w-4 text-muted-foreground"/> }, // This one remains static for now
+    ]
+
 
     return (
         <div className="space-y-6">
@@ -27,6 +44,7 @@ export default function AdminDashboardPage() {
                         </CardHeader>
                         <CardContent>
                             <div className="text-2xl font-bold">{stat.value}</div>
+                             {/* Static change data for now */}
                             <p className="text-xs text-muted-foreground flex items-center">
                                 <ArrowUpRight className="h-3 w-3 mr-1 text-green-500"/>
                                 <span className="text-green-500 mr-1">{stat.change}</span> oproti minulému mesiacu
@@ -40,7 +58,7 @@ export default function AdminDashboardPage() {
                 <Card>
                     <CardHeader>
                         <CardTitle>Nedávne a aktuálne zákazky</CardTitle>
-                        <CardDescription>Prehľad posledných zákazok.</CardDescription>
+                        <CardDescription>Prehľad posledných štyroch zákazok.</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <Table>
@@ -48,19 +66,23 @@ export default function AdminDashboardPage() {
                                 <TableRow>
                                     <TableHead>Klient</TableHead>
                                     <TableHead>Služba</TableHead>
+                                    <TableHead>Dátum</TableHead>
                                     <TableHead>Stav</TableHead>
+                                    <TableHead className="text-right">Cena</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
                                 {recentJobs.map(job => (
                                      <TableRow key={job.id}>
                                         <TableCell>
-                                            <div className="font-medium">{job.title.split(' - ')[1].split(',')[0]}</div>
+                                            <div className="font-medium">{job.clientName}</div>
                                         </TableCell>
-                                        <TableCell>{job.title.split(' - ')[0]}</TableCell>
+                                        <TableCell>{job.title}</TableCell>
+                                        <TableCell>{moment(job.start).format('DD.MM.YYYY')}</TableCell>
                                         <TableCell>
                                              <Badge variant={job.status === 'Completed' ? 'default' : job.status === 'Cancelled' ? 'destructive' : 'secondary'}>{job.status}</Badge>
                                         </TableCell>
+                                        <TableCell className="text-right">{job.price.toLocaleString('sk-SK')} €</TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
