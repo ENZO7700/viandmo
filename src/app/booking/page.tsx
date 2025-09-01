@@ -1,5 +1,5 @@
 'use client';
-
+import React from 'react';
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -15,8 +15,8 @@ const timeSlots = ["10:00", "11:00", "12:00", "14:00", "15:00", "16:00", "17:00"
 
 export default function BookingPage() {
     const [step, setStep] = useState<BookingStep>("service");
-    const [selectedService, setSelectedService] = useState<typeof services[0] | null>(null);
-    const [selectedStylist, setSelectedStylist] = useState<typeof stylists[0] | null>(null);
+    const [selectedService, setSelectedService] = useState<(typeof services)[0] | null>(null);
+    const [selectedStylist, setSelectedStylist] = useState<(typeof stylists)[0] | null>(null);
     const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
     const [selectedTime, setSelectedTime] = useState<string | null>(null);
 
@@ -40,8 +40,8 @@ export default function BookingPage() {
 
     const ProgressBar = () => {
       const steps = ["Služba", "Stylista", "Dátum a čas", "Potvrdenie"];
-      const currentStepIndex = steps.indexOf(step.charAt(0).toUpperCase() + step.slice(1));
-      
+      const currentStepIndex = ["service", "stylist", "datetime", "confirm"].indexOf(step);
+
       return (
         <div className="flex items-center justify-between w-full max-w-xl mx-auto mb-12">
             {steps.map((s, index) => (
@@ -49,18 +49,17 @@ export default function BookingPage() {
                     <div className="flex flex-col items-center text-center">
                         <div className={cn(
                             "flex items-center justify-center w-10 h-10 rounded-full border-2 transition-all duration-300",
-                             index < steps.indexOf(step.charAt(0).toUpperCase() + step.slice(1)) ? "bg-primary border-primary" :
-                             index === steps.indexOf(step.charAt(0).toUpperCase() + step.slice(1)) ? "border-primary scale-110" : "border-border bg-muted",
-                             index < steps.indexOf(step.charAt(0).toUpperCase() + step.slice(1)) && "text-primary-foreground"
+                             index < currentStepIndex ? "bg-primary border-primary text-primary-foreground" :
+                             index === currentStepIndex ? "border-primary scale-110" : "border-border bg-muted",
                         )}>
-                           {index < steps.indexOf(step.charAt(0).toUpperCase() + step.slice(1)) ? <Check className="w-6 h-6"/> : (index + 1)}
+                           {index < currentStepIndex ? <Check className="w-6 h-6"/> : (index + 1)}
                         </div>
                          <p className={cn(
                             "mt-2 text-sm transition-colors duration-300",
-                            index === steps.indexOf(step.charAt(0).toUpperCase() + step.slice(1)) ? "text-primary font-semibold" : "text-muted-foreground"
+                            index === currentStepIndex ? "text-primary font-semibold" : "text-muted-foreground"
                          )}>{s}</p>
                     </div>
-                    {index < steps.length - 1 && <div className={cn("flex-1 h-1 mx-4 rounded", index < steps.indexOf(step.charAt(0).toUpperCase() + step.slice(1)) ? "bg-primary" : "bg-border")}></div>}
+                    {index < steps.length - 1 && <div className={cn("flex-1 h-1 mx-4 rounded", index < currentStepIndex ? "bg-primary" : "bg-border")}></div>}
                 </React.Fragment>
             ))}
         </div>
