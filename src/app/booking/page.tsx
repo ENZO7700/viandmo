@@ -8,6 +8,9 @@ import { ArrowLeft, ArrowRight, Check, CheckCircle, Clock, DollarSign, Scissors,
 import { cn } from "@/lib/utils";
 import { Calendar } from "@/components/ui/calendar";
 import Image from "next/image";
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Separator } from '@/components/ui/separator';
 
 type BookingStep = "service" | "stylist" | "datetime" | "confirm";
 
@@ -158,16 +161,32 @@ export default function BookingPage() {
                     <CardHeader className="text-center items-center">
                         <CheckCircle className="w-16 h-16 text-green-500"/>
                         <CardTitle className="text-3xl pt-4 font-headline">Potvrďte vašu rezerváciu</CardTitle>
-                        <CardDescription>Prosím, skontrolujte si detaily vašej rezervácie.</CardDescription>
+                        <CardDescription>Prosím, skontrolujte si detaily vašej rezervácie a vyplňte vaše údaje.</CardDescription>
                     </CardHeader>
-                    <CardContent className="space-y-4">
+                    <CardContent className="space-y-6">
                         <div className="p-6 border rounded-lg bg-muted/50 space-y-3 text-lg">
-                             <div className="flex justify-between items-center"><span className="text-muted-foreground flex items-center gap-2"><Scissors/>Služba</span> <span className="font-bold">{selectedService?.name}</span></div>
-                             <div className="flex justify-between items-center"><span className="text-muted-foreground flex items-center gap-2"><User/>Stylista</span> <span className="font-bold">{selectedStylist?.name}</span></div>
-                             <div className="flex justify-between items-center"><span className="text-muted-foreground flex items-center gap-2"><Clock/>Dátum a čas</span> <span className="font-bold">{selectedDate?.toLocaleDateString('sk-SK')} o {selectedTime}</span></div>
-                             <div className="flex justify-between items-center"><span className="text-muted-foreground flex items-center gap-2"><DollarSign/>Cena</span> <span className="font-bold text-primary text-xl">{selectedService?.price.toFixed(2)} €</span></div>
+                             <div className="flex justify-between items-center"><span className="text-muted-foreground flex items-center gap-2 text-base"><Scissors/>Služba</span> <span className="font-bold">{selectedService?.name}</span></div>
+                             <div className="flex justify-between items-center"><span className="text-muted-foreground flex items-center gap-2 text-base"><User/>Stylista</span> <span className="font-bold">{selectedStylist?.name}</span></div>
+                             <div className="flex justify-between items-center"><span className="text-muted-foreground flex items-center gap-2 text-base"><Clock/>Dátum a čas</span> <span className="font-bold">{selectedDate?.toLocaleDateString('sk-SK')} o {selectedTime}</span></div>
+                             <div className="flex justify-between items-center"><span className="text-muted-foreground flex items-center gap-2 text-base"><DollarSign/>Cena</span> <span className="font-bold text-primary text-xl">{selectedService?.price.toFixed(2)} €</span></div>
                         </div>
-                         {/* Tu by boli polia pre meno, email, atd... */}
+                         <Separator />
+                         <div className="space-y-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div className="space-y-2">
+                                    <Label htmlFor="fullName">Celé Meno</Label>
+                                    <Input id="fullName" placeholder="Vaše meno" required />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="phone">Telefón</Label>
+                                    <Input id="phone" placeholder="Vaše telefónne číslo" required />
+                                </div>
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="email">Email</Label>
+                                <Input id="email" type="email" placeholder="vas@email.com" required />
+                            </div>
+                         </div>
                     </CardContent>
                     <CardFooter className="justify-between pt-6">
                          <Button variant="outline" onClick={prevStep} size="lg">
@@ -183,3 +202,5 @@ export default function BookingPage() {
         </div>
     );
 }
+
+    
