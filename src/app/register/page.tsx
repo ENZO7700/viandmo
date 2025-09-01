@@ -13,32 +13,29 @@ export default function RegisterPage() {
           <div className="flex justify-center mb-4">
                 <Logo />
             </div>
-          <CardTitle className="text-2xl">Create an Account</CardTitle>
-          <CardDescription>Join us and start your luxury hair journey.</CardDescription>
+          <CardTitle className="text-2xl">Vytvoriť administrátorský účet</CardTitle>
+          <CardDescription>Vytvorte si účet pre prístup do systému.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="name">Full Name</Label>
-            <Input id="name" placeholder="John Doe" required />
+            <Label htmlFor="name">Celé meno</Label>
+            <Input id="name" placeholder="Meno a priezvisko" required />
           </div>
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" placeholder="m@example.com" required />
+            <Input id="email" type="email" placeholder="vas@email.com" required />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password">Heslo</Label>
             <Input id="password" type="password" required />
           </div>
         </CardContent>
         <CardFooter className="flex-col gap-4">
-          <Button className="w-full">Create Account</Button>
-          <Button variant="outline" className="w-full">
-            Sign Up with Google
-          </Button>
+          <Button className="w-full">Vytvoriť účet</Button>
           <div className="mt-4 text-center text-sm">
-            Already have an account?{" "}
+            Už máte účet?{" "}
             <Link href="/login" className="underline text-primary">
-              Log in
+              Prihláste sa
             </Link>
           </div>
         </CardFooter>

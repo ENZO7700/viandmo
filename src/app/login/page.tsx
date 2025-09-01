@@ -13,33 +13,30 @@ export default function LoginPage() {
             <div className="flex justify-center mb-4">
                 <Logo />
             </div>
-          <CardTitle className="text-2xl">Welcome Back</CardTitle>
-          <CardDescription>Enter your credentials to access your account.</CardDescription>
+          <CardTitle className="text-2xl">Prihlásenie do administrácie</CardTitle>
+          <CardDescription>Zadajte svoje prihlasovacie údaje.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" placeholder="m@example.com" required />
+            <Input id="email" type="email" placeholder="vas@email.com" required />
           </div>
           <div className="space-y-2">
             <div className="flex items-center">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">Heslo</Label>
               <Link href="#" className="ml-auto inline-block text-sm underline">
-                Forgot your password?
+                Zabudli ste heslo?
               </Link>
             </div>
             <Input id="password" type="password" required />
           </div>
         </CardContent>
         <CardFooter className="flex-col gap-4">
-          <Button className="w-full">Log In</Button>
-          <Button variant="outline" className="w-full">
-            Login with Google
-          </Button>
+          <Button className="w-full">Prihlásiť sa</Button>
           <div className="mt-4 text-center text-sm">
-            Don&apos;t have an account?{" "}
+            Nemáte účet?{" "}
             <Link href="/register" className="underline text-primary">
-              Sign up
+              Zaregistrujte sa
             </Link>
           </div>
         </CardFooter>
