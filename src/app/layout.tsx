@@ -3,6 +3,7 @@ import './globals.css';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import Chatbot from '@/components/chatbot/Chatbot';
+import { Playfair_Display, PT_Sans } from 'next/font/google';
 
 export const metadata: Metadata = {
   title: 'Papi Hair Design',
@@ -10,21 +11,29 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
 };
 
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-headline',
+  display: 'swap',
+  weight: ['400', '700'],
+});
+
+const ptSans = PT_Sans({
+  subsets: ['latin'],
+  variable: '--font-body',
+  display: 'swap',
+  weight: ['400', '700'],
+});
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=PT+Sans:wght@400;700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang="en" className={cn("dark", playfairDisplay.variable, ptSans.variable)}>
+      <head />
       <body className={cn('font-body antialiased')}>
         {children}
         <Chatbot />
