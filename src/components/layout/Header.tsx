@@ -9,10 +9,11 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "/about", label: "O nás" },
+  { href: "/", label: "Úvod" },
   { href: "/services", label: "Služby" },
-  { href: "/shop", label: "Shop" },
-  { href: "/admin", label: "Admin" },
+  { href: "/shop", label: "Cenník" },
+  { href: "/about", label: "O nás" },
+  { href: "/contact", label: "Kontakty" },
 ];
 
 export default function Header() {
