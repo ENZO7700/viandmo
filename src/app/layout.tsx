@@ -1,3 +1,4 @@
+
 import type { Metadata } from 'next';
 import './globals.css';
 import { cn } from '@/lib/utils';
@@ -6,8 +7,8 @@ import Chatbot from '@/components/chatbot/Chatbot';
 import { Playfair_Display, PT_Sans } from 'next/font/google';
 
 export const metadata: Metadata = {
-  title: 'Papi Hair Design PRO',
-  description: 'Luxury Hair Salon & Barber Shop',
+  title: 'VI&MO | Sťahovanie a Upratovanie Bratislava',
+  description: 'Spoľahlivé sťahovanie, odvoz odpadu a profesionálne upratovacie služby v Bratislave a okolí. Pevné ruky & poctivý prístup.',
   manifest: "/manifest.json",
   themeColor: "#ffffff",
 };
@@ -33,11 +34,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn(playfairDisplay.variable, ptSans.variable)}>
+    <html lang="sk" className={cn(playfairDisplay.variable, ptSans.variable)}>
       <head />
       <body className={cn('font-body antialiased')}>
         {children}
-        <Chatbot />
         <Toaster />
       </body>
     </html>

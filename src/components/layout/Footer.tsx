@@ -1,3 +1,4 @@
+
 'use client';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
@@ -13,33 +14,17 @@ export default function Footer() {
         <div className="flex flex-col items-center md:items-start">
             <Logo />
           <p className="text-sm text-muted-foreground max-w-xs mt-4">
-            Exkluzívna starostlivosť o vlasy, kde sa umenie stretáva s inováciou. Prebuďte svoju krásu s nami.
+            Spoľahlivé sťahovanie, vypratávanie a upratovanie v Bratislave a okolí. Rýchlo, efektívne a s ľudským prístupom.
           </p>
         </div>
 
         <div>
           <h3 className="text-lg font-semibold mb-4 font-headline">Rýchle odkazy</h3>
           <ul className="space-y-2 text-muted-foreground">
-            <li>
-              <Link href="/about" className="hover:text-primary transition-colors">
-                O nás
-              </Link>
-            </li>
-            <li>
-              <Link href="/services" className="hover:text-primary transition-colors">
-                Služby
-              </Link>
-            </li>
-             <li>
-              <Link href="/shop" className="hover:text-primary transition-colors">
-                E-shop & Cenník
-              </Link>
-            </li>
-            <li>
-              <Link href="/booking" className="hover:text-primary transition-colors">
-                Online rezervácia
-              </Link>
-            </li>
+            <li><Link href="/#sluzby" className="hover:text-primary transition-colors">Služby</Link></li>
+            <li><Link href="/#cennik" className="hover:text-primary transition-colors">Cenník</Link></li>
+            <li><Link href="/#preco-my" className="hover:text-primary transition-colors">O nás</Link></li>
+            <li><Link href="/contact" className="hover:text-primary transition-colors">Kontakt</Link></li>
           </ul>
         </div>
 
@@ -48,58 +33,44 @@ export default function Footer() {
           <ul className="space-y-2 text-muted-foreground">
             <li className="flex items-center justify-center md:justify-start">
               <Phone className="h-4 w-4 mr-2 text-primary" />
-              <a href="tel:+4219XX XXX XXX" className="hover:text-primary transition-colors">
-                +421 9XX XXX XXX
+              <a href="tel:+421911275755" className="hover:text-primary transition-colors">
+                +421 911 275 755 (Sťahovanie)
+              </a>
+            </li>
+             <li className="flex items-center justify-center md:justify-start">
+              <Phone className="h-4 w-4 mr-2 text-primary" />
+              <a href="tel:+421918895730" className="hover:text-primary transition-colors">
+                +421 918 895 730 (Upratovanie)
               </a>
             </li>
             <li className="flex items-center justify-center md:justify-start">
               <Mail className="h-4 w-4 mr-2 text-primary" />
-              <a href="mailto:info@papihairdesignpro.sk" className="hover:text-primary transition-colors">
-                info@papihairdesignpro.sk
+              <a href="mailto:info@viandmo.com" className="hover:text-primary transition-colors">
+                info@viandmo.com
               </a>
-            </li>
-            <li className="text-sm">
-              Luxusná ulica 123, <br /> 841 01 Bratislava, Slovensko
             </li>
           </ul>
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold mb-4 font-headline">Sledujte nás</h3>
-          <div className="flex justify-center md:justify-start space-x-4">
-            <a
-              href="https://www.facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:text-foreground transition-colors"
-            >
-              <Facebook className="h-6 w-6" />
-              <span className="sr-only">Facebook</span>
-            </a>
-            <a
-              href="https://www.instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:text-foreground transition-colors"
-            >
-              <Instagram className="h-6 w-6" />
-              <span className="sr-only">Instagram</span>
-            </a>
-          </div>
+          <h3 className="text-lg font-semibold mb-4 font-headline">Obchodné údaje</h3>
+           <div className="text-sm text-muted-foreground">
+                <p>VI and MO s. r. o.</p>
+                <p>Karpatské námestie 7770/10A</p>
+                <p>831 06 Bratislava - Rača</p>
+                <p>IČO: 56 811 322</p>
+                <p>DIČ: 2122461176</p>
+           </div>
         </div>
       </div>
 
       <Separator className="my-8 bg-muted" />
 
       <div className="container text-center text-sm text-muted-foreground">
-        &copy; {currentYear} Papi Hair Design PRO. Všetky práva vyhradené.
+        &copy; {currentYear} VI and MO s. r. o. Všetky práva vyhradené.
         <span className="mx-2">|</span>
         <Link href="/privacy-policy" className="hover:text-primary transition-colors">
           Ochrana osobných údajov
-        </Link>
-        <span className="mx-2">|</span>
-        <Link href="/terms-of-service" className="hover:text-primary transition-colors">
-          Podmienky používania
         </Link>
       </div>
     </footer>

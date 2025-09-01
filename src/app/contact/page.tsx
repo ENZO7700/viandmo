@@ -1,9 +1,13 @@
 
+'use client';
+
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Clock, Mail, MapPin, Phone } from 'lucide-react';
+import { Mail, MapPin, Phone } from 'lucide-react';
+import { Label } from '@/components/ui/label';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 export default function ContactPage() {
   return (
@@ -22,7 +26,7 @@ export default function ContactPage() {
             Kontaktujte Nás
           </h1>
           <p className="mt-4 text-lg md:text-2xl max-w-3xl mx-auto drop-shadow-md">
-            Sme tu pre vás. Neváhajte nás osloviť s akýmikoľvek otázkami.
+            Sme tu pre vás. Napíšte nám a získajte nezáväznú cenovú ponuku.
           </p>
         </div>
       </section>
@@ -30,61 +34,83 @@ export default function ContactPage() {
       <section className="py-16 md:py-24 bg-muted/30">
         <div className="container grid md:grid-cols-2 gap-16 items-start">
           
-          {/* Contact Info & Hours */}
+          {/* Contact Info */}
           <div className="space-y-8">
-            <div>
-              <h2 className="text-3xl font-headline text-primary mb-4">Naše Štúdio</h2>
-              <div className="space-y-3 text-lg text-muted-foreground">
-                <p className="flex items-center gap-4">
-                  <MapPin className="w-6 h-6 text-primary flex-shrink-0" />
-                  <span>Luxusná ulica 123, 841 01 Bratislava, Slovensko</span>
-                </p>
-                <p className="flex items-center gap-4">
-                  <Phone className="w-6 h-6 text-primary flex-shrink-0" />
-                  <a href="tel:+4219XX XXX XXX" className="hover:text-primary transition-colors">+421 9XX XXX XXX</a>
-                </p>
-                <p className="flex items-center gap-4">
-                  <Mail className="w-6 h-6 text-primary flex-shrink-0" />
-                  <a href="mailto:info@viandmo.sk" className="hover:text-primary transition-colors">info@viandmo.sk</a>
-                </p>
-              </div>
-            </div>
-             <div>
-              <h3 className="text-2xl font-headline text-primary mb-4">Otváracie Hodiny</h3>
-               <div className="space-y-2 text-lg text-muted-foreground">
-                <p className="flex justify-between"><span>Utorok - Piatok:</span> <span className="font-semibold">10:00 - 18:00</span></p>
-                <p className="flex justify-between"><span>Sobota:</span> <span className="font-semibold">09:00 - 15:00</span></p>
-                <p className="flex justify-between"><span>Nedeľa - Pondelok:</span> <span className="font-semibold">Zatvorené</span></p>
-              </div>
-            </div>
+             <Card>
+                <CardHeader><CardTitle>Kontaktné údaje</CardTitle></CardHeader>
+                <CardContent className="space-y-4 text-lg">
+                    <p className="flex items-center gap-4">
+                        <Phone className="w-6 h-6 text-primary flex-shrink-0" />
+                        <div>
+                            <a href="tel:+421911275755" className="hover:text-primary transition-colors">+421 911 275 755</a>
+                            <span className="text-sm text-muted-foreground block">Sťahovanie</span>
+                        </div>
+                    </p>
+                     <p className="flex items-center gap-4">
+                        <Phone className="w-6 h-6 text-primary flex-shrink-0" />
+                         <div>
+                            <a href="tel:+421918895730" className="hover:text-primary transition-colors">+421 918 895 730</a>
+                             <span className="text-sm text-muted-foreground block">Upratovanie</span>
+                        </div>
+                    </p>
+                    <p className="flex items-center gap-4">
+                        <Mail className="w-6 h-6 text-primary flex-shrink-0" />
+                        <a href="mailto:info@viandmo.com" className="hover:text-primary transition-colors">info@viandmo.com</a>
+                    </p>
+                     <p className="flex items-center gap-4">
+                        <MapPin className="w-6 h-6 text-primary flex-shrink-0" />
+                        <span>Karpatské námestie 7770/10A<br/>831 06 Bratislava - Rača</span>
+                    </p>
+                </CardContent>
+             </Card>
+
             {/* Placeholder for Map */}
             <div className="aspect-video w-full bg-muted rounded-lg overflow-hidden relative shadow-lg">
-                <Image
-                    src="https://picsum.photos/800/450?random=41"
-                    alt="Mapa polohy salónu"
-                    fill
-                    className="object-cover"
-                    data-ai-hint="city map"
-                />
-                 <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-                    <Button variant="secondary">Otvoriť v Mapách</Button>
-                </div>
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2659.582390956554!2d17.14798331565108!3d48.20458997922961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476c8edb5da8d5a9%3A0x8a914a22b7987daf!2sKarpatsk%C3%A9%20n%C3%A1mestie%2010a%2C%20831%2006%20Bratislava!5e0!3m2!1ssk!2ssk!4v1684321654879!5m2!1ssk!2ssk!4v1684321654879!5m2!1ssk!2ssk" 
+                    width="100%" 
+                    height="100%" 
+                    style={{border:0}} 
+                    allowFullScreen={true}
+                    loading="lazy" 
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Mapa polohy VI&MO"
+                ></iframe>
             </div>
           </div>
 
           {/* Contact Form */}
-          <div>
-             <h2 className="text-3xl font-headline text-primary mb-4">Napíšte Nám</h2>
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Input placeholder="Vaše Meno" required className="py-6"/>
-                <Input type="email" placeholder="Váš Email" required className="py-6"/>
-              </div>
-              <Input placeholder="Predmet" required className="py-6"/>
-              <Textarea placeholder="Vaša Správa..." rows={6} required />
-              <Button type="submit" size="lg" className="w-full py-6">Odoslať správu</Button>
-            </form>
-          </div>
+          <Card className="p-6 md:p-8">
+             <CardHeader className="p-0 mb-6">
+                <CardTitle className="text-3xl font-headline text-primary">Napíšte Nám</CardTitle>
+                <p className="text-muted-foreground">Odpovieme vám čo najskôr.</p>
+             </CardHeader>
+             <CardContent className="p-0">
+                <form className="space-y-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Meno/Firma *</Label>
+                    <Input id="name" placeholder="Vaše meno alebo názov firmy" required />
+                  </div>
+                   <div className="space-y-2">
+                    <Label htmlFor="phone">Mobil *</Label>
+                    <Input id="phone" type="tel" placeholder="Vaše telefónne číslo" required />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Email *</Label>
+                    <Input id="email" type="email" placeholder="vas@email.com" required />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="address">Adresa (nepovinné)</Label>
+                    <Input id="address" placeholder="Adresa sťahovania alebo upratovania" />
+                  </div>
+                   <div className="space-y-2">
+                    <Label htmlFor="message">Vaša Správa *</Label>
+                    <Textarea id="message" placeholder="Popíšte nám, s čím vám môžeme pomôcť..." rows={5} required />
+                  </div>
+                  <Button type="submit" size="lg" className="w-full py-6">Odoslať správu</Button>
+                </form>
+             </CardContent>
+          </Card>
         </div>
       </section>
     </>

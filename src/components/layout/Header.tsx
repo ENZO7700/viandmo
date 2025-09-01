@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from "next/link";
@@ -10,9 +11,9 @@ import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "/", label: "Úvod" },
-  { href: "/services", label: "Služby" },
-  { href: "/shop", label: "Cenník" },
-  { href: "/about", label: "O nás" },
+  { href: "/#sluzby", label: "Služby" },
+  { href: "/#cennik", label: "Cenník" },
+  { href: "/#preco-my", label: "O nás" },
   { href: "/contact", label: "Kontakty" },
 ];
 
@@ -36,17 +37,10 @@ export default function Header() {
         <nav className="hidden md:flex flex-grow justify-center items-center gap-4">
           {navLinks.map(link => <NavLink key={link.href} {...link} />)}
            <Button asChild size="lg" className="ml-4 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6">
-              <Link href="/booking">Rezervovať termín</Link>
+              <Link href="/contact">Cenová ponuka</Link>
             </Button>
         </nav>
-        <div className="hidden md:flex items-center gap-2 ml-auto">
-          <Button asChild variant="ghost" size="icon">
-            <Link href="/cart"><ShoppingCart /></Link>
-          </Button>
-           <Button asChild variant="ghost" size="icon">
-            <Link href="/login"><User /></Link>
-          </Button>
-        </div>
+        
         <div className="md:hidden ml-auto">
           <Sheet>
             <SheetTrigger asChild>
@@ -57,17 +51,9 @@ export default function Header() {
             <SheetContent>
               <nav className="flex flex-col items-center gap-6 mt-16">
                  <Button asChild size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6">
-                    <Link href="/booking">Rezervovať termín</Link>
+                    <Link href="/contact">Cenová ponuka</Link>
                   </Button>
                 {navLinks.map(link => <NavLink key={link.href} {...link} />)}
-                <div className="flex flex-col w-full gap-2 mt-8">
-                  <Button asChild variant="outline">
-                    <Link href="/login"><User className="mr-2 h-4 w-4" /> Log In</Link>
-                  </Button>
-                  <Button asChild variant="secondary">
-                     <Link href="/cart"><ShoppingCart className="mr-2 h-4 w-4" /> View Cart</Link>
-                  </Button>
-                </div>
               </nav>
             </SheetContent>
           </Sheet>
