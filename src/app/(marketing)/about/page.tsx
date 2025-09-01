@@ -24,7 +24,7 @@ export default function AboutPage() {
           data-ai-hint="team moving boxes"
         />
         <div className="relative z-10 p-4">
-          <h1 className="text-5xl md:text-7xl font-headline leading-tight text-primary drop-shadow-lg">
+          <h1 className="text-5xl md:text-7xl font-headline leading-tight text-primary-foreground drop-shadow-lg">
             Náš Príbeh
           </h1>
           <p className="mt-4 text-lg md:text-2xl max-w-3xl mx-auto drop-shadow-md">
