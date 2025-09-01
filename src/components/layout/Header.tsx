@@ -9,7 +9,8 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "/booking", label: "Book Now" },
+  { href: "/about", label: "O nás" },
+  { href: "/services", label: "Služby" },
   { href: "/shop", label: "Shop" },
   { href: "/admin", label: "Admin" },
 ];
@@ -31,8 +32,11 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
         <Logo />
-        <nav className="hidden md:flex flex-grow justify-center">
+        <nav className="hidden md:flex flex-grow justify-center items-center gap-4">
           {navLinks.map(link => <NavLink key={link.href} {...link} />)}
+           <Button asChild size="lg" className="ml-4 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6">
+              <Link href="/booking">Rezervovať termín</Link>
+            </Button>
         </nav>
         <div className="hidden md:flex items-center gap-2 ml-auto">
           <Button asChild variant="ghost" size="icon">
@@ -54,6 +58,9 @@ export default function Header() {
             </SheetTrigger>
             <SheetContent>
               <nav className="flex flex-col items-center gap-6 mt-16">
+                 <Button asChild size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6">
+                    <Link href="/booking">Rezervovať termín</Link>
+                  </Button>
                 {navLinks.map(link => <NavLink key={link.href} {...link} />)}
                 <div className="flex flex-col w-full gap-2 mt-8">
                   <Button asChild variant="outline">
