@@ -58,7 +58,7 @@ export default function Footer() {
             </li>
             <li className="flex items-center justify-center md:justify-start">
               <Mail className="h-4 w-4 mr-2 text-primary" />
-              <a href="mailto:info@papihairdesignpro.com" className="hover:text-primary transition-colors">
+              <a href="mailto:info@papi.hair" className="hover:text-primary transition-colors">
                 info@papi.hair
               </a>
             </li>
