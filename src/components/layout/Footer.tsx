@@ -1,88 +1,110 @@
-import Link from "next/link";
-import Logo from "./Logo";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-
-const socialLinks = [
-  { name: "Instagram", href: "#" },
-  { name: "Facebook", href: "#" },
-  { name: "Twitter", href: "#" },
-];
-
-const footerLinks = [
-  {
-    title: "Explore",
-    links: [
-      { name: "Home", href: "/" },
-      { name: "Book Now", href: "/booking" },
-      { name: "Shop", href: "/shop" },
-      { name: "Our Stylists", href: "#" },
-    ],
-  },
-  {
-    title: "Support",
-    links: [
-      { name: "FAQ", href: "#" },
-      { name: "Contact Us", href: "#" },
-      { name: "Shipping & Returns", href: "#" },
-      { name: "My Account", href: "/account" },
-    ],
-  },
-];
+import Link from 'next/link';
+import { Separator } from '@/components/ui/separator';
+import { Facebook, Instagram, Phone, Mail } from 'lucide-react';
+import Logo from './Logo';
 
 export default function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="bg-card text-card-foreground border-t">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* About & Socials */}
-          <div className="md:col-span-1 space-y-4">
+    <footer className="bg-card border-t py-12">
+      <div className="container grid grid-cols-1 gap-8 text-center md:grid-cols-4 md:text-left">
+        <div className="flex flex-col items-center md:items-start">
             <Logo />
-            <p className="text-sm text-muted-foreground">
-              Luxury hair design and professional products. Experience the art of hair.
-            </p>
-            <div className="flex space-x-4">
-              {socialLinks.map((social) => (
-                <Link key={social.name} href={social.href} className="text-muted-foreground hover:text-primary transition-colors">
-                  {social.name}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* Links */}
-          <div className="md:col-span-2 grid grid-cols-2 gap-8">
-            {footerLinks.map((section) => (
-              <div key={section.title}>
-                <h3 className="font-headline font-semibold tracking-wider text-foreground">{section.title}</h3>
-                <ul className="mt-4 space-y-2">
-                  {section.links.map((link) => (
-                    <li key={link.name}>
-                      <Link href={link.href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                        {link.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          
-          {/* Newsletter */}
-          <div className="md:col-span-1">
-            <h3 className="font-headline font-semibold tracking-wider text-foreground">Join Our Newsletter</h3>
-            <p className="mt-4 text-sm text-muted-foreground">Get the latest on new services, products, and exclusive offers.</p>
-            <form className="mt-4 flex gap-2">
-              <Input type="email" placeholder="Enter your email" className="flex-1" />
-              <Button type="submit">Subscribe</Button>
-            </form>
-          </div>
+          <p className="text-sm text-muted-foreground max-w-xs mt-4">
+            Exkluzívna starostlivosť o vlasy, kde sa umenie stretáva s inováciou. Prebuďte svoju krásu s nami.
+          </p>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-border/50 text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Papi Hair Design. All Rights Reserved.</p>
+        <div>
+          <h3 className="text-lg font-semibold mb-4 font-headline">Rýchle odkazy</h3>
+          <ul className="space-y-2 text-muted-foreground">
+            <li>
+              <Link href="/about" className="hover:text-primary transition-colors">
+                O nás
+              </Link>
+            </li>
+            <li>
+              <Link href="/services" className="hover:text-primary transition-colors">
+                Služby
+              </Link>
+            </li>
+            <li>
+              <Link href="/pricing" className="hover:text-primary transition-colors">
+                Cenník
+              </Link>
+            </li>
+            <li>
+              <Link href="/booking" className="hover:text-primary transition-colors">
+                Online rezervácia
+              </Link>
+            </li>
+            <li>
+              <Link href="/shop" className="hover:text-primary transition-colors">
+                E-shop
+              </Link>
+            </li>
+          </ul>
         </div>
+
+        <div>
+          <h3 className="text-lg font-semibold mb-4 font-headline">Kontakt</h3>
+          <ul className="space-y-2 text-muted-foreground">
+            <li className="flex items-center justify-center md:justify-start">
+              <Phone className="h-4 w-4 mr-2 text-primary" />
+              <a href="tel:+4219XX XXX XXX" className="hover:text-primary transition-colors">
+                +421 9XX XXX XXX
+              </a>
+            </li>
+            <li className="flex items-center justify-center md:justify-start">
+              <Mail className="h-4 w-4 mr-2 text-primary" />
+              <a href="mailto:info@papihairdesignpro.com" className="hover:text-primary transition-colors">
+                info@papi.hair
+              </a>
+            </li>
+            <li className="text-sm">
+              Luxusná ulica 123, <br /> 841 01 Bratislava, Slovensko
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="text-lg font-semibold mb-4 font-headline">Sledujte nás</h3>
+          <div className="flex justify-center md:justify-start space-x-4">
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:text-foreground transition-colors"
+            >
+              <Facebook className="h-6 w-6" />
+              <span className="sr-only">Facebook</span>
+            </a>
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:text-foreground transition-colors"
+            >
+              <Instagram className="h-6 w-6" />
+              <span className="sr-only">Instagram</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <Separator className="my-8 bg-muted" />
+
+      <div className="container text-center text-sm text-muted-foreground">
+        &copy; {currentYear} Papi Hair Design. Všetky práva vyhradené.
+        <span className="mx-2">|</span>
+        <Link href="/privacy-policy" className="hover:text-primary transition-colors">
+          Ochrana osobných údajov
+        </Link>
+        <span className="mx-2">|</span>
+        <Link href="/terms-of-service" className="hover:text-primary transition-colors">
+          Podmienky používania
+        </Link>
       </div>
     </footer>
   );
