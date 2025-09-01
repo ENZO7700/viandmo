@@ -8,8 +8,48 @@ import { Textarea } from '@/components/ui/textarea';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useFormState, useForm } from 'react-hook-form';
+import { submitContactForm, type ContactFormState } from '../actions';
+import { useEffect } from 'react';
+import { useToast } from '@/hooks/use-toast';
+
 
 export default function ContactPage() {
+    const { toast } = useToast();
+
+    const initialState: ContactFormState = {
+        message: "",
+    };
+
+    const [state, formAction] = useFormState(submitContactForm, initialState);
+    const { register, formState: { errors }, reset } = useForm({
+        defaultValues: {
+            name: state?.fields?.name || '',
+            phone: state?.fields?.phone || '',
+            email: state?.fields?.email || '',
+            address: state?.fields?.address || '',
+            message: state?.fields?.message || '',
+        },
+    });
+
+    useEffect(() => {
+        if (state.message && !state.issues) {
+            toast({
+                title: "Správa odoslaná",
+                description: state.message,
+                variant: "default",
+            });
+            reset();
+        } else if (state.message && state.issues) {
+             toast({
+                title: "Chyba vo formulári",
+                description: state.message,
+                variant: "destructive",
+            });
+        }
+    }, [state, reset, toast]);
+
+
   return (
     <>
       <section className="relative h-96 w-full flex items-center justify-center text-center text-white">
@@ -86,26 +126,30 @@ export default function ContactPage() {
                 <p className="text-muted-foreground">Odpovieme vám čo najskôr.</p>
              </CardHeader>
              <CardContent className="p-0">
-                <form className="space-y-6">
+                <form action={formAction} className="space-y-6">
                   <div className="space-y-2">
                     <Label htmlFor="name">Meno/Firma *</Label>
-                    <Input id="name" placeholder="Vaše meno alebo názov firmy" required />
+                    <Input id="name" {...register("name")} placeholder="Vaše meno alebo názov firmy" />
+                    {errors.name && <p className="text-destructive text-sm">{errors.name.message}</p>}
                   </div>
                    <div className="space-y-2">
                     <Label htmlFor="phone">Mobil *</Label>
-                    <Input id="phone" type="tel" placeholder="Vaše telefónne číslo" required />
+                    <Input id="phone" type="tel" {...register("phone")} placeholder="Vaše telefónne číslo" />
+                    {errors.phone && <p className="text-destructive text-sm">{errors.phone.message}</p>}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="email">Email *</Label>
-                    <Input id="email" type="email" placeholder="vas@email.com" required />
+                    <Input id="email" type="email" {...register("email")} placeholder="vas@email.com" />
+                    {errors.email && <p className="text-destructive text-sm">{errors.email.message}</p>}
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="address">Adresa (nepovinné)</Label>
-                    <Input id="address" placeholder="Adresa sťahovania alebo upratovania" />
+                    <Input id="address" {...register("address")} placeholder="Adresa sťahovania alebo upratovania" />
                   </div>
                    <div className="space-y-2">
                     <Label htmlFor="message">Vaša Správa *</Label>
-                    <Textarea id="message" placeholder="Popíšte nám, s čím vám môžeme pomôcť..." rows={5} required />
+                    <Textarea id="message" {...register("message")} placeholder="Popíšte nám, s čím vám môžeme pomôcť..." rows={5} />
+                    {errors.message && <p className="text-destructive text-sm">{errors.message.message}</p>}
                   </div>
                   <Button type="submit" size="lg" className="w-full py-6">Odoslať správu</Button>
                 </form>
