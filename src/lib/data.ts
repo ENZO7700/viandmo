@@ -1,4 +1,5 @@
 import { User, Scissors, Palette, ShoppingBag, Calendar, Users, BarChart, Settings } from "lucide-react";
+import moment from "moment";
 
 export const services = [
   {
@@ -77,13 +78,62 @@ export const customers = [
     { id: '2', name: "Olivia Smith", email: "olivia@example.com", bookings: 8, totalSpent: 1200 },
     { id: '3', name: "Noah Williams", email: "noah@example.com", bookings: 2, totalSpent: 90 },
     { id: '4', name: "Emma Brown", email: "emma@example.com", bookings: 12, totalSpent: 2150 },
-    { id_: '5', name: "James Jones", email: "james@example.com", bookings: 1, totalSpent: 75 },
+    { id: '5', name: "James Jones", email: "james@example.com", bookings: 1, totalSpent: 75 },
 ];
 
+// Helper to create date objects from a date and time string
+const createDate = (date: string, time: string): Date => {
+  return moment(`${date} ${time}`, "YYYY-MM-DD h:mm A").toDate();
+};
+
 export const bookings = [
-    { id: '1', customerName: 'Olivia Smith', service: "Balayage", stylist: 'Isabella', date: '2024-08-15', time: '10:00 AM', status: 'Confirmed' },
-    { id: '2', customerName: 'Liam Johnson', service: "Men's Cut", stylist: 'Papi', date: '2024-08-15', time: '11:00 AM', status: 'Confirmed' },
-    { id: '3', customerName: 'New Client', service: "Women's Cut", stylist: 'Sofia', date: '2024-08-16', time: '02:00 PM', status: 'Pending' },
-    { id: '4', customerName: 'Emma Brown', service: "Keratin Treatment", stylist: 'Isabella', date: '2024-08-17', time: '12:00 PM', status: 'Completed' },
-    { id: '5', customerName: 'James Jones', service: "Women's Cut", stylist: 'Sofia', date: '2024-08-18', time: '04:00 PM', status: 'Cancelled' },
+    { 
+        id: '1', 
+        title: "Balayage - Olivia Smith", 
+        customerName: 'Olivia Smith', 
+        service: "Balayage", 
+        stylist: 'Isabella', 
+        start: createDate('2024-08-15', '10:00 AM'), 
+        end: createDate('2024-08-15', '1:00 PM'), // Assumes 3 hour duration
+        status: 'Confirmed' 
+    },
+    { 
+        id: '2', 
+        title: "Men's Cut - Liam Johnson", 
+        customerName: 'Liam Johnson', 
+        service: "Men's Cut", 
+        stylist: 'Papi', 
+        start: createDate('2024-08-15', '11:00 AM'), 
+        end: createDate('2024-08-15', '11:45 AM'), // 45 min duration
+        status: 'Confirmed' 
+    },
+    { 
+        id: '3', 
+        title: "Women's Cut - New Client", 
+        customerName: 'New Client', 
+        service: "Women's Cut", 
+        stylist: 'Sofia', 
+        start: createDate('2024-08-16', '2:00 PM'), 
+        end: createDate('2024-08-16', '3:00 PM'), // 60 min duration
+        status: 'Pending' 
+    },
+    { 
+        id: '4', 
+        title: "Keratin - Emma Brown", 
+        customerName: 'Emma Brown', 
+        service: "Keratin Treatment", 
+        stylist: 'Isabella', 
+        start: createDate('2024-08-17', '12:00 PM'), 
+        end: createDate('2024-08-17', '2:30 PM'), // 150 min duration
+        status: 'Completed' 
+    },
+    { 
+        id: '5', 
+        title: "Women's Cut - James Jones", 
+        customerName: 'James Jones', 
+        service: "Women's Cut", stylist: 'Sofia', 
+        start: createDate('2024-08-18', '4:00 PM'), 
+        end: createDate('2024-08-18', '5:00 PM'), // 60 min duration
+        status: 'Cancelled' 
+    },
 ];
