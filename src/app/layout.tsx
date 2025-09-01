@@ -7,6 +7,7 @@ import Chatbot from '@/components/chatbot/Chatbot';
 export const metadata: Metadata = {
   title: 'Papi Hair Design',
   description: 'Luxury Hair Salon & Barber Shop',
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({

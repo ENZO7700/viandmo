@@ -1,4 +1,4 @@
-import { User, Scissors, Palette, ShoppingBag, Calendar, Users, BarChart } from "lucide-react";
+import { User, Scissors, Palette, ShoppingBag, Calendar, Users, BarChart, Settings } from "lucide-react";
 
 export const services = [
   {
@@ -69,6 +69,7 @@ export const adminNavItems = [
   { href: "/admin/customers", label: "Customers", icon: Users },
   { href: "/admin/services", label: "Services", icon: Scissors },
   { href: "/admin/products", label: "Products", icon: ShoppingBag },
+  { href: "/admin/pwa-settings", label: "PWA Settings", icon: Settings },
 ]
 
 export const customers = [
