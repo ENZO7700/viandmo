@@ -30,19 +30,14 @@ export default function Footer() {
                 Služby
               </Link>
             </li>
-            <li>
-              <Link href="/pricing" className="hover:text-primary transition-colors">
-                Cenník
+             <li>
+              <Link href="/shop" className="hover:text-primary transition-colors">
+                E-shop & Cenník
               </Link>
             </li>
             <li>
               <Link href="/booking" className="hover:text-primary transition-colors">
                 Online rezervácia
-              </Link>
-            </li>
-            <li>
-              <Link href="/shop" className="hover:text-primary transition-colors">
-                E-shop
               </Link>
             </li>
           </ul>
@@ -59,8 +54,8 @@ export default function Footer() {
             </li>
             <li className="flex items-center justify-center md:justify-start">
               <Mail className="h-4 w-4 mr-2 text-primary" />
-              <a href="mailto:info@papihairdesignpro.com" className="hover:text-primary transition-colors">
-                info@papihairdesignpro.com
+              <a href="mailto:info@papihairdesignpro.sk" className="hover:text-primary transition-colors">
+                info@papihairdesignpro.sk
               </a>
             </li>
             <li className="text-sm">
@@ -73,7 +68,7 @@ export default function Footer() {
           <h3 className="text-lg font-semibold mb-4 font-headline">Sledujte nás</h3>
           <div className="flex justify-center md:justify-start space-x-4">
             <a
-              href="https://www.facebook.com/papihairdesignpro"
+              href="https://www.facebook.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:text-foreground transition-colors"
@@ -82,7 +77,7 @@ export default function Footer() {
               <span className="sr-only">Facebook</span>
             </a>
             <a
-              href="https://www.instagram.com/papihairdesignpro"
+              href="https://www.instagram.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:text-foreground transition-colors"

@@ -7,10 +7,11 @@ import { services, stylists } from "@/lib/data";
 import { ArrowLeft, ArrowRight, Check, CheckCircle, Clock, DollarSign, Scissors, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Calendar } from "@/components/ui/calendar";
+import Image from "next/image";
 
 type BookingStep = "service" | "stylist" | "datetime" | "confirm";
 
-const timeSlots = ["10:00 AM", "11:00 AM", "12:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM"];
+const timeSlots = ["10:00", "11:00", "12:00", "14:00", "15:00", "16:00", "17:00"];
 
 export default function BookingPage() {
     const [step, setStep] = useState<BookingStep>("service");
@@ -37,109 +38,144 @@ export default function BookingPage() {
         }
     };
 
+    const ProgressBar = () => {
+      const steps = ["Služba", "Stylista", "Dátum a čas", "Potvrdenie"];
+      const currentStepIndex = steps.indexOf(step.charAt(0).toUpperCase() + step.slice(1));
+      
+      return (
+        <div className="flex items-center justify-between w-full max-w-xl mx-auto mb-12">
+            {steps.map((s, index) => (
+                <React.Fragment key={s}>
+                    <div className="flex flex-col items-center text-center">
+                        <div className={cn(
+                            "flex items-center justify-center w-10 h-10 rounded-full border-2 transition-all duration-300",
+                             index < steps.indexOf(step.charAt(0).toUpperCase() + step.slice(1)) ? "bg-primary border-primary" :
+                             index === steps.indexOf(step.charAt(0).toUpperCase() + step.slice(1)) ? "border-primary scale-110" : "border-border bg-muted",
+                             index < steps.indexOf(step.charAt(0).toUpperCase() + step.slice(1)) && "text-primary-foreground"
+                        )}>
+                           {index < steps.indexOf(step.charAt(0).toUpperCase() + step.slice(1)) ? <Check className="w-6 h-6"/> : (index + 1)}
+                        </div>
+                         <p className={cn(
+                            "mt-2 text-sm transition-colors duration-300",
+                            index === steps.indexOf(step.charAt(0).toUpperCase() + step.slice(1)) ? "text-primary font-semibold" : "text-muted-foreground"
+                         )}>{s}</p>
+                    </div>
+                    {index < steps.length - 1 && <div className={cn("flex-1 h-1 mx-4 rounded", index < steps.indexOf(step.charAt(0).toUpperCase() + step.slice(1)) ? "bg-primary" : "bg-border")}></div>}
+                </React.Fragment>
+            ))}
+        </div>
+      )
+    }
+
     return (
-        <div className="container mx-auto max-w-4xl py-12">
+        <div className="container mx-auto max-w-4xl py-12 md:py-20">
              <header className="mb-10 text-center">
-                <h1 className="text-4xl font-bold tracking-tight">Book Your Appointment</h1>
-                <p className="text-muted-foreground mt-2">Follow the steps below to secure your spot.</p>
+                <h1 className="text-4xl md:text-5xl font-headline tracking-tight text-primary">Zarezervujte si svoj termín</h1>
+                <p className="text-muted-foreground mt-2 text-lg">Sledujte kroky nižšie a zabezpečte si svoje miesto.</p>
             </header>
             
+            <ProgressBar />
+
             {step === 'service' && (
-                <Card>
-                    <CardHeader><CardTitle>1. Select a Service</CardTitle></CardHeader>
+                <Card className="shadow-lg">
+                    <CardHeader><CardTitle className="font-headline text-2xl">1. Vyberte si službu</CardTitle></CardHeader>
                     <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {services.map(service => (
-                            <button key={service.id} onClick={() => setSelectedService(service)} className={cn("p-4 rounded-lg border-2 text-left transition-all", selectedService?.id === service.id ? "border-primary bg-muted" : "border-border hover:border-primary")}>
-                                <h3 className="font-bold text-lg">{service.name}</h3>
-                                <p className="text-sm text-muted-foreground">{service.description}</p>
-                                <div className="flex items-center gap-4 mt-2 text-sm">
-                                    <span className="flex items-center gap-1"><Clock className="w-4 h-4 text-primary"/> {service.duration} min</span>
-                                    <span className="flex items-center gap-1"><DollarSign className="w-4 h-4 text-primary"/> {service.price.toFixed(2)}</span>
+                            <button key={service.id} onClick={() => setSelectedService(service)} className={cn("p-4 rounded-lg border-2 text-left transition-all duration-300 hover:shadow-md", selectedService?.id === service.id ? "border-primary bg-muted/50 ring-2 ring-primary" : "border-border hover:border-primary/50")}>
+                                <h3 className="font-bold text-lg font-headline">{service.name}</h3>
+                                <p className="text-sm text-muted-foreground mt-1 h-10">{service.description}</p>
+                                <div className="flex items-center gap-4 mt-2 text-sm font-semibold">
+                                    <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-primary"/> {service.duration} min</span>
+                                    <span className="flex items-center gap-1.5"><DollarSign className="w-4 h-4 text-primary"/> {service.price.toFixed(2)} €</span>
                                 </div>
                             </button>
                         ))}
                     </CardContent>
-                    <CardFooter className="justify-end">
-                        <Button onClick={nextStep} disabled={!selectedService}>
-                            Next <ArrowRight className="ml-2 w-4 h-4"/>
+                    <CardFooter className="justify-end pt-6">
+                        <Button onClick={nextStep} disabled={!selectedService} size="lg">
+                            Ďalej <ArrowRight className="ml-2 w-4 h-4"/>
                         </Button>
                     </CardFooter>
                 </Card>
             )}
 
              {step === 'stylist' && (
-                <Card>
-                    <CardHeader><CardTitle>2. Select a Stylist</CardTitle></CardHeader>
+                <Card className="shadow-lg">
+                    <CardHeader><CardTitle className="font-headline text-2xl">2. Vyberte si stylistu</CardTitle></CardHeader>
                     <CardContent className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         {stylists.map(stylist => (
-                             <button key={stylist.id} onClick={() => setSelectedStylist(stylist)} className={cn("p-4 rounded-lg border-2 text-center transition-all flex flex-col items-center", selectedStylist?.id === stylist.id ? "border-primary bg-muted" : "border-border hover:border-primary")}>
-                                <img src={stylist.img} alt={stylist.name} data-ai-hint={stylist.hint} className="w-24 h-24 rounded-full object-cover"/>
-                                <h3 className="font-bold mt-2">{stylist.name}</h3>
+                             <button key={stylist.id} onClick={() => setSelectedStylist(stylist)} className={cn("p-4 rounded-lg border-2 text-center transition-all duration-300 flex flex-col items-center hover:shadow-md", selectedStylist?.id === stylist.id ? "border-primary bg-muted/50 ring-2 ring-primary" : "border-border hover:border-primary/50")}>
+                                <div className="relative w-24 h-24 rounded-full overflow-hidden">
+                                  <Image src={stylist.img} alt={stylist.name} data-ai-hint={stylist.hint} fill className="object-cover"/>
+                                </div>
+                                <h3 className="font-bold mt-3 font-headline">{stylist.name}</h3>
                                 <p className="text-sm text-primary">{stylist.role}</p>
                             </button>
                         ))}
                     </CardContent>
-                    <CardFooter className="justify-between">
-                         <Button variant="outline" onClick={prevStep}>
-                            <ArrowLeft className="mr-2 w-4 h-4"/> Back
+                    <CardFooter className="justify-between pt-6">
+                         <Button variant="outline" onClick={prevStep} size="lg">
+                            <ArrowLeft className="mr-2 w-4 h-4"/> Späť
                         </Button>
-                        <Button onClick={nextStep} disabled={!selectedStylist}>
-                            Next <ArrowRight className="ml-2 w-4 h-4"/>
+                        <Button onClick={nextStep} disabled={!selectedStylist} size="lg">
+                            Ďalej <ArrowRight className="ml-2 w-4 h-4"/>
                         </Button>
                     </CardFooter>
                 </Card>
             )}
 
             {step === 'datetime' && (
-                <Card>
-                    <CardHeader><CardTitle>3. Select Date & Time</CardTitle></CardHeader>
+                <Card className="shadow-lg">
+                    <CardHeader><CardTitle className="font-headline text-2xl">3. Vyberte si dátum a čas</CardTitle></CardHeader>
                     <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-8">
                        <Calendar
                             mode="single"
                             selected={selectedDate}
                             onSelect={setSelectedDate}
                             className="rounded-md border justify-center"
+                            disabled={(date) => date < new Date(new Date().setDate(new Date().getDate() - 1))}
                         />
-                        <div className="grid grid-cols-2 gap-2 content-start">
+                        <div className="grid grid-cols-3 gap-2 content-start">
                             {timeSlots.map(time => (
-                                <Button key={time} variant={selectedTime === time ? "default" : "outline"} onClick={() => setSelectedTime(time)}>
+                                <Button key={time} variant={selectedTime === time ? "default" : "outline"} onClick={() => setSelectedTime(time)} className="py-6 text-base">
                                     {time}
                                 </Button>
                             ))}
                         </div>
                     </CardContent>
-                    <CardFooter className="justify-between">
-                         <Button variant="outline" onClick={prevStep}>
-                            <ArrowLeft className="mr-2 w-4 h-4"/> Back
+                    <CardFooter className="justify-between pt-6">
+                         <Button variant="outline" onClick={prevStep} size="lg">
+                            <ArrowLeft className="mr-2 w-4 h-4"/> Späť
                         </Button>
-                        <Button onClick={nextStep} disabled={!selectedDate || !selectedTime}>
-                            Next <ArrowRight className="ml-2 w-4 h-4"/>
+                        <Button onClick={nextStep} disabled={!selectedDate || !selectedTime} size="lg">
+                            Ďalej <ArrowRight className="ml-2 w-4 h-4"/>
                         </Button>
                     </CardFooter>
                 </Card>
             )}
 
             {step === 'confirm' && (
-                <Card>
+                <Card className="shadow-lg">
                     <CardHeader className="text-center items-center">
                         <CheckCircle className="w-16 h-16 text-green-500"/>
-                        <CardTitle className="text-3xl pt-4">Confirm Your Booking</CardTitle>
-                        <CardDescription>Please review the details of your appointment below.</CardDescription>
+                        <CardTitle className="text-3xl pt-4 font-headline">Potvrďte vašu rezerváciu</CardTitle>
+                        <CardDescription>Prosím, skontrolujte si detaily vašej rezervácie.</CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                        <div className="p-4 border rounded-lg bg-muted/50 space-y-2">
-                             <div className="flex justify-between items-center"><span className="text-muted-foreground flex items-center gap-2"><Scissors/>Service</span> <span className="font-bold">{selectedService?.name}</span></div>
-                             <div className="flex justify-between items-center"><span className="text-muted-foreground flex items-center gap-2"><User/>Stylist</span> <span className="font-bold">{selectedStylist?.name}</span></div>
-                             <div className="flex justify-between items-center"><span className="text-muted-foreground flex items-center gap-2"><Clock/>Date & Time</span> <span className="font-bold">{selectedDate?.toLocaleDateString()} at {selectedTime}</span></div>
-                             <div className="flex justify-between items-center"><span className="text-muted-foreground flex items-center gap-2"><DollarSign/>Price</span> <span className="font-bold text-primary text-lg">${selectedService?.price.toFixed(2)}</span></div>
+                        <div className="p-6 border rounded-lg bg-muted/50 space-y-3 text-lg">
+                             <div className="flex justify-between items-center"><span className="text-muted-foreground flex items-center gap-2"><Scissors/>Služba</span> <span className="font-bold">{selectedService?.name}</span></div>
+                             <div className="flex justify-between items-center"><span className="text-muted-foreground flex items-center gap-2"><User/>Stylista</span> <span className="font-bold">{selectedStylist?.name}</span></div>
+                             <div className="flex justify-between items-center"><span className="text-muted-foreground flex items-center gap-2"><Clock/>Dátum a čas</span> <span className="font-bold">{selectedDate?.toLocaleDateString('sk-SK')} o {selectedTime}</span></div>
+                             <div className="flex justify-between items-center"><span className="text-muted-foreground flex items-center gap-2"><DollarSign/>Cena</span> <span className="font-bold text-primary text-xl">{selectedService?.price.toFixed(2)} €</span></div>
                         </div>
+                         {/* Tu by boli polia pre meno, email, atd... */}
                     </CardContent>
-                    <CardFooter className="justify-between">
-                         <Button variant="outline" onClick={prevStep}>
-                            <ArrowLeft className="mr-2 w-4 h-4"/> Back
+                    <CardFooter className="justify-between pt-6">
+                         <Button variant="outline" onClick={prevStep} size="lg">
+                            <ArrowLeft className="mr-2 w-4 h-4"/> Späť
                         </Button>
-                        <Button onClick={() => alert("Booking Confirmed!")}>
-                            Confirm Booking <Check className="ml-2 w-4 h-4"/>
+                        <Button onClick={() => alert("Booking Confirmed!")} size="lg" className="bg-green-600 hover:bg-green-700">
+                            Potvrdiť rezerváciu <Check className="ml-2 w-4 h-4"/>
                         </Button>
                     </CardFooter>
                 </Card>
