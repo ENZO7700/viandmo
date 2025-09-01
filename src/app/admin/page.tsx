@@ -1,15 +1,23 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { ArrowUpRight, DollarSign, Calendar, Users } from "lucide-react";
+import { ArrowUpRight, DollarSign, Calendar, Users, Truck } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { bookings, customers } from "@/lib/data";
+
 
 const stats = [
-    { title: "Dnešné tržby", value: "$2,450", change: "+15.2%", icon: <DollarSign className="h-4 w-4 text-muted-foreground"/> },
-    { title: "Dnešné rezervácie", value: "18", change: "+5", icon: <Calendar className="h-4 w-4 text-muted-foreground"/> },
-    { title: "Noví zákazníci", value: "4", change: "+1", icon: <Users className="h-4 w-4 text-muted-foreground"/> },
+    { title: "Mesačné tržby", value: "4,850 €", change: "+20.1%", icon: <DollarSign className="h-4 w-4 text-muted-foreground"/> },
+    { title: "Zákazky tento mesiac", value: "25", change: "+12", icon: <Truck className="h-4 w-4 text-muted-foreground"/> },
+    { title: "Noví klienti", value: "6", change: "+2", icon: <Users className="h-4 w-4 text-muted-foreground"/> },
 ]
+
+const recentJobs = [
+    { id: '1', customerName: 'Ján Novák', service: "Sťahovanie bytu", status: 'Completed' },
+    { id: '2', customerName: 'Firma ABC, s.r.o.', service: "Sťahovanie kancelárie", status: 'Completed' },
+    { id: '3', customerName: 'Zuzana Malá', service: "Vypratávanie pivnice", status: 'Confirmed' },
+    { id: '4', customerName: 'Peter Veľký', service: "Pravidelné upratovanie", status: 'In Progress' },
+]
+
 
 export default function AdminDashboardPage() {
     return (
@@ -25,60 +33,42 @@ export default function AdminDashboardPage() {
                             <div className="text-2xl font-bold">{stat.value}</div>
                             <p className="text-xs text-muted-foreground flex items-center">
                                 <ArrowUpRight className="h-3 w-3 mr-1 text-green-500"/>
-                                <span className="text-green-500 mr-1">{stat.change}</span> oproti včerajšku
+                                <span className="text-green-500 mr-1">{stat.change}</span> oproti minulému mesiacu
                             </p>
                         </CardContent>
                     </Card>
                 ))}
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2">
+            <div>
                 <Card>
                     <CardHeader>
-                        <CardTitle>Nedávne rezervácie</CardTitle>
-                        <CardDescription>Zoznam posledných rezervácií.</CardDescription>
+                        <CardTitle>Nedávne a aktuálne zákazky</CardTitle>
+                        <CardDescription>Prehľad posledných zákazok.</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <Table>
                              <TableHeader>
                                 <TableRow>
-                                    <TableHead>Zákazník</TableHead>
+                                    <TableHead>Klient</TableHead>
                                     <TableHead>Služba</TableHead>
                                     <TableHead>Stav</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
-                                {bookings.slice(0,5).map(booking => (
-                                     <TableRow key={booking.id}>
+                                {recentJobs.map(job => (
+                                     <TableRow key={job.id}>
                                         <TableCell>
-                                            <div className="font-medium">{booking.customerName}</div>
-                                            <div className="text-sm text-muted-foreground">{booking.stylist}</div>
+                                            <div className="font-medium">{job.customerName}</div>
                                         </TableCell>
-                                        <TableCell>{booking.service}</TableCell>
+                                        <TableCell>{job.service}</TableCell>
                                         <TableCell>
-                                             <Badge variant={booking.status === 'Confirmed' ? 'default' : booking.status === 'Cancelled' ? 'destructive' : 'secondary'}>{booking.status}</Badge>
+                                             <Badge variant={job.status === 'Completed' ? 'default' : job.status === 'Cancelled' ? 'destructive' : 'secondary'}>{job.status}</Badge>
                                         </TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
                         </Table>
-                    </CardContent>
-                </Card>
-                 <Card>
-                    <CardHeader>
-                        <CardTitle>Noví zákazníci</CardTitle>
-                        <CardDescription>Nedávno zaregistrovaní zákazníci.</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        {customers.slice(0,5).map(customer => (
-                            <div key={customer.id} className="flex items-center justify-between py-2 border-b last:border-b-0">
-                                <div>
-                                    <p className="font-medium">{customer.name}</p>
-                                    <p className="text-sm text-muted-foreground">{customer.email}</p>
-                                </div>
-                                 <p className="text-sm text-muted-foreground">{customer.bookings} rezervácií</p>
-                            </div>
-                        ))}
                     </CardContent>
                 </Card>
             </div>

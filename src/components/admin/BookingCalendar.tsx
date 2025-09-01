@@ -3,11 +3,26 @@
 import { Calendar, momentLocalizer, Views } from 'react-big-calendar'
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
-import { bookings } from '@/lib/data'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
 import { useMemo } from 'react'
 
 const localizer = momentLocalizer(moment)
+
+// Helper to create date objects from a date and time string
+const createDate = (date: string, time: string): Date => {
+  return moment(`${date} ${time}`, "YYYY-MM-DD h:mm A").toDate();
+};
+
+const bookings = [
+    {
+        id: '1',
+        title: "Sťahovanie - Ján Novák, Bratislava",
+        start: createDate('2024-08-15', '10:00 AM'),
+        end: createDate('2024-08-15', '1:00 PM'),
+        status: 'Confirmed'
+    },
+];
+
 
 export default function BookingCalendar() {
   const { defaultDate, views } = useMemo(
@@ -30,12 +45,6 @@ export default function BookingCalendar() {
     if (event.status === 'Confirmed') {
         newStyle.backgroundColor = 'hsl(var(--primary))';
         newStyle.color = 'hsl(var(--primary-foreground))';
-    } else if (event.status === 'Pending') {
-        newStyle.backgroundColor = 'hsl(var(--secondary))';
-        newStyle.color = 'hsl(var(--secondary-foreground))';
-    } else if (event.status === 'Cancelled') {
-        newStyle.backgroundColor = 'hsl(var(--destructive))';
-        newStyle.color = 'hsl(var(--destructive-foreground))';
     } else {
         newStyle.backgroundColor = 'hsl(var(--muted))'
         newStyle.color = 'hsl(var(--muted-foreground))'
@@ -48,8 +57,8 @@ export default function BookingCalendar() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Booking Calendar</CardTitle>
-        <CardDescription>A visual overview of all scheduled appointments.</CardDescription>
+        <CardTitle>Kalendár zákazok</CardTitle>
+        <CardDescription>Vizuálny prehľad všetkých naplánovaných zákazok.</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="h-[70vh]">
@@ -61,7 +70,6 @@ export default function BookingCalendar() {
               defaultDate={defaultDate}
               views={views}
               eventPropGetter={eventStyleGetter}
-              // This sets the background color of the calendar cells
               className="bg-card text-card-foreground"
             />
         </div>

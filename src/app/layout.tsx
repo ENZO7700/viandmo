@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
-import Chatbot from '@/components/chatbot/Chatbot';
 import { Playfair_Display, PT_Sans } from 'next/font/google';
 
 export const metadata: Metadata = {
@@ -38,7 +37,6 @@ export default function RootLayout({
       <head />
       <body className={cn('font-body antialiased')}>
         {children}
-        <Toaster />
       </body>
     </html>
   );
