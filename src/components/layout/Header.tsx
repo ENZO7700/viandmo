@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Logo from "./Logo";
-import { Menu, ShoppingCart, User, UserPlus } from "lucide-react";
+import { Menu, ShoppingCart, User } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -62,9 +62,6 @@ export default function Header() {
                 <div className="flex flex-col w-full gap-2 mt-8">
                   <Button asChild variant="outline">
                     <Link href="/login"><User className="mr-2 h-4 w-4" /> Log In</Link>
-                  </Button>
-                  <Button asChild>
-                    <Link href="/register"><UserPlus className="mr-2 h-4 w-4" /> Sign Up</Link>
                   </Button>
                   <Button asChild variant="secondary">
                      <Link href="/cart"><ShoppingCart className="mr-2 h-4 w-4" /> View Cart</Link>
