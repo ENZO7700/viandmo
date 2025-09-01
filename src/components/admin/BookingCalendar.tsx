@@ -5,29 +5,14 @@ import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
 import { useMemo } from 'react'
+import { bookings } from '@/lib/data'
 
 const localizer = momentLocalizer(moment)
-
-// Helper to create date objects from a date and time string
-const createDate = (date: string, time: string): Date => {
-  return moment(`${date} ${time}`, "YYYY-MM-DD h:mm A").toDate();
-};
-
-const bookings = [
-    {
-        id: '1',
-        title: "Sťahovanie - Ján Novák, Bratislava",
-        start: createDate('2024-08-15', '10:00 AM'),
-        end: createDate('2024-08-15', '1:00 PM'),
-        status: 'Confirmed'
-    },
-];
-
 
 export default function BookingCalendar() {
   const { defaultDate, views } = useMemo(
     () => ({
-      defaultDate: new Date(2024, 7, 15), // August 15, 2024
+      defaultDate: new Date(), 
       views: {
         month: true,
         week: true,
@@ -45,6 +30,9 @@ export default function BookingCalendar() {
     if (event.status === 'Confirmed') {
         newStyle.backgroundColor = 'hsl(var(--primary))';
         newStyle.color = 'hsl(var(--primary-foreground))';
+    } else if (event.status === 'Completed') {
+        newStyle.backgroundColor = 'hsl(var(--accent))';
+        newStyle.color = 'hsl(var(--accent-foreground))';
     } else {
         newStyle.backgroundColor = 'hsl(var(--muted))'
         newStyle.color = 'hsl(var(--muted-foreground))'

@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { ArrowUpRight, DollarSign, Calendar, Users, Truck } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { bookings } from "@/lib/data";
 
 
 const stats = [
@@ -11,15 +12,10 @@ const stats = [
     { title: "Noví klienti", value: "6", change: "+2", icon: <Users className="h-4 w-4 text-muted-foreground"/> },
 ]
 
-const recentJobs = [
-    { id: '1', customerName: 'Ján Novák', service: "Sťahovanie bytu", status: 'Completed' },
-    { id: '2', customerName: 'Firma ABC, s.r.o.', service: "Sťahovanie kancelárie", status: 'Completed' },
-    { id: '3', customerName: 'Zuzana Malá', service: "Vypratávanie pivnice", status: 'Confirmed' },
-    { id: '4', customerName: 'Peter Veľký', service: "Pravidelné upratovanie", status: 'In Progress' },
-]
-
-
 export default function AdminDashboardPage() {
+    // Show the 4 most recent bookings
+    const recentJobs = bookings.sort((a, b) => b.start.getTime() - a.start.getTime()).slice(0, 4);
+
     return (
         <div className="space-y-6">
             <div className="grid gap-4 md:grid-cols-3">
@@ -59,9 +55,9 @@ export default function AdminDashboardPage() {
                                 {recentJobs.map(job => (
                                      <TableRow key={job.id}>
                                         <TableCell>
-                                            <div className="font-medium">{job.customerName}</div>
+                                            <div className="font-medium">{job.title.split(' - ')[1].split(',')[0]}</div>
                                         </TableCell>
-                                        <TableCell>{job.service}</TableCell>
+                                        <TableCell>{job.title.split(' - ')[0]}</TableCell>
                                         <TableCell>
                                              <Badge variant={job.status === 'Completed' ? 'default' : job.status === 'Cancelled' ? 'destructive' : 'secondary'}>{job.status}</Badge>
                                         </TableCell>
