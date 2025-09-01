@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: 'Papi Hair Design PRO',
   description: 'Luxury Hair Salon & Barber Shop',
   manifest: "/manifest.json",
-  themeColor: "#282828",
+  themeColor: "#ffffff",
 };
 
 const playfairDisplay = Playfair_Display({
@@ -33,7 +33,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("dark", playfairDisplay.variable, ptSans.variable)}>
+    <html lang="en" className={cn(playfairDisplay.variable, ptSans.variable)}>
       <head />
       <body className={cn('font-body antialiased')}>
         {children}

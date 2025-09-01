@@ -42,11 +42,8 @@ export default function Header() {
           <Button asChild variant="ghost" size="icon">
             <Link href="/cart"><ShoppingCart /></Link>
           </Button>
-          <Button asChild variant="ghost">
-            <Link href="/login"><User className="mr-2 h-4 w-4" /> Log In</Link>
-          </Button>
-          <Button asChild>
-            <Link href="/register"><UserPlus className="mr-2 h-4 w-4" /> Sign Up</Link>
+           <Button asChild variant="ghost" size="icon">
+            <Link href="/login"><User /></Link>
           </Button>
         </div>
         <div className="md:hidden ml-auto">

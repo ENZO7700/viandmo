@@ -33,7 +33,7 @@ export function HeroSection({ title, subtitle, image, alt }: HeroSectionProps) {
         transition={{ duration: 0.8, ease: 'easeOut' }}
         className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white p-4"
       >
-        <h1 className="text-5xl md:text-7xl font-headline leading-tight mb-4 text-primary drop-shadow-lg">
+        <h1 className="text-6xl md:text-8xl font-headline leading-tight mb-4 text-primary drop-shadow-lg">
           {title}
         </h1>
         <p className="text-lg md:text-2xl mb-8 max-w-2xl drop-shadow-md">
