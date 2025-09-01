@@ -4,12 +4,14 @@ import { ServicesOverview } from '@/components/marketing/ServicesOverview';
 import { CallToAction } from '@/components/marketing/CallToAction';
 import { Testimonials } from '@/components/marketing/Testimonials';
 
+// Funkcia na simuláciu získania dát (v produkcii by to bolo z CMS/databázy)
 async function getHomePageData() {
+  // Simulované dáta pre SSG
   return {
     hero: {
       title: 'Majstrovstvo vo vlasovom dizajne',
       subtitle: 'Transformujte svoj vzhľad v Papi Hair Design PRO',
-      image: 'https://picsum.photos/1600/900',
+      image: 'https://picsum.photos/1600/900', // Optimalizovaný WebP
       alt: 'Luxusný kadernícky salón interiér',
     },
     about: {
@@ -31,7 +33,7 @@ async function getHomePageData() {
 }
 
 export default async function HomePage() {
-  const data = await getHomePageData();
+  const data = await getHomePageData(); // Data pre SSG
 
   return (
     <>

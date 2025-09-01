@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Scissors, Droplet, Heart } from 'lucide-react';
+import { Scissors, Droplet, Heart } from 'lucide-react'; // Ikony pre služby
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
@@ -9,7 +9,7 @@ interface ServiceItem {
   id: string;
   name: string;
   description: string;
-  icon: 'scissors' | 'droplet' | 'heart';
+  icon: 'scissors' | 'droplet' | 'heart'; // Definované typy ikon
 }
 
 interface ServicesOverviewProps {
