@@ -17,7 +17,7 @@ type Message = {
 
 export default function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'assistant', content: "Dobrý deň! Ako vám môžem pomôcť s rezerváciou, službami, alebo poradiť so stylistom?" },
+    { role: 'assistant', content: "Dobrý deň! Ako vám môžem pomôcť s rezerváciou, službami alebo poradiť so stylistom?" },
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
