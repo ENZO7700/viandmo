@@ -4,7 +4,7 @@ import moment from "moment";
 
 export const adminNavItems = [
   { href: "/admin", label: "Dashboard", icon: BarChart },
-  { href: "/admin/bookings", label: "Kalendár", icon: Calendar },
+  { href: "/admin/contact", label: "Kalendár", icon: Calendar },
 ]
 
 // Helper to create date objects from a date and time string
