@@ -22,8 +22,8 @@ export function HeroSection({ title, subtitle, image, alt }: HeroSectionProps) {
         priority
         className="object-cover object-center brightness-75"
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
-        placeholder="blur" // Príklad placeholderu
-        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" // Vlastný blur pre lepšie SEO
+        placeholder="blur" 
+        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" 
         data-ai-hint="salon interior"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>

@@ -6,9 +6,10 @@ import Chatbot from '@/components/chatbot/Chatbot';
 import { Playfair_Display, PT_Sans } from 'next/font/google';
 
 export const metadata: Metadata = {
-  title: 'Papi Hair Design',
+  title: 'Papi Hair Design PRO',
   description: 'Luxury Hair Salon & Barber Shop',
   manifest: "/manifest.json",
+  themeColor: "#282828",
 };
 
 const playfairDisplay = Playfair_Display({
