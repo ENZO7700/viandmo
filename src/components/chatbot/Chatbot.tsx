@@ -17,7 +17,7 @@ type Message = {
 
 export default function Chatbot() {
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'assistant', content: "Hello! How can I help you today with your booking, our services, or products?" },
+    { role: 'assistant', content: "Dobrý deň! Ako vám môžem pomôcť s rezerváciou, službami, alebo poradiť so stylistom?" },
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -72,7 +72,7 @@ export default function Chatbot() {
           <SheetHeader className="p-4 border-b">
             <SheetTitle className="flex items-center gap-2">
               <Bot className="text-primary" />
-              AI Assistant
+              AI Asistent
             </SheetTitle>
           </SheetHeader>
           <ScrollArea className="flex-1 p-4" ref={scrollAreaRef}>
@@ -130,7 +130,7 @@ export default function Chatbot() {
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask about services, prices..."
+                placeholder="Opýtajte sa na služby, ceny..."
                 className="flex-1"
                 disabled={isLoading}
               />
