@@ -8,29 +8,21 @@ import { Textarea } from '@/components/ui/textarea';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useFormState, useForm } from 'react-hook-form';
+import { useFormState } from 'react-dom';
 import { submitContactForm, type ContactFormState } from '../actions';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useToast } from '@/hooks/use-toast';
 
 
 export default function ContactPage() {
     const { toast } = useToast();
+    const formRef = useRef<HTMLFormElement>(null);
 
     const initialState: ContactFormState = {
         message: "",
     };
 
     const [state, formAction] = useFormState(submitContactForm, initialState);
-    const { register, formState: { errors }, reset } = useForm({
-        defaultValues: {
-            name: state?.fields?.name || '',
-            phone: state?.fields?.phone || '',
-            email: state?.fields?.email || '',
-            address: state?.fields?.address || '',
-            message: state?.fields?.message || '',
-        },
-    });
 
     useEffect(() => {
         if (state.message && !state.issues) {
@@ -39,7 +31,7 @@ export default function ContactPage() {
                 description: state.message,
                 variant: "default",
             });
-            reset();
+            formRef.current?.reset();
         } else if (state.message && state.issues) {
              toast({
                 title: "Chyba vo formulári",
@@ -47,7 +39,11 @@ export default function ContactPage() {
                 variant: "destructive",
             });
         }
-    }, [state, reset, toast]);
+    }, [state, toast]);
+
+    const getErrorForField = (field: string) => {
+        return state.issues?.find(issue => issue.startsWith(field))?.split(' a ')[1];
+    }
 
 
   return (
@@ -126,30 +122,30 @@ export default function ContactPage() {
                 <p className="text-muted-foreground">Odpovieme vám čo najskôr.</p>
              </CardHeader>
              <CardContent className="p-0">
-                <form action={formAction} className="space-y-6">
+                <form ref={formRef} action={formAction} className="space-y-6">
                   <div className="space-y-2">
                     <Label htmlFor="name">Meno/Firma *</Label>
-                    <Input id="name" {...register("name")} placeholder="Vaše meno alebo názov firmy" />
-                    {errors.name && <p className="text-destructive text-sm">{errors.name.message}</p>}
+                    <Input id="name" name="name" placeholder="Vaše meno alebo názov firmy" defaultValue={state.fields?.name}/>
+                    <p className="text-destructive text-sm h-4">{getErrorForField('name')}</p>
                   </div>
                    <div className="space-y-2">
                     <Label htmlFor="phone">Mobil *</Label>
-                    <Input id="phone" type="tel" {...register("phone")} placeholder="Vaše telefónne číslo" />
-                    {errors.phone && <p className="text-destructive text-sm">{errors.phone.message}</p>}
+                    <Input id="phone" type="tel" name="phone" placeholder="Vaše telefónne číslo" defaultValue={state.fields?.phone} />
+                    <p className="text-destructive text-sm h-4">{getErrorForField('phone')}</p>
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="email">Email *</Label>
-                    <Input id="email" type="email" {...register("email")} placeholder="vas@email.com" />
-                    {errors.email && <p className="text-destructive text-sm">{errors.email.message}</p>}
+                    <Input id="email" type="email" name="email" placeholder="vas@email.com" defaultValue={state.fields?.email}/>
+                    <p className="text-destructive text-sm h-4">{getErrorForField('email')}</p>
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="address">Adresa (nepovinné)</Label>
-                    <Input id="address" {...register("address")} placeholder="Adresa sťahovania alebo upratovania" />
+                    <Input id="address" name="address" placeholder="Adresa sťahovania alebo upratovania" defaultValue={state.fields?.address} />
                   </div>
                    <div className="space-y-2">
                     <Label htmlFor="message">Vaša Správa *</Label>
-                    <Textarea id="message" {...register("message")} placeholder="Popíšte nám, s čím vám môžeme pomôcť..." rows={5} />
-                    {errors.message && <p className="text-destructive text-sm">{errors.message.message}</p>}
+                    <Textarea id="message" name="message" placeholder="Popíšte nám, s čím vám môžeme pomôcť..." rows={5} defaultValue={state.fields?.message}/>
+                     <p className="text-destructive text-sm h-4">{getErrorForField('message')}</p>
                   </div>
                   <Button type="submit" size="lg" className="w-full py-6">Odoslať správu</Button>
                 </form>

@@ -35,7 +35,7 @@ export async function submitContactForm(
         return {
             message: "Formulár obsahuje chyby. Skontrolujte zadané údaje.",
             fields,
-            issues: parsed.error.issues.map((issue) => issue.message),
+            issues: parsed.error.issues.map((issue) => `${issue.path.join('.')} a ${issue.message}`),
         };
     }
 
