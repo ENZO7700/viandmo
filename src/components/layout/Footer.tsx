@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
 import { Facebook, Instagram, Phone, Mail } from 'lucide-react';
@@ -58,8 +59,8 @@ export default function Footer() {
             </li>
             <li className="flex items-center justify-center md:justify-start">
               <Mail className="h-4 w-4 mr-2 text-primary" />
-              <a href="mailto:info@papi.hair" className="hover:text-primary transition-colors">
-                info@papi.hair
+              <a href="mailto:info@papihairdesignpro.com" className="hover:text-primary transition-colors">
+                info@papihairdesignpro.com
               </a>
             </li>
             <li className="text-sm">
@@ -72,7 +73,7 @@ export default function Footer() {
           <h3 className="text-lg font-semibold mb-4 font-headline">Sledujte nás</h3>
           <div className="flex justify-center md:justify-start space-x-4">
             <a
-              href="#"
+              href="https://www.facebook.com/papihairdesignpro"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:text-foreground transition-colors"
@@ -81,7 +82,7 @@ export default function Footer() {
               <span className="sr-only">Facebook</span>
             </a>
             <a
-              href="#"
+              href="https://www.instagram.com/papihairdesignpro"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:text-foreground transition-colors"
@@ -96,7 +97,7 @@ export default function Footer() {
       <Separator className="my-8 bg-muted" />
 
       <div className="container text-center text-sm text-muted-foreground">
-        &copy; {currentYear} Papi Hair Design. Všetky práva vyhradené.
+        &copy; {currentYear} Papi Hair Design PRO. Všetky práva vyhradené.
         <span className="mx-2">|</span>
         <Link href="/privacy-policy" className="hover:text-primary transition-colors">
           Ochrana osobných údajov

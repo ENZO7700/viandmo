@@ -46,7 +46,7 @@ export function ServicesOverview({ services }: ServicesOverviewProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="text-4xl md:text-5xl font-bold font-headline mb-12 text-foreground"
+          className="text-4xl md:text-5xl font-headline mb-12 text-foreground"
         >
           Naše Exkluzívne Služby
         </motion.h2>

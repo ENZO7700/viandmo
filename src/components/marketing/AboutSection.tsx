@@ -22,7 +22,7 @@ export function AboutSection({ title, description, image, alt }: AboutSectionPro
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold font-headline mb-6 text-primary">
+          <h2 className="text-4xl md:text-5xl font-headline mb-6 text-primary">
             {title}
           </h2>
           <p className="text-lg text-muted-foreground mb-8 leading-relaxed">

@@ -12,7 +12,7 @@ export function CallToAction() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.8, ease: 'easeOut' }}
-                    className="text-3xl md:text-5xl font-bold font-headline mb-4"
+                    className="text-3xl md:text-5xl font-headline mb-4"
                 >
                     Pripravení na zmenu?
                 </motion.h2>
