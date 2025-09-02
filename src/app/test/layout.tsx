@@ -1,9 +1,8 @@
 
 import { ThemeProvider } from '@/components/test/ThemeProvider';
-import TestFooter from '@/components/test/TestFooter';
-import TestHeader from '@/components/test/TestHeader';
 import { Toaster } from '@/components/ui/toaster';
-import { cn } from '@/lib/utils';
+import { SidebarProvider } from '@/components/ui/sidebar';
+import { TestSidebar } from '@/components/test/TestSidebar';
 
 export default function TestLayout({
   children,
@@ -17,12 +16,13 @@ export default function TestLayout({
       enableSystem
       disableTransitionOnChange
     >
-      <div className="test-theme flex min-h-screen flex-col bg-background text-foreground">
-        <TestHeader />
-        <main className="flex-1">{children}</main>
-        <TestFooter />
-        <Toaster />
-      </div>
+      <SidebarProvider>
+        <div className="test-theme flex min-h-screen flex-col bg-background text-foreground">
+          <TestSidebar />
+          <main className="flex-1 p-4 md:p-6 lg:p-8">{children}</main>
+          <Toaster />
+        </div>
+      </SidebarProvider>
     </ThemeProvider>
   );
 }
