@@ -17,13 +17,13 @@ export default function TestFooter() {
             Prémium služby pre váš dokonalý vzhľad.
           </p>
           <div className="mt-4 flex space-x-4">
-            <Link href="#" className="text-muted-foreground hover:text-foreground">
+            <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
               <Facebook className="h-6 w-6" />
             </Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground">
+            <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
               <Instagram className="h-6 w-6" />
             </Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground">
+            <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
               <Twitter className="h-6 w-6" />
             </Link>
           </div>
