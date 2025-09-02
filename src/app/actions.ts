@@ -41,6 +41,8 @@ export async function submitContactForm(
 
     console.log('Form data submitted:', parsed.data);
 
+    // TODO: Implement email sending logic here in the future.
+    // For now, we'll just simulate a successful submission.
 
     return { message: "Ďakujeme! Vaša správa bola úspešne odoslaná. Ozveme sa vám čo najskôr." };
 }
