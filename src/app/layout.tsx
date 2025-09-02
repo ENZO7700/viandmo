@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: 'VI&MO | Sťahovanie a Upratovanie Bratislava',
   description: 'Spoľahlivé sťahovanie, odvoz odpadu a profesionálne upratovacie služby v Bratislave a okolí. Pevné ruky & poctivý prístup.',
   manifest: "/manifest.json",
-  themeColor: "#ffffff",
+  themeColor: "#00202e",
 };
 
 const playfairDisplay = Playfair_Display({
