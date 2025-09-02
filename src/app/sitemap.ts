@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { blogPosts } from '@/lib/blog-posts';
+import { blogPosts } from '@/lib/blog-posts.tsx';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = 'https://www.viandmo.com';
