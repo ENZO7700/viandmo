@@ -103,7 +103,7 @@ export function DashboardHeader() {
                         <DropdownMenuItem>Nastavenia</DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <form action={logout}>
-                            <button type="submit" className="w-full">
+                            <button type="submit" className="w-full text-left">
                                 <DropdownMenuItem>
                                     Odhlásiť sa
                                 </DropdownMenuItem>

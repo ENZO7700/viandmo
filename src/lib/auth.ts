@@ -37,5 +37,5 @@ export async function login(credentials: LoginCredentials) {
 export async function logout() {
   const session = await getSession();
   session.destroy();
-  redirect('/');
+  redirect('/login');
 }
