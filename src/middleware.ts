@@ -17,8 +17,8 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/login', request.url));
   }
 
-  // Ak je používateľ prihlásený a snaží sa dostať na /login alebo /register, presmeruj ho na /admin
-  if (isLoggedIn && (request.nextUrl.pathname.startsWith('/login') || request.nextUrl.pathname.startsWith('/register'))) {
+  // Ak je používateľ prihlásený a snaží sa dostať na /login, presmeruj ho na /admin
+  if (isLoggedIn && (request.nextUrl.pathname.startsWith('/login'))) {
       return NextResponse.redirect(new URL('/admin', request.url))
   }
 
@@ -27,5 +27,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*', '/login', '/register'],
+  matcher: ['/admin/:path*', '/login'],
 };
