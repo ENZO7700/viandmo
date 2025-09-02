@@ -1,47 +1,11 @@
 
 'use client'
-import { Calendar, momentLocalizer, Views } from 'react-big-calendar'
-import moment from 'moment'
-import 'react-big-calendar/lib/css/react-big-calendar.css'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
-import { useMemo } from 'react'
-import { calendarBookings } from '@/lib/data'
 
-const localizer = momentLocalizer(moment)
+// This component is not used anymore after removing react-big-calendar
+// It can be deleted or replaced with a new calendar implementation later.
 
 export default function BookingCalendar() {
-  const { defaultDate, views } = useMemo(
-    () => ({
-      defaultDate: new Date(), 
-      views: {
-        month: true,
-        week: true,
-        day: true,
-      },
-    }),
-    []
-  )
-
-  const eventStyleGetter = (event: any, start: Date, end: Date, isSelected: boolean) => {
-    let newStyle: { backgroundColor?: string, color?: string, borderRadius?: string, border?: string } = {
-        borderRadius: '5px',
-        border: 'none',
-    };
-    if (event.status === 'Confirmed') {
-        newStyle.backgroundColor = 'hsl(var(--primary))';
-        newStyle.color = 'hsl(var(--primary-foreground))';
-    } else if (event.status === 'Completed') {
-        newStyle.backgroundColor = 'hsl(var(--accent))';
-        newStyle.color = 'hsl(var(--accent-foreground))';
-    } else {
-        newStyle.backgroundColor = 'hsl(var(--muted))'
-        newStyle.color = 'hsl(var(--muted-foreground))'
-    }
-    return {
-        style: newStyle
-    };
-  }
-
   return (
     <Card>
       <CardHeader>
@@ -49,17 +13,8 @@ export default function BookingCalendar() {
         <CardDescription>Vizuálny prehľad všetkých naplánovaných zákazok.</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="h-[70vh]">
-            <Calendar
-              localizer={localizer}
-              events={calendarBookings}
-              startAccessor="start"
-              endAccessor="end"
-              defaultDate={defaultDate}
-              views={views}
-              eventPropGetter={eventStyleGetter}
-              className="bg-card text-card-foreground"
-            />
+        <div className="h-[70vh] flex items-center justify-center bg-muted/50 rounded-lg">
+             <p className="text-muted-foreground">Komponent kalendára bol odstránený. Pripravené na napojenie novej verzie.</p>
         </div>
       </CardContent>
     </Card>
