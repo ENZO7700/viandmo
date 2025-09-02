@@ -34,7 +34,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="sk" className={cn(playfairDisplay.variable, ptSans.variable)}>
-      <head />
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+      </head>
       <body className={cn('font-body antialiased')}>
         {children}
         <Toaster />

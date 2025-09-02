@@ -1,13 +1,13 @@
 
 {
-    "theme_color": "#052e2a",
+    "theme_color": "#002824",
     "background_color": "#ffffff",
     "display": "standalone",
     "scope": "/",
     "start_url": "/",
-    "name": "VI&MO | S\u0165ahovanie a Upratovanie",
+    "name": "VI&MO",
     "short_name": "VI&MO",
-    "description": "Spo\u013eahliv\u00e9 s\u0165ahovanie, odvoz odpadu a profesion\u00e1lne upratovacie slu\u017eby v Bratislave a okol\u00ed.",
+    "description": "Sťahovanie a Upratovanie v Bratislave a okolí",
     "icons": [
         {
             "src": "/icons/icon-192x192.png",
