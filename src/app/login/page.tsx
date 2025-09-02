@@ -25,11 +25,8 @@ export default function LoginPage() {
   const [state, formAction] = useFormState(login, undefined);
   const router = useRouter();
 
-  useEffect(() => {
-    if (state?.success) {
-      router.push('/admin');
-    }
-  }, [state, router]);
+  // Note: Redirection is now handled in the server action for simplicity and reliability.
+  // This useEffect could be used for client-side feedback if needed in the future.
 
   return (
     <div className="flex items-center justify-center min-h-[80vh] py-12">
