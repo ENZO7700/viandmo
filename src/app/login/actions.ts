@@ -1,6 +1,6 @@
 'use server';
 
-import { login as performLogin, LoginCredentials } from '@/lib/auth';
+import { login as performLogin, type LoginCredentials } from '@/lib/auth';
 import { redirect } from 'next/navigation';
 
 export async function login(prevState: { error: string } | undefined, formData: FormData) {
