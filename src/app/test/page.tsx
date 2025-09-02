@@ -11,12 +11,11 @@ export default function TestPage() {
           <CardTitle>Vitajte na testovacej stránke!</CardTitle>
           <CardDescription>
             Tu si môžete prezrieť nový "Amoled Black Mirror Glass" dizajn v akcii.
-            Použite prepínač vľavo dole na zmenu medzi tmavou a svetlou témou.
-            Skúste tiež zmeniť veľkosť okna, aby ste videli responzívne správanie menu.
+            Použite prepínač vpravo hore na zmenu medzi tmavou a svetlou témou.
           </CardDescription>
         </CardHeader>
         <CardContent>
-            <p>Toto je hlavný obsah stránky. Bočný panel (`Sidebar`) sa na mobilných zariadeniach automaticky zmení na vysúvacie menu (`Sheet`).</p>
+            <p>Toto je hlavný obsah stránky, ktorý demonštruje vizuál komponentov v novej téme.</p>
         </CardContent>
       </Card>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
