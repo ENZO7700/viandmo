@@ -7,5 +7,5 @@ export const adminNavItems = [
 ]
 
 // Demo data has been removed to prepare for production build.
-export const bookings = [];
-export const calendarBookings = [];
+export const bookings: any[] = [];
+export const calendarBookings: any[] = [];

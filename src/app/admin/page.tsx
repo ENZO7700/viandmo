@@ -13,16 +13,16 @@ export default function AdminDashboardPage() {
 
     // 1. Monthly Revenue
     const monthlyRevenue = bookings
-        .filter(b => b.status === 'Completed' && b.start.getMonth() === currentMonth && b.start.getFullYear() === currentYear)
+        .filter(b => b.status === 'Completed' && new Date(b.start).getMonth() === currentMonth && new Date(b.start).getFullYear() === currentYear)
         .reduce((sum, b) => sum + (b.price || 0), 0);
 
     // 2. Bookings this month
     const monthlyBookingsCount = bookings
-        .filter(b => b.start.getMonth() === currentMonth && b.start.getFullYear() === currentYear)
+        .filter(b => new Date(b.start).getMonth() === currentMonth && new Date(b.start).getFullYear() === currentYear)
         .length;
 
     // 3. Recent Jobs (last 4)
-    const recentJobs = bookings.sort((a, b) => b.start.getTime() - a.start.getTime()).slice(0, 4);
+    const recentJobs = bookings.sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime()).slice(0, 4);
 
     const stats = [
         { title: "Mesačné tržby", value: `${monthlyRevenue.toLocaleString('sk-SK')} €`, change: "+0.0%", icon: <DollarSign className="h-4 w-4 text-muted-foreground"/> },
