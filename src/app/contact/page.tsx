@@ -14,11 +14,11 @@ import { useToast } from '@/hooks/use-toast';
 import type { Metadata } from 'next';
 
 // Note: Metadata export is for static generation, but this is a client component.
-// For dynamic titles on client components, you'd typically use a different approach.
-// However, Next.js can still pick this up for the initial static render.
-export const metadata: Metadata = {
+// Next.js can still pick this up for the initial static render.
+// We define a simple, static metadata object here for that purpose.
+const staticMetadata: Metadata = {
   title: 'Kontakt a Cenová Ponuka | VI&MO Sťahovanie Bratislava',
-  description: 'Kontaktujte nás pre nezáväznú cenovú ponuku na sťahovanie, vypratávanie alebo upratovanie v Bratislave. Zavolajte nám alebo vyplňte formulár.',
+  description: 'Kontaktujte nás pre nezáväznú cenovú ponuku na sťahovanie, vypratávanie alebo upratovanie v Bratislave a okolí. Zavolajte nám alebo vyplňte formulár.',
 };
 
 

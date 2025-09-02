@@ -5,8 +5,8 @@ import { Phone, Mail } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Náš Príbeh a Tím | VI&MO Sťahovanie a Upratovanie',
-  description: 'Spoznajte ľudí a filozofiu, ktorá stojí za úspechom firmy VI&MO. Zistite viac o našom prístupe k sťahovaniu a upratovaniu v Bratislave.',
+  title: 'Náš príbeh a tím | VI&MO Sťahovanie a Upratovanie',
+  description: 'Spoznajte ľudí a filozofiu, ktorá stojí za úspechom firmy VI&MO. Zistite viac o našom prístupe k sťahovaniu a upratovaniu v Bratislave a okolí.',
 };
 
 const team = [

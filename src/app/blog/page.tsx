@@ -7,8 +7,8 @@ import type { Metadata } from 'next';
 import { ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Blog o Sťahovaní a Upratovaní v Bratislave | VI&MO',
-  description: 'Prečítajte si naše tipy, triky a rady týkajúce sa sťahovania, vypratávania a upratovacích služieb v Bratislave. Nájdite užitočné informácie pre váš bezproblémový presun.',
+  title: 'Blog: Tipy a Rady pre Sťahovanie a Upratovanie | VI&MO',
+  description: 'Prečítajte si naše tipy, triky a užitočné informácie týkajúce sa sťahovania, vypratávania a upratovacích služieb v Bratislave a okolí.',
 };
 
 export default function BlogPage() {
