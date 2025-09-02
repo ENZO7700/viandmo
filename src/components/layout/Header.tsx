@@ -23,7 +23,7 @@ export default function Header() {
   const NavLink = ({ href, label }: { href: string, label:string }) => (
     <Button asChild variant="link" className={cn(
       "text-sm font-semibold uppercase tracking-wider",
-       (pathname === href || (href.startsWith('/blog') && pathname.startsWith('/blog'))) ? "text-primary" : "text-foreground hover:text-primary",
+       (pathname === href || (href === '/blog' && pathname.startsWith('/blog'))) ? "text-primary" : "text-foreground hover:text-primary",
       "transition-colors duration-200"
     )}>
       <Link href={href}>{label}</Link>
