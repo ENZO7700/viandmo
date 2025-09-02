@@ -29,6 +29,11 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+
+    /* Test Theme Light */
+    --test-background: 0 0% 100%;
+    --test-foreground: 0 0% 0%;
+    --test-primary: 240 5.9% 10%;
   }
 
   .dark {
@@ -56,6 +61,11 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    
+    /* Test Theme Dark */
+    --test-background: 0 0% 0%;
+    --test-foreground: 0 0% 100%;
+    --test-primary: 0 0% 63%;
   }
 }
 
@@ -68,5 +78,11 @@
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-headline;
+  }
+
+  .test-theme {
+    --background: var(--test-background);
+    --foreground: var(--test-foreground);
+    --primary: var(--test-primary);
   }
 }
