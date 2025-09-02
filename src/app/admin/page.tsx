@@ -28,12 +28,12 @@ export default function AdminDashboardPage() {
     const newClientsThisMonth = new Set(bookingsThisMonth.map(b => b.clientName)).size;
 
     // 4. Recent Jobs (last 4)
-    const recentJobs = bookings.sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime()).slice(0, 4);
+    const recentJobs = [...bookings].sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime()).slice(0, 4);
 
     const stats = [
         { title: "Mesačné tržby", value: `${monthlyRevenue.toLocaleString('sk-SK')} €`, change: "+0.0%", icon: <DollarSign className="h-4 w-4 text-muted-foreground"/> },
         { title: "Zákazky tento mesiac", value: `${monthlyBookingsCount}`, change: "+0", icon: <Truck className="h-4 w-4 text-muted-foreground"/> },
-        { title: "Noví klienti tento mesiac", value: `${newClientsThisMonth}`, change: `+${newClientsThisMonth}`, icon: <Users className="h-4 w-4 text-muted-foreground"/> },
+        { title: "Noví klienti tento mesiac", value: `+${newClientsThisMonth}`, change: `+${newClientsThisMonth}`, icon: <Users className="h-4 w-4 text-muted-foreground"/> },
     ]
 
 
@@ -48,9 +48,8 @@ export default function AdminDashboardPage() {
                         </CardHeader>
                         <CardContent>
                             <div className="text-2xl font-bold">{stat.value}</div>
-                            <p className="text-xs text-muted-foreground flex items-center">
-                                <ArrowUpRight className="h-3 w-3 mr-1 text-green-500"/>
-                                <span className="text-green-500 mr-1">{stat.change}</span> oproti minulému mesiacu
+                            <p className="text-xs text-muted-foreground">
+                                zmena oproti minulému mesiacu
                             </p>
                         </CardContent>
                     </Card>
@@ -76,7 +75,7 @@ export default function AdminDashboardPage() {
                             </TableHeader>
                             <TableBody>
                                 {recentJobs.length > 0 ? (
-                                    recentJobs.map((job: any) => (
+                                    recentJobs.map((job) => (
                                      <TableRow key={job.id}>
                                         <TableCell>
                                             <div className="font-medium">{job.clientName}</div>
