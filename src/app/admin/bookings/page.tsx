@@ -1,18 +1,28 @@
 
+'use client';
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { bookings } from "@/lib/data";
+import { bookings, type Booking } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Trash2 } from "lucide-react";
+import { Pencil, PlusCircle, Trash2 } from "lucide-react";
 import { deleteBooking } from "./actions";
+import { useState } from "react";
+import { BookingForm } from "@/components/admin/BookingForm";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 function DeleteButton({ bookingId }: { bookingId: number }) {
-    // We bind the bookingId to the server action
     const deleteBookingWithId = deleteBooking.bind(null, bookingId);
-
     return (
-        <form action={deleteBookingWithId}>
+        <form action={deleteBookingWithId} className="inline-flex">
             <Button variant="ghost" size="icon" type="submit">
                 <Trash2 className="h-4 w-4 text-destructive" />
                 <span className="sr-only">Zmazať</span>
@@ -21,16 +31,65 @@ function DeleteButton({ bookingId }: { bookingId: number }) {
     );
 }
 
+function BookingDialog({ children, booking, onOpenChange, open }: { children: React.ReactNode, booking?: Booking, open: boolean, onOpenChange: (open: boolean) => void }) {
+  const title = booking ? "Upraviť zákazku" : "Pridať novú zákazku";
+  const description = booking ? "Upravte údaje o existujúcej zákazke." : "Vyplňte formulár pre vytvorenie novej zákazky.";
+  
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogTrigger asChild>
+        {children}
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px]">
+        <DialogHeader>
+          <DialogTitle>{title}</DialogTitle>
+          <DialogDescription>{description}</DialogDescription>
+        </DialogHeader>
+        <BookingForm booking={booking} onFormSubmit={() => onOpenChange(false)} />
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 
 export default function AdminBookingsPage() {
+    const [dialogOpen, setDialogOpen] = useState(false);
+    const [selectedBooking, setSelectedBooking] = useState<Booking | undefined>(undefined);
+
+    const handleAddClick = () => {
+      setSelectedBooking(undefined);
+      setDialogOpen(true);
+    };
+
+    const handleEditClick = (booking: Booking) => {
+      setSelectedBooking(booking);
+      setDialogOpen(true);
+    }
+    
     const sortedBookings = [...bookings].sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime());
 
     return (
         <div className="space-y-6">
+            <BookingDialog
+              booking={selectedBooking}
+              open={dialogOpen}
+              onOpenChange={setDialogOpen}
+            >
+               {/* This is a dummy trigger, the dialog is controlled by state */}
+               <button className="hidden" />
+            </BookingDialog>
+
+
             <Card>
-                <CardHeader>
-                    <CardTitle>Správa zákazok</CardTitle>
-                    <CardDescription>Zoznam všetkých prijatých a naplánovaných zákazok.</CardDescription>
+                <CardHeader className="flex flex-row items-center justify-between">
+                    <div>
+                        <CardTitle>Správa zákazok</CardTitle>
+                        <CardDescription>Zoznam všetkých prijatých a naplánovaných zákazok.</CardDescription>
+                    </div>
+                    <Button onClick={handleAddClick}>
+                        <PlusCircle className="mr-2 h-4 w-4" />
+                        Pridať zákazku
+                    </Button>
                 </CardHeader>
                 <CardContent>
                     <Table>
@@ -58,6 +117,10 @@ export default function AdminBookingsPage() {
                                         </TableCell>
                                         <TableCell>{job.price.toLocaleString('sk-SK')} €</TableCell>
                                         <TableCell className="text-right">
+                                            <Button variant="ghost" size="icon" onClick={() => handleEditClick(job)}>
+                                                <Pencil className="h-4 w-4" />
+                                                <span className="sr-only">Upraviť</span>
+                                            </Button>
                                             <DeleteButton bookingId={job.id} />
                                         </TableCell>
                                     </TableRow>
