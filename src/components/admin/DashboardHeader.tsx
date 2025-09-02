@@ -1,5 +1,4 @@
-
-'use client'
+'use client';
 import {
     Avatar,
     AvatarFallback,
@@ -21,7 +20,7 @@ import Link from "next/link"
 import { Input } from "../ui/input"
 import Logo from "../layout/Logo"
 import { ThemeSwitcher } from "./ThemeSwitcher"
-
+import { logout } from "./actions";
 
 export function DashboardHeader() {
     return (
@@ -103,7 +102,13 @@ export function DashboardHeader() {
                         <DropdownMenuSeparator />
                         <DropdownMenuItem>Nastavenia</DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>Odhlásiť sa</DropdownMenuItem>
+                        <form action={logout}>
+                            <button type="submit" className="w-full">
+                                <DropdownMenuItem>
+                                    Odhlásiť sa
+                                </DropdownMenuItem>
+                            </button>
+                        </form>
                     </DropdownMenuContent>
                 </DropdownMenu>
             </div>
