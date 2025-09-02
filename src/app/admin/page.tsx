@@ -10,24 +10,30 @@ export default function AdminDashboardPage() {
 
     const currentMonth = new Date().getMonth();
     const currentYear = new Date().getFullYear();
+    
+    const bookingsThisMonth = bookings.filter(b => {
+        const bookingDate = new Date(b.start);
+        return bookingDate.getMonth() === currentMonth && bookingDate.getFullYear() === currentYear;
+    });
 
     // 1. Monthly Revenue
-    const monthlyRevenue = bookings
-        .filter(b => b.status === 'Completed' && new Date(b.start).getMonth() === currentMonth && new Date(b.start).getFullYear() === currentYear)
+    const monthlyRevenue = bookingsThisMonth
+        .filter(b => b.status === 'Completed')
         .reduce((sum, b) => sum + (b.price || 0), 0);
 
     // 2. Bookings this month
-    const monthlyBookingsCount = bookings
-        .filter(b => new Date(b.start).getMonth() === currentMonth && new Date(b.start).getFullYear() === currentYear)
-        .length;
+    const monthlyBookingsCount = bookingsThisMonth.length;
+    
+    // 3. New clients this month (unique client names)
+    const newClientsThisMonth = new Set(bookingsThisMonth.map(b => b.clientName)).size;
 
-    // 3. Recent Jobs (last 4)
+    // 4. Recent Jobs (last 4)
     const recentJobs = bookings.sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime()).slice(0, 4);
 
     const stats = [
         { title: "Mesačné tržby", value: `${monthlyRevenue.toLocaleString('sk-SK')} €`, change: "+0.0%", icon: <DollarSign className="h-4 w-4 text-muted-foreground"/> },
         { title: "Zákazky tento mesiac", value: `${monthlyBookingsCount}`, change: "+0", icon: <Truck className="h-4 w-4 text-muted-foreground"/> },
-        { title: "Noví klienti", value: "0", change: "+0", icon: <Users className="h-4 w-4 text-muted-foreground"/> },
+        { title: "Noví klienti tento mesiac", value: `${newClientsThisMonth}`, change: `+${newClientsThisMonth}`, icon: <Users className="h-4 w-4 text-muted-foreground"/> },
     ]
 
 
