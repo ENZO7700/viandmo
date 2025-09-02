@@ -1,6 +1,7 @@
 import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
 import InstallBanner from '@/components/pwa/InstallBanner';
+import { Toaster } from '@/components/ui/toaster';
 
 interface MarketingLayoutProps {
   children: React.ReactNode;
@@ -13,6 +14,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
       <main className="flex-1">{children}</main>
       <Footer />
       <InstallBanner />
+      <Toaster />
     </div>
   );
 }

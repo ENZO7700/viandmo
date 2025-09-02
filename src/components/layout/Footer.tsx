@@ -1,4 +1,3 @@
-
 'use client';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
@@ -23,6 +22,7 @@ export default function Footer() {
           <ul className="space-y-2 text-muted-foreground">
             <li><Link href="/#sluzby" className="hover:text-primary transition-colors">Služby</Link></li>
             <li><Link href="/#cennik" className="hover:text-primary transition-colors">Cenník</Link></li>
+            <li><Link href="/blog" className="hover:text-primary transition-colors">Blog</Link></li>
             <li><Link href="/about" className="hover:text-primary transition-colors">O nás</Link></li>
             <li><Link href="/#faq" className="hover:text-primary transition-colors">FAQ</Link></li>
             <li><Link href="/contact" className="hover:text-primary transition-colors">Kontakt</Link></li>

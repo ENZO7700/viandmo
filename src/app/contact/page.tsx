@@ -1,4 +1,3 @@
-
 'use client';
 
 import Image from 'next/image';
@@ -12,6 +11,15 @@ import { useFormState } from 'react-dom';
 import { submitContactForm, type ContactFormState } from '../actions';
 import { useEffect, useRef } from 'react';
 import { useToast } from '@/hooks/use-toast';
+import type { Metadata } from 'next';
+
+// Note: Metadata export is for static generation, but this is a client component.
+// For dynamic titles on client components, you'd typically use a different approach.
+// However, Next.js can still pick this up for the initial static render.
+export const metadata: Metadata = {
+  title: 'Kontakt a Cenová Ponuka | VI&MO Sťahovanie Bratislava',
+  description: 'Kontaktujte nás pre nezáväznú cenovú ponuku na sťahovanie, vypratávanie alebo upratovanie v Bratislave. Zavolajte nám alebo vyplňte formulár.',
+};
 
 
 export default function ContactPage() {
@@ -73,7 +81,7 @@ export default function ContactPage() {
           {/* Contact Info */}
           <div className="space-y-8">
              <Card>
-                <CardHeader><CardTitle>Kontaktné údaje</CardTitle></CardHeader>
+                <CardHeader><CardTitle className="text-2xl font-headline">Kontaktné údaje</CardTitle></CardHeader>
                 <CardContent className="space-y-4 text-lg">
                     <p className="flex items-center gap-4">
                         <Phone className="w-6 h-6 text-primary flex-shrink-0" />

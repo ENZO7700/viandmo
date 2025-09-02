@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from "next/link";
@@ -13,8 +12,9 @@ const navLinks = [
   { href: "/", label: "Úvod" },
   { href: "/#sluzby", label: "Služby" },
   { href: "/#cennik", label: "Cenník" },
-  { href: "/#preco-my", label: "O nás" },
-  { href: "/contact", label: "Kontakty" },
+  { href: "/blog", label: "Blog" },
+  { href: "/about", label: "O nás" },
+  { href: "/contact", label: "Kontakt" },
 ];
 
 export default function Header() {
@@ -23,7 +23,7 @@ export default function Header() {
   const NavLink = ({ href, label }: { href: string, label:string }) => (
     <Button asChild variant="link" className={cn(
       "text-sm font-semibold uppercase tracking-wider",
-      pathname === href ? "text-primary" : "text-foreground hover:text-primary",
+       (pathname === href || (href.startsWith('/blog') && pathname.startsWith('/blog'))) ? "text-primary" : "text-foreground hover:text-primary",
       "transition-colors duration-200"
     )}>
       <Link href={href}>{label}</Link>

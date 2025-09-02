@@ -1,8 +1,13 @@
-
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Phone, Mail } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Náš Príbeh a Tím | VI&MO Sťahovanie a Upratovanie',
+  description: 'Spoznajte ľudí a filozofiu, ktorá stojí za úspechom firmy VI&MO. Zistite viac o našom prístupe k sťahovaniu a upratovaniu v Bratislave.',
+};
 
 const team = [
     { name: "Miroslav Danihel", role: "Sťahovanie", phone: "+421 911 275 755", img: "https://picsum.photos/200/200?random=1", hint: "man portrait" },
