@@ -1,7 +1,7 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { ArrowUpRight, DollarSign, Calendar, Users, Truck } from "lucide-react";
+import { DollarSign, Truck, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { bookings } from "@/lib/data";
 
@@ -31,9 +31,9 @@ export default function AdminDashboardPage() {
     const recentJobs = [...bookings].sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime()).slice(0, 4);
 
     const stats = [
-        { title: "Mesačné tržby", value: `${monthlyRevenue.toLocaleString('sk-SK')} €`, change: "+0.0%", icon: <DollarSign className="h-4 w-4 text-muted-foreground"/> },
-        { title: "Zákazky tento mesiac", value: `${monthlyBookingsCount}`, change: "+0", icon: <Truck className="h-4 w-4 text-muted-foreground"/> },
-        { title: "Noví klienti tento mesiac", value: `+${newClientsThisMonth}`, change: `+${newClientsThisMonth}`, icon: <Users className="h-4 w-4 text-muted-foreground"/> },
+        { title: "Mesačné tržby", value: `${monthlyRevenue.toLocaleString('sk-SK')} €`, icon: <DollarSign className="h-4 w-4 text-muted-foreground"/> },
+        { title: "Zákazky tento mesiac", value: `+${monthlyBookingsCount}`, icon: <Truck className="h-4 w-4 text-muted-foreground"/> },
+        { title: "Noví klienti tento mesiac", value: `+${newClientsThisMonth}`, icon: <Users className="h-4 w-4 text-muted-foreground"/> },
     ]
 
 
