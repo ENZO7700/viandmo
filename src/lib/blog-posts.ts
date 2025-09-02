@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -86,3 +88,5 @@ export const blogPosts: BlogPost[] = [
     ),
   },
 ];
+
+    
