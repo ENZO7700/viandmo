@@ -2,6 +2,7 @@
 'use server';
 
 import { z } from 'zod';
+import { contactSubmissions, type ContactSubmission } from '@/lib/data';
 
 const contactFormSchema = z.object({
     name: z.string().min(1, { message: "Meno je povinné." }),
@@ -15,6 +16,21 @@ export type ContactFormState = {
   message: string;
   fields?: Record<string, string>;
   issues?: string[];
+}
+
+// NOTE: This is a temporary solution for prototyping.
+// In a real production environment, you would use a persistent database
+// and a secure way to handle data, not an in-memory array.
+function saveSubmission(data: z.infer<typeof contactFormSchema>) {
+    const newSubmission: ContactSubmission = {
+        id: new Date().getTime().toString(),
+        date: new Date().toISOString(),
+        ...data,
+    };
+    // Add to the beginning of the array to show newest first
+    contactSubmissions.unshift(newSubmission);
+    console.log('New submission saved:', newSubmission);
+    console.log('Total submissions:', contactSubmissions.length);
 }
 
 
@@ -39,10 +55,14 @@ export async function submitContactForm(
         };
     }
 
-    console.log('Form data submitted:', parsed.data);
-
-    // TODO: Implement email sending logic here in the future.
-    // For now, we'll just simulate a successful submission.
-
-    return { message: "Ďakujeme! Vaša správa bola úspešne odoslaná. Ozveme sa vám čo najskôr." };
+    try {
+        saveSubmission(parsed.data);
+        return { message: "Ďakujeme! Vaša správa bola úspešne odoslaná. Ozveme sa vám čo najskôr." };
+    } catch (error) {
+        console.error('Error saving submission:', error);
+        return {
+             message: "Ľutujeme, pri odosielaní správy nastala chyba. Skúste to prosím neskôr.",
+             fields: parsed.data,
+        }
+    }
 }
