@@ -1,32 +1,33 @@
+
 {
-  "name": "Papi Hair Design PRO",
-  "short_name": "Papi PRO",
-  "description": "Luxury Hair Salon & Barber Shop",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#282828",
-  "theme_color": "#D4AF37",
-  "icons": [
-    {
-      "src": "/icons/icon-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/icons/icon-256x256.png",
-      "sizes": "256x256",
-      "type": "image/png"
-    },
-    {
-      "src": "/icons/icon-384x384.png",
-      "sizes": "384x384",
-      "type": "image/png"
-    },
-    {
-      "src": "/icons/icon-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
-  ]
+    "theme_color": "#052e2a",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "name": "VI&MO | S\u0165ahovanie a Upratovanie",
+    "short_name": "VI&MO",
+    "description": "Spo\u013eahliv\u00e9 s\u0165ahovanie, odvoz odpadu a profesion\u00e1lne upratovacie slu\u017eby v Bratislave a okol\u00ed.",
+    "icons": [
+        {
+            "src": "/icons/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/icons/icon-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/icons/icon-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "/icons/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
 }

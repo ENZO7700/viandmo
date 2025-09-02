@@ -4,15 +4,19 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Truck, Box, Trash2, Sparkles, Phone, Star } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 // Hero Section Component
 const HeroSection = () => (
-  <section className="relative h-[80vh] w-full flex items-center justify-center text-center text-white bg-slate-800">
-     <div
-      className="absolute inset-0 bg-cover bg-center brightness-50"
-      style={{backgroundImage: 'url(https://picsum.photos/1920/1080?random=1)'}}
-      data-ai-hint="moving truck"
-    ></div>
+  <section className="relative h-[80vh] w-full flex items-center justify-center text-center text-white">
+     <Image
+        src="https://picsum.photos/1920/1080?random=1"
+        alt="Moving truck"
+        fill
+        priority
+        className="object-cover object-center brightness-50"
+        data-ai-hint="moving truck"
+      />
     <div className="relative z-10 p-4">
       <h1 className="text-5xl md:text-7xl font-headline leading-tight text-primary-foreground drop-shadow-lg">
         Pevné ruky & poctivý prístup
@@ -65,8 +69,8 @@ const ServicesSection = () => (
             <div className="mb-4">{service.icon}</div>
             <CardTitle className="text-xl font-headline mb-2">{service.title}</CardTitle>
             <p className="text-muted-foreground flex-grow">{service.description}</p>
-            <Button variant="outline" className="mt-6">
-              Viac o službe
+            <Button variant="outline" className="mt-6" asChild>
+              <Link href="/contact">Viac o službe</Link>
             </Button>
           </Card>
         ))}
