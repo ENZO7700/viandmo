@@ -23,7 +23,12 @@ const InstallBanner = () => {
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
       setInstallPrompt(e as BeforeInstallPromptEvent);
-      setIsVisible(true);
+      // Only show banner if not already installed
+      // This is a simple check, more robust checks might be needed
+      const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+      if (!isStandalone) {
+          setIsVisible(true);
+      }
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
@@ -54,17 +59,17 @@ const InstallBanner = () => {
   }
 
   return (
-    <div className="fixed bottom-4 left-4 z-50 rounded-lg border bg-background p-4 shadow-lg animate-in slide-in-from-bottom-5">
+    <div className="fixed bottom-4 left-4 z-50 rounded-xl border-t border-white/10 bg-card/60 dark:bg-card/80 p-4 shadow-2xl backdrop-blur-lg animate-in slide-in-from-bottom-5 antialiased">
       <div className="flex items-center gap-4">
-        <Logo className="h-10 w-28" />
+        <Logo className="h-10 w-28 flex-shrink-0" />
         <div className="flex flex-col items-start">
-            <p className="text-sm font-medium">Nainštalovať aplikáciu?</p>
-            <p className="text-xs text-muted-foreground">Pridajte si nás na plochu pre rýchly prístup.</p>
+            <p className="font-headline text-base font-semibold text-card-foreground">Nainštalovať aplikáciu?</p>
+            <p className="text-sm text-muted-foreground">Pridajte si nás na plochu pre rýchly prístup.</p>
         </div>
-        <Button onClick={handleInstallClick} size="sm" className="ml-4">
+        <Button onClick={handleInstallClick} size="sm" className="ml-4 flex-shrink-0">
           Inštalovať
         </Button>
-        <Button onClick={handleCloseClick} variant="ghost" size="icon" className="h-7 w-7">
+        <Button onClick={handleCloseClick} variant="ghost" size="icon" className="h-7 w-7 flex-shrink-0">
           <X className="h-4 w-4" />
           <span className="sr-only">Zavrieť</span>
         </Button>
