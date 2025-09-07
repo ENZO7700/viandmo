@@ -29,8 +29,6 @@ function saveSubmission(data: z.infer<typeof contactFormSchema>) {
     };
     // Add to the beginning of the array to show newest first
     contactSubmissions.unshift(newSubmission);
-    console.log('New submission saved:', newSubmission);
-    console.log('Total submissions:', contactSubmissions.length);
 }
 
 
@@ -59,7 +57,6 @@ export async function submitContactForm(
         saveSubmission(parsed.data);
         return { message: "Ďakujeme! Vaša správa bola úspešne odoslaná. Ozveme sa vám čo najskôr." };
     } catch (error) {
-        console.error('Error saving submission:', error);
         return {
              message: "Ľutujeme, pri odosielaní správy nastala chyba. Skúste to prosím neskôr.",
              fields: parsed.data,

@@ -44,7 +44,6 @@ export async function createOrUpdateBooking(
           start: new Date(parsed.data.start),
           end: new Date(parsed.data.start), // Assuming end time is same as start for simplicity
         };
-        console.log(`Booking with ID ${bookingId} updated.`);
       } else {
          throw new Error(`Booking with ID ${bookingId} not found.`);
       }
@@ -57,7 +56,6 @@ export async function createOrUpdateBooking(
         end: new Date(parsed.data.start), // Assuming end time is same as start for simplicity
       };
       bookings.push(newBooking);
-      console.log('New booking created:', newBooking);
     }
     
     revalidatePath('/admin/bookings');
@@ -67,7 +65,6 @@ export async function createOrUpdateBooking(
     return { message: `Zákazka bola úspešne ${bookingId ? 'upravená' : 'vytvorená'}.` };
     
   } catch (error) {
-    console.error('Error saving booking:', error);
     const errorMessage = error instanceof Error ? error.message : "Neznáma chyba.";
     return {
       message: `Ľutujeme, nastala chyba: ${errorMessage}`,
@@ -80,7 +77,6 @@ export async function deleteBooking(bookingId: number) {
 
     if (index !== -1) {
         bookings.splice(index, 1);
-        console.log(`Booking with ID ${bookingId} deleted.`);
         revalidatePath('/admin/bookings');
         revalidatePath('/admin');
         revalidatePath('/admin/contact');
