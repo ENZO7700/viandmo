@@ -1,6 +1,8 @@
 
-import { BarChart, Calendar, Mail, Users, Settings, TruckIcon } from "lucide-react";
+import { BarChart, Calendar, Mail, Settings, TruckIcon } from "lucide-react";
 import type { Event } from 'react-big-calendar';
+import fs from 'fs';
+import path from 'path';
 
 export const adminNavItems = [
   { href: "/admin", label: "Dashboard", icon: BarChart },
@@ -10,9 +12,38 @@ export const adminNavItems = [
   { href: "/admin/system-check", label: "Kontrola systému", icon: Settings },
 ]
 
-// --- DEMO & PROTOTYPE DATA ---
-// In a real application, this data would come from a database.
-// For prototyping purposes, we keep it static here.
+// --- DATA PERSISTENCE ---
+// Data is stored in JSON files in the /data directory.
+
+const dataDir = path.join(process.cwd(), 'data');
+const bookingsFilePath = path.join(dataDir, 'bookings.json');
+const submissionsFilePath = path.join(dataDir, 'submissions.json');
+
+// Helper function to ensure files exist and read them
+function readData<T>(filePath: string): T[] {
+    try {
+        if (!fs.existsSync(dataDir)) {
+            fs.mkdirSync(dataDir);
+        }
+        if (!fs.existsSync(filePath)) {
+            fs.writeFileSync(filePath, '[]', 'utf8');
+        }
+        const fileContent = fs.readFileSync(filePath, 'utf8');
+        return JSON.parse(fileContent);
+    } catch (error) {
+        console.error(`Error reading data from ${filePath}:`, error);
+        return [];
+    }
+}
+
+// Helper function to write data
+function writeData<T>(filePath: string, data: T[]): void {
+    try {
+        fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
+    } catch (error) {
+        console.error(`Error writing data to ${filePath}:`, error);
+    }
+}
 
 // Represents a single contact form submission.
 export interface ContactSubmission {
@@ -25,33 +56,30 @@ export interface ContactSubmission {
     date: string; // ISO 8601 date string
 }
 
-// A temporary in-memory store for contact form submissions.
-// This will be reset every time the server restarts.
-export const contactSubmissions: ContactSubmission[] = [];
-
-
 // Represents a single booking/job.
 export interface Booking {
     id: number;
     clientName: string;
     title: string;
-    start: Date;
-    end: Date;
+    start: string; // Storing as ISO string
+    end: string;   // Storing as ISO string
     price: number;
     status: 'Scheduled' | 'Completed' | 'Cancelled';
 }
 
+// --- Bookings ---
+export const getBookings = (): Booking[] => readData<Booking>(bookingsFilePath);
+export const saveBookings = (data: Booking[]): void => writeData<Booking>(bookingsFilePath, data);
 
-// Demo data for bookings
-export const bookings: Booking[] = [
-    { id: 1, clientName: 'Firma ABC', title: 'Sťahovanie kancelárie', start: new Date(2024, 6, 15, 9, 0, 0), end: new Date(2024, 6, 15, 17, 0, 0), price: 450, status: 'Completed' },
-    { id: 2, clientName: 'Ján Novák', title: 'Sťahovanie bytu', start: new Date(2024, 6, 18, 10, 0, 0), end: new Date(2024, 6, 18, 14, 0, 0), price: 280, status: 'Completed' },
-    { id: 3, clientName: 'Alza.sk', title: 'Pravidelné upratovanie', start: new Date(2024, 6, 20, 8, 0, 0), end: new Date(2024, 6, 20, 12, 0, 0), price: 120, status: 'Scheduled' },
-    { id: 4, clientName: 'Zuzana Malá', title: 'Vypratávanie pivnice', start: new Date(2024, 6, 22, 13, 0, 0), end: new Date(2024, 6, 22, 15, 0, 0), price: 90, status: 'Scheduled' },
-    { id: 5, clientName: 'Peter Veľký', title: 'Sťahovanie 3i bytu', start: new Date(2024, 5, 28, 9, 0, 0), end: new Date(2024, 5, 28, 16, 0, 0), price: 350, status: 'Cancelled' }
-];
+// --- Submissions ---
+export const getSubmissions = (): ContactSubmission[] => readData<ContactSubmission>(submissionsFilePath);
+export const saveSubmissions = (data: ContactSubmission[]): void => writeData<ContactSubmission>(submissionsFilePath, data);
+
+
+// --- Derived Data & Helpers ---
 
 export function getNextBookingId(): number {
+    const bookings = getBookings();
     if (bookings.length === 0) {
         return 1;
     }
@@ -59,10 +87,11 @@ export function getNextBookingId(): number {
     return maxId + 1;
 }
 
-
-export const calendarBookings: Event[] = bookings.map(b => ({
-    title: b.title,
-    start: b.start,
-    end: b.end,
-    resource: b,
-}));
+export const getCalendarBookings = (): Event[] => {
+    return getBookings().map(b => ({
+        title: b.title,
+        start: new Date(b.start),
+        end: new Date(b.end),
+        resource: b,
+    }));
+};

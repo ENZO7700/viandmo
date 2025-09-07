@@ -1,7 +1,7 @@
 
 'use server';
 
-import { bookings, getNextBookingId } from "@/lib/data";
+import { getBookings, saveBookings, getNextBookingId } from "@/lib/data";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
@@ -22,6 +22,7 @@ export async function createOrUpdateBooking(
   prevState: BookingFormState,
   formData: FormData
 ): Promise<BookingFormState> {
+  const bookings = getBookings();
   const bookingId = formData.get('id') ? Number(formData.get('id')) : null;
   const data = Object.fromEntries(formData);
   const parsed = bookingSchema.safeParse(data);
@@ -34,15 +35,20 @@ export async function createOrUpdateBooking(
   }
   
   try {
+    const eventDate = new Date(parsed.data.start);
+    const eventData = {
+        ...parsed.data,
+        start: eventDate.toISOString(),
+        end: eventDate.toISOString(), // Assuming end time is same as start for simplicity
+    }
+
     if (bookingId) {
       // Update existing booking
       const index = bookings.findIndex(b => b.id === bookingId);
       if (index !== -1) {
         bookings[index] = {
           ...bookings[index],
-          ...parsed.data,
-          start: new Date(parsed.data.start),
-          end: new Date(parsed.data.start), // Assuming end time is same as start for simplicity
+          ...eventData,
         };
       } else {
          throw new Error(`Booking with ID ${bookingId} not found.`);
@@ -51,12 +57,12 @@ export async function createOrUpdateBooking(
       // Create new booking
       const newBooking = {
         id: getNextBookingId(),
-        ...parsed.data,
-        start: new Date(parsed.data.start),
-        end: new Date(parsed.data.start), // Assuming end time is same as start for simplicity
+        ...eventData,
       };
       bookings.push(newBooking);
     }
+    
+    saveBookings(bookings);
     
     revalidatePath('/admin/bookings');
     revalidatePath('/admin');
@@ -73,10 +79,12 @@ export async function createOrUpdateBooking(
 }
 
 export async function deleteBooking(bookingId: number) {
+    const bookings = getBookings();
     const index = bookings.findIndex(b => b.id === bookingId);
 
     if (index !== -1) {
         bookings.splice(index, 1);
+        saveBookings(bookings);
         revalidatePath('/admin/bookings');
         revalidatePath('/admin');
         revalidatePath('/admin/contact');

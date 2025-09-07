@@ -6,11 +6,11 @@ import format from 'date-fns/format';
 import parse from 'date-fns/parse';
 import startOfWeek from 'date-fns/startOfWeek';
 import getDay from 'date-fns/getDay';
-import enUS from 'date-fns/locale/en-US';
 import sk from 'date-fns/locale/sk';
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import { calendarBookings } from '@/lib/data';
+import { getCalendarBookings } from '@/lib/data';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { useState, useEffect } from 'react';
 
 const locales = {
   'sk': sk,
@@ -42,7 +42,11 @@ const messages = {
 
 
 export default function AdminContactPage() {
-    const events: Event[] = calendarBookings;
+    const [events, setEvents] = useState<Event[]>([]);
+
+    useEffect(() => {
+        setEvents(getCalendarBookings());
+    }, []);
     
     return (
         <div className="space-y-6">

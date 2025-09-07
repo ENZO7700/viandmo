@@ -3,12 +3,12 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { bookings, type Booking } from "@/lib/data";
+import { getBookings, type Booking } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Pencil, PlusCircle, Trash2 } from "lucide-react";
 import { deleteBooking } from "./actions";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BookingForm } from "@/components/admin/BookingForm";
 import {
   Dialog,
@@ -53,8 +53,16 @@ function BookingDialog({ children, booking, onOpenChange, open }: { children: Re
 
 
 export default function AdminBookingsPage() {
+    const [bookings, setBookings] = useState<Booking[]>([]);
     const [dialogOpen, setDialogOpen] = useState(false);
     const [selectedBooking, setSelectedBooking] = useState<Booking | undefined>(undefined);
+
+    useEffect(() => {
+        // Since getBookings is now a synchronous function reading from a file,
+        // we can fetch the data on the client side like this.
+        // For a real DB, you'd use an async function in a server action.
+        setBookings(getBookings());
+    }, [dialogOpen]); // Refetch when dialog closes to see changes
 
     const handleAddClick = () => {
       setSelectedBooking(undefined);

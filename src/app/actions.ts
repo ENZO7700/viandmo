@@ -2,7 +2,7 @@
 'use server';
 
 import { z } from 'zod';
-import { contactSubmissions, type ContactSubmission } from '@/lib/data';
+import { getSubmissions, saveSubmissions, type ContactSubmission } from '@/lib/data';
 
 const contactFormSchema = z.object({
     name: z.string().min(1, { message: "Meno je povinné." }),
@@ -18,17 +18,16 @@ export type ContactFormState = {
   issues?: string[];
 }
 
-// NOTE: This is a temporary solution for prototyping.
-// In a real production environment, you would use a persistent database
-// and a secure way to handle data, not an in-memory array.
 function saveSubmission(data: z.infer<typeof contactFormSchema>) {
+    const submissions = getSubmissions();
     const newSubmission: ContactSubmission = {
         id: new Date().getTime().toString(),
         date: new Date().toISOString(),
         ...data,
     };
     // Add to the beginning of the array to show newest first
-    contactSubmissions.unshift(newSubmission);
+    submissions.unshift(newSubmission);
+    saveSubmissions(submissions);
 }
 
 

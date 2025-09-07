@@ -3,11 +3,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { DollarSign, Truck, Users } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { bookings } from "@/lib/data";
+import { getBookings } from "@/lib/data";
 
 export default function AdminDashboardPage() {
+    const bookings = getBookings();
+    
     // --- Dynamic Stats Calculation ---
-
     const currentMonth = new Date().getMonth();
     const currentYear = new Date().getFullYear();
     
@@ -49,7 +50,7 @@ export default function AdminDashboardPage() {
                         <CardContent>
                             <div className="text-2xl font-bold">{stat.value}</div>
                             <p className="text-xs text-muted-foreground">
-                                zmena oproti minulému mesiacu
+                                aktuálny mesiac
                             </p>
                         </CardContent>
                     </Card>

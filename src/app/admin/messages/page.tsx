@@ -1,11 +1,11 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { contactSubmissions } from "@/lib/data";
-import { Badge } from "@/components/ui/badge";
+import { getSubmissions } from "@/lib/data";
 
 export default function AdminMessagesPage() {
-    const sortedSubmissions = [...contactSubmissions].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    const submissions = getSubmissions();
+    const sortedSubmissions = [...submissions].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
     return (
         <div className="space-y-6">
