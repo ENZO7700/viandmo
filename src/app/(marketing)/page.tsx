@@ -29,7 +29,7 @@ const HeroSection = () => (
       <p className="mt-4 text-lg md:text-2xl max-w-3xl mx-auto drop-shadow-md">
         Sťahovanie, odvoz odpadu a upratovanie v Bratislave a okolí
       </p>
-      <Link href="#cennik" passHref>
+      <Link href="/#cennik" passHref>
         <Button size="lg" className="mt-8 px-8 py-6 text-lg" variant="secondary">
           Cenová ponuka
         </Button>
@@ -236,3 +236,5 @@ export default function HomePage() {
     </>
   );
 }
+
+    
