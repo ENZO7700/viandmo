@@ -1,9 +1,8 @@
 
-'use client';
 import { Toaster } from "@/components/ui/toaster";
 import { DashboardHeader } from "@/components/admin/DashboardHeader";
 import { DashboardNav } from "@/components/admin/DashboardNav";
-import { ThemeProvider } from "@/components/admin/ThemeProvider";
+import { AdminProviders } from "@/components/admin/AdminProviders";
 
 export default function AdminLayout({
   children,
@@ -12,12 +11,7 @@ export default function AdminLayout({
 }) {
 
   return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="dark"
-      enableSystem
-      disableTransitionOnChange
-    >
+    <AdminProviders>
       <div className="test-theme flex min-h-screen w-full flex-col bg-background text-foreground">
         <DashboardHeader />
         <div className="flex flex-1">
@@ -28,6 +22,6 @@ export default function AdminLayout({
         </div>
         <Toaster />
       </div>
-    </ThemeProvider>
+    </AdminProviders>
   );
 }
