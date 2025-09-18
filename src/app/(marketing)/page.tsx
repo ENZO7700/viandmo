@@ -15,12 +15,12 @@ export const metadata: Metadata = {
 const HeroSection = () => (
   <section className="relative h-[80vh] w-full flex items-center justify-center text-center text-white">
      <Image
-        src="https://picsum.photos/1920/1080?random=1"
-        alt="Moving truck"
+        src="/hero-background.jpg"
+        alt="VI&MO Sťahovanie a Upratovanie"
         fill
         priority
         className="object-cover object-center brightness-50"
-        data-ai-hint="moving truck"
+        data-ai-hint="moving truck illustration"
       />
     <div className="relative z-10 p-4">
       <h1 className="text-5xl md:text-7xl font-headline leading-tight text-primary-foreground drop-shadow-lg">
