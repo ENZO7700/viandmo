@@ -12,6 +12,9 @@ const withPWA = withPWAInit({
   aggressiveFrontEndNavCaching: true,
   reloadOnOnline: true,
   swcMinify: true,
+  workboxOptions: {
+    disableDevLogs: true,
+  },
 });
 
 const nextConfig: NextConfig = {
@@ -41,3 +44,5 @@ const nextConfig: NextConfig = {
 };
 
 export default withPWA(nextConfig);
+
+    
