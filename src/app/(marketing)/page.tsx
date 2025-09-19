@@ -21,7 +21,6 @@ const HeroSection = () => (
         priority
         className="object-cover object-center brightness-50"
         data-ai-hint="moving truck illustration"
-        key={new Date().getTime()}
       />
     <div className="relative z-10 p-4">
       <h1 className="text-5xl md:text-7xl font-headline leading-tight text-primary-foreground drop-shadow-lg">
