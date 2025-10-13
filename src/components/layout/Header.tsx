@@ -54,9 +54,19 @@ export default function Header() {
                 <Menu />
               </Button>
             </SheetTrigger>
-            <SheetContent>
-              <nav className="flex flex-col items-center gap-6 mt-16">
-                {navLinks.map(link => <NavLink key={link.href} {...link} />)}
+            <SheetContent side="left" className="bg-background p-6">
+               <div className="mb-8">
+                 <Logo />
+               </div>
+              <nav className="flex flex-col items-start gap-4">
+                {navLinks.map(link => (
+                    <Button asChild variant="link" className={cn(
+                      "text-lg font-semibold",
+                      (pathname === link.href || (link.href === '/blog' && pathname.startsWith('/blog'))) ? "text-primary" : "text-foreground hover:text-primary",
+                    )} key={link.href}>
+                        <Link href={link.href}>{link.label}</Link>
+                    </Button>
+                ))}
               </nav>
             </SheetContent>
           </Sheet>
