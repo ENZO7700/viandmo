@@ -3,7 +3,6 @@ import Header from '@/components/layout/Header';
 import InstallBanner from '@/components/pwa/InstallBanner';
 import { Toaster } from '@/components/ui/toaster';
 import type { Metadata } from 'next';
-import StarfieldCanvas from '@/components/layout/StarfieldCanvas';
 
 interface MarketingLayoutProps {
   children: React.ReactNode;
@@ -17,11 +16,14 @@ export const metadata: Metadata = {
 
 export default function MarketingLayout({ children }: MarketingLayoutProps) {
   return (
-    <div className="flex min-h-screen flex-col bg-transparent">
-      <StarfieldCanvas />
-      <Header />
+    <div className="flex min-h-screen flex-col light-theme">
+      <div className="dark-theme">
+        <Header />
+      </div>
       <main className="flex-1">{children}</main>
-      <Footer />
+      <div className="dark-theme">
+        <Footer />
+      </div>
       <InstallBanner />
       <Toaster />
     </div>

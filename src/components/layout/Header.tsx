@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Logo from "./Logo";
-import { Menu, ShoppingCart, User } from "lucide-react";
+import { Menu, Phone, User } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -32,27 +32,29 @@ export default function Header() {
   
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center">
+      <div className="container flex h-20 items-center">
         <Logo />
-        <nav className="hidden md:flex flex-grow justify-center items-center gap-4">
+        <nav className="hidden md:flex flex-grow justify-end items-center gap-4">
           {navLinks.map(link => <NavLink key={link.href} {...link} />)}
-           <Button asChild size="lg" className="ml-4 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6">
-              <Link href="/contact">Cenová ponuka</Link>
-            </Button>
+           <div className="flex items-center gap-2 ml-4">
+             <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="opacity-70 hover:opacity-100 transition-opacity">
+                <Image src="/icons/facebook.svg" alt="Facebook" width={24} height={24} />
+             </a>
+             <a href="tel:+421911275755" className="opacity-70 hover:opacity-100 transition-opacity">
+                <Image src="/icons/whatsapp.svg" alt="WhatsApp" width={24} height={24} />
+             </a>
+           </div>
         </nav>
         
         <div className="md:hidden ml-auto">
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="outline" size="icon">
+              <Button variant="ghost" size="icon">
                 <Menu />
               </Button>
             </SheetTrigger>
             <SheetContent>
               <nav className="flex flex-col items-center gap-6 mt-16">
-                 <Button asChild size="lg" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-full px-6">
-                    <Link href="/contact">Cenová ponuka</Link>
-                  </Button>
                 {navLinks.map(link => <NavLink key={link.href} {...link} />)}
               </nav>
             </SheetContent>
