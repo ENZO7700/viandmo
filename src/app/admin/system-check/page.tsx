@@ -31,10 +31,10 @@ async function performChecks(): Promise<CheckResult[]> {
         checks.push({ name: "PWA Offline stránka (offline.html)", status: 'Error', details: "Súbor chýba." });
     }
     try {
-        await fs.access(path.join(publicPath, 'viandmo_logo_regular_land.svg'));
-        checks.push({ name: "Logo SVG", status: 'OK', details: "Súbor existuje." });
+        await fs.access(path.join(publicPath, 'viandmo_logo.png'));
+        checks.push({ name: "Logo", status: 'OK', details: "Súbor existuje." });
     } catch (error) {
-        checks.push({ name: "Logo SVG", status: 'Error', details: "Súbor chýba." });
+        checks.push({ name: "Logo", status: 'Error', details: "Súbor chýba." });
     }
 
     // 2. Environment Variables Check

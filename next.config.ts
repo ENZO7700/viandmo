@@ -8,8 +8,6 @@ const withPWA = withPWAInit({
   fallbacks: {
     document: "/offline.html", // fallback for document (pages)
   },
-  cacheOnFrontEndNav: true,
-  aggressiveFrontEndNavCaching: true,
   reloadOnOnline: true,
   swcMinify: true,
   workboxOptions: {
