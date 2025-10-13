@@ -5,16 +5,16 @@
 
 @layer base {
   :root {
-    --background-dark: 193 82% 14%; /* #08343C */
+    --background-dark: 200 81% 10%; /* #052933 */
     --background-light: 0 0% 100%; /* #FFFFFF */
     
     --foreground-dark: 210 40% 98%;
     --foreground-light: 222 47% 11%;
 
-    --card-dark: 193 82% 16%;
-    --card-light: 0 0% 96%;
+    --card-dark: 200 81% 12%;
+    --card-light: 0 0% 100%;
     
-    --popover-dark: 193 82% 14%;
+    --popover-dark: 200 81% 10%;
     --popover-light: 0 0% 100%;
 
     --primary: 143 66% 53%; /* #35D86D */
@@ -23,14 +23,14 @@
     --secondary: 176 100% 27%; /* #008980 */
     --secondary-foreground: 210 40% 98%;
  
-    --muted-dark: 193 82% 20%;
-    --muted-light: 0 0% 90%;
+    --muted-dark: 200 81% 15%;
+    --muted-light: 240 5% 96%;
     
-    --muted-foreground-dark: 215 25% 80%;
-    --muted-foreground-light: 224 10% 40%;
+    --muted-foreground-dark: 215 28% 65%;
+    --muted-foreground-light: 240 4% 46%;
  
-    --accent-dark: 193 82% 25%;
-    --accent-light: 0 0% 96%;
+    --accent-dark: 200 81% 20%;
+    --accent-light: 240 5% 96%;
 
     --accent-foreground-dark: 210 40% 98%;
     --accent-foreground-light: 222 47% 11%;
@@ -38,10 +38,10 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border-dark: 193 82% 20%;
-    --border-light: 0 0% 89%;
-    --input-dark: 193 82% 20%;
-    --input-light: 0 0% 89%;
+    --border-dark: 200 81% 15%;
+    --border-light: 240 6% 90%;
+    --input-dark: 200 81% 15%;
+    --input-light: 240 6% 90%;
     --ring: 143 66% 53%;
  
     --radius: 0.8rem;
@@ -91,8 +91,5 @@
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-headline;
-  }
-  .text-3d-layer {
-    color: #000;
   }
 }
