@@ -5,16 +5,16 @@
 
 @layer base {
   :root {
-    --background-dark: 200 81% 10%; /* #052933 */
+    --background-dark: 200 100% 9%; /* #00202e */
     --background-light: 0 0% 100%; /* #FFFFFF */
     
     --foreground-dark: 210 40% 98%;
     --foreground-light: 222 47% 11%;
 
-    --card-dark: 200 81% 12%;
+    --card-dark: 200 100% 11%; /* Slightly lighter than bg */
     --card-light: 0 0% 100%;
     
-    --popover-dark: 200 81% 10%;
+    --popover-dark: 200 100% 9%;
     --popover-light: 0 0% 100%;
 
     --primary: 143 66% 53%; /* #35D86D */
@@ -23,13 +23,13 @@
     --secondary: 176 100% 27%; /* #008980 */
     --secondary-foreground: 210 40% 98%;
  
-    --muted-dark: 200 81% 15%;
+    --muted-dark: 200 100% 12%;
     --muted-light: 240 5% 96%;
     
-    --muted-foreground-dark: 215 28% 65%;
+    --muted-foreground-dark: 215 28% 75%; /* Brighter for contrast */
     --muted-foreground-light: 240 4% 46%;
  
-    --accent-dark: 200 81% 20%;
+    --accent-dark: 200 100% 15%;
     --accent-light: 240 5% 96%;
 
     --accent-foreground-dark: 210 40% 98%;
@@ -38,9 +38,9 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border-dark: 200 81% 15%;
+    --border-dark: 200 100% 15%;
     --border-light: 240 6% 90%;
-    --input-dark: 200 81% 15%;
+    --input-dark: 200 100% 15%;
     --input-light: 240 6% 90%;
     --ring: 143 66% 53%;
  
@@ -49,7 +49,7 @@
 
   /* Main dark theme for hero/footer */
   .dark-theme {
-    --background: 200 81% 10%;
+    --background: var(--background-dark);
     --foreground: var(--foreground-dark);
     --card: var(--card-dark);
     --card-foreground: var(--foreground-dark);
