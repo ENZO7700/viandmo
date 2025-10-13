@@ -13,15 +13,8 @@ export const metadata: Metadata = {
 
 // Hero Section Component
 const HeroSection = () => (
-  <section className="relative h-[80vh] w-full flex items-center justify-center text-center text-white">
-     <Image
-        src="/hero-background.jpg"
-        alt="VI&MO Sťahovanie a Upratovanie"
-        fill
-        priority
-        className="object-cover object-center brightness-50"
-        data-ai-hint="moving truck illustration"
-      />
+  <section className="relative h-[80vh] w-full flex items-center justify-center text-center text-white bg-transparent">
+     {/* The starfield canvas will be the background from the layout */}
     <div className="relative z-10 p-4">
       <h1 className="text-5xl md:text-7xl font-headline leading-tight text-primary-foreground drop-shadow-lg">
         Pevné ruky & poctivý prístup
@@ -63,14 +56,14 @@ const services = [
 ];
 
 const ServicesSection = () => (
-  <section id="sluzby" className="py-16 md:py-24 bg-muted/50">
+  <section id="sluzby" className="py-16 md:py-24 bg-card/80 backdrop-blur-sm">
     <div className="container">
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-4xl font-headline text-primary">Naše služby</h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {services.map((service, index) => (
-          <Card key={index} className="text-center p-6 flex flex-col items-center">
+          <Card key={index} className="text-center p-6 flex flex-col items-center bg-card/50">
             <div className="mb-4">{service.icon}</div>
             <CardTitle className="text-xl font-headline mb-2">{service.title}</CardTitle>
             <p className="text-muted-foreground flex-grow">{service.description}</p>
@@ -86,7 +79,7 @@ const ServicesSection = () => (
 
 // Why Us Section Component
 const WhyUsSection = () => (
-  <section id="preco-my" className="py-16 md:py-24">
+  <section id="preco-my" className="py-16 md:py-24 bg-transparent">
     <div className="container text-center">
       <h2 className="text-3xl md:text-4xl font-headline text-primary mb-4">Prečo VI&MO</h2>
       <p className="text-muted-foreground text-lg mb-8">Sme tu pre vás už 7 rokov.</p>
@@ -101,13 +94,13 @@ const WhyUsSection = () => (
 
 // Pricing Section Component
 const PricingSection = () => (
-    <section id="cennik" className="py-16 md:py-24 bg-muted/50">
+    <section id="cennik" className="py-16 md:py-24 bg-card/80 backdrop-blur-sm">
         <div className="container">
             <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-headline text-primary">Cenník</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <Card className="p-6">
+                <Card className="p-6 bg-card/50">
                     <CardHeader className="p-0 mb-4">
                         <CardTitle className="font-headline text-2xl">Cena pracovníkov</CardTitle>
                     </CardHeader>
@@ -117,7 +110,7 @@ const PricingSection = () => (
                         <p>Traja a viac pracovníkov: <span className="font-bold text-primary">cena dohodou</span></p>
                     </CardContent>
                 </Card>
-                <Card className="p-6">
+                <Card className="p-6 bg-card/50">
                     <CardHeader className="p-0 mb-4">
                         <CardTitle className="font-headline text-2xl">Cena dopravy</CardTitle>
                     </CardHeader>
@@ -149,7 +142,7 @@ const faqs = [
 ];
 
 const FaqSection = () => (
-    <section id="faq" className="py-16 md:py-24">
+    <section id="faq" className="py-16 md:py-24 bg-transparent">
         <div className="container max-w-3xl mx-auto">
             <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-headline text-primary">Časté otázky (FAQ)</h2>
@@ -170,7 +163,7 @@ const FaqSection = () => (
 
 // CTA Section Component
 const CtaSection = () => (
-  <section className="bg-primary text-primary-foreground">
+  <section className="bg-secondary/90 text-secondary-foreground backdrop-blur-sm">
     <div className="container py-16 md:py-20 text-center">
       <h2 className="text-3xl md:text-4xl font-headline mb-4">
         Nezáväzná cenová ponuka už dnes
@@ -179,7 +172,7 @@ const CtaSection = () => (
         Plánujete sťahovanie v Bratislave alebo okolí? Vyplňte krátky formulár a my Vám bezplatne pripravíme cenovú ponuku šitú presne na Vaše potreby. Žiadne záväzky, len rýchle a férové informácie.
       </p>
       <Link href="/contact" passHref>
-        <Button size="lg" variant="secondary" className="px-8 py-6 text-lg transition-colors duration-300">
+        <Button size="lg" variant="default" className="px-8 py-6 text-lg transition-colors duration-300 bg-primary hover:bg-primary/80">
           Získať cenovú ponuku
         </Button>
       </Link>
@@ -190,27 +183,27 @@ const CtaSection = () => (
 
 // Testimonials Section
 const TestimonialsSection = () => (
-    <section className="py-16 md:py-24">
+    <section className="py-16 md:py-24 bg-card/80 backdrop-blur-sm">
         <div className="container">
             <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-headline text-primary">Povedali o nás</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <Card className="p-6 text-center">
+                <Card className="p-6 text-center bg-card/50">
                     <div className="flex justify-center mb-2">
                         {[...Array(5)].map((_, i) => <Star key={i} className="text-yellow-400 fill-current" />)}
                     </div>
                     <p className="text-muted-foreground italic mb-4">"Super rýchla a profesionálna partia. Sťahovanie prebehlo hladko a bez jediného škrabanca. Odporúčam!"</p>
                     <p className="font-bold">- Martin J.</p>
                 </Card>
-                 <Card className="p-6 text-center">
+                 <Card className="p-6 text-center bg-card/50">
                     <div className="flex justify-center mb-2">
                         {[...Array(5)].map((_, i) => <Star key={i} className="text-yellow-400 fill-current" />)}
                     </div>
                     <p className="text-muted-foreground italic mb-4">"Využili sme upratovacie služby po rekonštrukcii. Byt bol dokonale čistý. Skvelá práca a komunikácia."</p>
                     <p className="font-bold">- Zuzana K.</p>
                 </Card>
-                 <Card className="p-6 text-center">
+                 <Card className="p-6 text-center bg-card/50">
                     <div className="flex justify-center mb-2">
                         {[...Array(5)].map((_, i) => <Star key={i} className="text-yellow-400 fill-current" />)}
                     </div>

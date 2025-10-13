@@ -83,6 +83,7 @@ export function DashboardHeader() {
                             type="search"
                             placeholder="Hľadať..."
                             className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
+                            aria-label="Hľadať v administrácii"
                         />
                     </div>
                 </form>
