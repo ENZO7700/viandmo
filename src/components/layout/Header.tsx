@@ -24,7 +24,7 @@ export default function Header() {
   const NavLink = ({ href, label }: { href: string, label:string }) => (
     <Button asChild variant="link" className={cn(
       "text-sm font-semibold uppercase tracking-wider",
-       (pathname === href || (href === '/blog' && pathname.startsWith('/blog'))) ? "text-primary" : "text-foreground hover:text-primary",
+       (pathname === href || (href === '/blog' && pathname.startsWith('/blog'))) ? "text-primary" : "text-primary-foreground hover:text-primary",
       "transition-colors duration-200"
     )}>
       <Link href={href}>{label}</Link>
@@ -32,7 +32,7 @@ export default function Header() {
   );
   
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-primary-foreground/10 bg-transparent">
       <div className="container flex h-20 items-center">
         <Logo />
         <nav className="hidden md:flex flex-grow justify-end items-center gap-4">
@@ -50,11 +50,11 @@ export default function Header() {
         <div className="md:hidden ml-auto">
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" className="hover:bg-white/10 text-white">
                 <Menu />
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="bg-background p-6">
+            <SheetContent side="left" className="bg-[#00202e] p-6 border-r-0">
                <div className="mb-8">
                  <Logo />
                </div>
@@ -62,7 +62,7 @@ export default function Header() {
                 {navLinks.map(link => (
                     <Button asChild variant="link" className={cn(
                       "text-lg font-semibold",
-                      (pathname === link.href || (link.href === '/blog' && pathname.startsWith('/blog'))) ? "text-primary" : "text-foreground hover:text-primary",
+                      (pathname === link.href || (link.href === '/blog' && pathname.startsWith('/blog'))) ? "text-primary" : "text-primary-foreground hover:text-primary",
                     )} key={link.href}>
                         <Link href={link.href}>{link.label}</Link>
                     </Button>

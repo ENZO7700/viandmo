@@ -49,7 +49,7 @@
 
   /* Main dark theme for hero/footer */
   .dark-theme {
-    --background: var(--background-dark);
+    --background: 200 100% 9%; /* #00202e */
     --foreground: var(--foreground-dark);
     --card: var(--card-dark);
     --card-foreground: var(--foreground-dark);
