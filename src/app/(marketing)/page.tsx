@@ -5,6 +5,7 @@ import { Truck, Box, Trash2, Sparkles, Phone, Star } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
+import { LayeredText3D } from '@/components/layout/LayeredText3D';
 
 export const metadata: Metadata = {
   title: 'VI&MO | Sťahovanie a Upratovanie Bratislava - Pevné ruky & poctivý prístup',
@@ -15,11 +16,9 @@ export const metadata: Metadata = {
 const HeroSection = () => (
   <section className="relative h-[80vh] w-full flex items-center justify-center text-center text-white bg-transparent">
      {/* The starfield canvas will be the background from the layout */}
-    <div className="relative z-10 p-4">
-      <h1 className="text-5xl md:text-7xl font-headline leading-tight text-primary-foreground drop-shadow-lg">
-        Pevné ruky & poctivý prístup
-      </h1>
-      <p className="mt-4 text-lg md:text-2xl max-w-3xl mx-auto drop-shadow-md">
+    <div className="relative z-10 p-4 flex flex-col items-center">
+       <LayeredText3D text="Pevné ruky & poctivý prístup" />
+      <p className="mt-4 text-lg md:text-2xl max-w-3xl mx-auto text-shadow-lg">
         Sťahovanie, odvoz odpadu a upratovanie v Bratislave a okolí
       </p>
       <Link href="/#cennik" passHref>
