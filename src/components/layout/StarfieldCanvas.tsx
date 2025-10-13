@@ -134,7 +134,7 @@ const StarfieldCanvas: React.FC = () => {
         width: '100%',
         height: '100%',
         zIndex: -1,
-        background: 'radial-gradient(ellipse at bottom, hsl(var(--primary)) 0%, hsl(var(--primary) / 60) 40%, #000 100%)',
+        background: 'radial-gradient(ellipse at bottom, hsl(var(--secondary)) 0%, hsl(var(--background)) 70%)',
       }}
       aria-hidden="true"
     />
