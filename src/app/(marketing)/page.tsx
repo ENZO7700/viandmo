@@ -5,6 +5,7 @@ import { Truck, Box, Trash2, Sparkles, Phone, Star } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
+import { LayeredText3D } from '@/components/layout/LayeredText3D';
 
 export const metadata: Metadata = {
   title: 'VI&MO | Sťahovanie a Upratovanie Bratislava - Pevné ruky & poctivý prístup',
@@ -18,9 +19,7 @@ const HeroSection = () => (
        <div className="mb-6">
          <Image src="/viandmo_logo.png" alt="VI&MO Logo" width={240} height={63} priority data-ai-hint="logo"/>
        </div>
-       <h2 className="text-2xl md:text-3xl font-headline text-primary">
-         Pevné ruky & poctivý prístup
-       </h2>
+       <LayeredText3D text="Pevné ruky & poctivý prístup" />
       <p className="mt-2 text-lg md:text-xl max-w-3xl mx-auto text-foreground/80">
         Sťahovanie, odvoz odpadu a upratovanie v Bratislave a okolí
       </p>
