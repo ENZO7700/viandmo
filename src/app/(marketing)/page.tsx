@@ -2,7 +2,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Truck, Box, Trash2, Sparkles, Phone, Star } from 'lucide-react';
+import { Truck, Box, Trash2, Sparkles, Phone, Star, Quote } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
@@ -41,7 +41,7 @@ const HeroSection = () => (
 // Services Section Component
 const services = [
   {
-    icon: <Truck className="w-10 h-10 text-primary-foreground" />,
+    icon: <Truck className="w-10 h-10 text-primary" />,
     title: "Sťahovanie bytov a rodinných domov",
     description: "Bezstarostné sťahovanie bytov a domov v Bratislave a okolí.",
     featured: true,
@@ -73,7 +73,9 @@ const ServicesSection = () => (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {services.map((service, index) => (
           <Card key={index} className={`text-left p-6 flex flex-col items-start shadow-lg rounded-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 ${service.featured ? 'bg-primary text-primary-foreground' : 'bg-card'}`}>
-            <div className="mb-4">{service.icon}</div>
+             <div className={`p-3 rounded-full mb-4 ${service.featured ? 'bg-primary-foreground/20' : 'bg-primary/10'}`}>
+                {service.icon}
+            </div>
             <CardTitle className={`text-xl font-headline mb-2 ${service.featured ? 'text-primary-foreground' : 'text-foreground'}`}>{service.title}</CardTitle>
             <p className={`flex-grow ${service.featured ? 'text-primary-foreground/80' : 'text-muted-foreground'}`}>{service.description}</p>
              <Button asChild variant={service.featured ? 'secondary' : 'default'} className="mt-6 w-full">
@@ -207,29 +209,33 @@ const CtaSection = () => (
 
 // Testimonials Section
 const TestimonialsSection = () => (
-    <section className="py-16 md:py-24 bg-background text-foreground">
+    <section className="py-16 md:py-24 bg-muted/30 text-foreground">
         <div className="container">
             <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-headline">Povedali o nás</h2>
+                 <p className="text-muted-foreground text-lg max-w-2xl mx-auto mt-2">Zistite, prečo sú naši klienti s našou prácou spokojní.</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <Card className="p-6 text-center bg-card shadow-lg rounded-xl">
-                    <div className="flex justify-center mb-2">
-                        {[...Array(5)].map((_, i) => <Star key={i} className="text-yellow-400 fill-current" />)}
+                <Card className="p-6 text-left bg-card shadow-md rounded-lg relative overflow-hidden">
+                    <Quote className="absolute -top-2 -right-2 w-20 h-20 text-primary/10" />
+                    <div className="flex mb-2">
+                        {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
                     </div>
                     <p className="text-muted-foreground italic mb-4">"Super rýchla a profesionálna partia. Sťahovanie prebehlo hladko a bez jediného škrabanca. Odporúčam!"</p>
                     <p className="font-bold text-foreground">- Martin J.</p>
                 </Card>
-                 <Card className="p-6 text-center bg-card shadow-lg rounded-xl">
-                    <div className="flex justify-center mb-2">
-                        {[...Array(5)].map((_, i) => <Star key={i} className="text-yellow-400 fill-current" />)}
+                 <Card className="p-6 text-left bg-card shadow-md rounded-lg relative overflow-hidden">
+                    <Quote className="absolute -top-2 -right-2 w-20 h-20 text-primary/10" />
+                    <div className="flex mb-2">
+                        {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
                     </div>
                     <p className="text-muted-foreground italic mb-4">"Využili sme upratovacie služby po rekonštrukcii. Byt bol dokonale čistý. Skvelá práca a komunikácia."</p>
                     <p className="font-bold text-foreground">- Zuzana K.</p>
                 </Card>
-                 <Card className="p-6 text-center bg-card shadow-lg rounded-xl">
-                    <div className="flex justify-center mb-2">
-                        {[...Array(5)].map((_, i) => <Star key={i} className="text-yellow-400 fill-current" />)}
+                 <Card className="p-6 text-left bg-card shadow-md rounded-lg relative overflow-hidden">
+                    <Quote className="absolute -top-2 -right-2 w-20 h-20 text-primary/10" />
+                    <div className="flex mb-2">
+                        {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
                     </div>
                     <p className="text-muted-foreground italic mb-4">"Potreboval som odviezť starý nábytok z pivnice. Chlapci boli veľmi ochotní a všetko rýchlo vypratali. Maximálna spokojnosť."</p>
                     <p className="font-bold text-foreground">- Peter V.</p>
@@ -255,3 +261,5 @@ export default function HomePage() {
     </>
   );
 }
+
+    
