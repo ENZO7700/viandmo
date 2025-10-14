@@ -13,10 +13,7 @@ export const metadata: Metadata = {
 
 // Hero Section Component
 const HeroSection = () => (
-  <section className="relative h-[60vh] w-full flex items-center justify-center text-center bg-background text-foreground">
-    <div className="absolute inset-0">
-        <StarfieldCanvas />
-    </div>
+  <section className="relative h-[60vh] w-full flex items-center justify-center text-center bg-[#00202e] text-foreground">
     <div className="relative z-10 p-4 flex flex-col items-center">
        <div className="mb-6">
          <Image src="/viandmo_logo.png" alt="VI&MO Logo" width={240} height={63} priority data-ai-hint="logo"/>
@@ -24,7 +21,7 @@ const HeroSection = () => (
        <h1 className="text-5xl md:text-7xl font-headline leading-tight text-primary-foreground text-shadow-lg">
           Pevné ruky & poctivý prístup
        </h1>
-      <p className="mt-2 text-lg md:text-xl max-w-3xl mx-auto text-foreground/80">
+      <p className="mt-2 text-lg md:text-xl max-w-3xl mx-auto text-primary-foreground/80">
         Sťahovanie, odvoz odpadu a upratovanie v Bratislave a okolí
       </p>
     </div>
@@ -220,8 +217,6 @@ const TestimonialsSection = () => (
         </div>
     </section>
 );
-
-import StarfieldCanvas from '@/components/layout/StarfieldCanvas';
 
 
 export default function HomePage() {
