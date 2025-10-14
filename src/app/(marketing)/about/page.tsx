@@ -73,7 +73,7 @@ export default function AboutPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-2xl mx-auto">
             {team.map((member) => (
-              <div key={member.name} className="text-center p-6 border rounded-lg shadow-sm">
+              <div key={member.name} className="text-center p-6 border rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <div className="relative w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden border-4 border-primary/50 shadow-lg">
                     <Image
                       src={member.img}
@@ -105,7 +105,7 @@ export default function AboutPage() {
             Neváhajte nás kontaktovať. Radi vám poradíme a pripravíme nezáväznú cenovú ponuku.
           </p>
           <Link href="/contact" passHref>
-            <Button size="lg" variant="secondary" className="px-8 py-6 text-lg transition-colors duration-300">
+            <Button size="lg" variant="secondary" className="px-8 py-6 text-lg transition-transform duration-300 hover:scale-105 rounded-full shadow-lg">
               Kontaktujte nás
             </Button>
           </Link>
@@ -114,5 +114,3 @@ export default function AboutPage() {
     </>
   );
 }
-
-    
