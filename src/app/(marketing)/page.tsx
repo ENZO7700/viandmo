@@ -78,7 +78,7 @@ const ServicesSection = () => (
             </div>
             <CardTitle className={`text-xl font-headline mb-2 ${service.featured ? 'text-primary-foreground' : 'text-foreground'}`}>{service.title}</CardTitle>
             <p className={`flex-grow ${service.featured ? 'text-primary-foreground/80' : 'text-muted-foreground'}`}>{service.description}</p>
-             <Button asChild variant={service.featured ? 'secondary' : 'default'} className="mt-6 w-full">
+             <Button asChild variant={service.featured ? 'secondary' : 'default'} className="mt-6 w-full rounded-full shadow-lg transition-transform duration-300 hover:scale-105">
                 <Link href="/contact">{service.featured ? 'Cenová ponuka' : 'Viac o službách'}</Link>
             </Button>
           </Card>
@@ -262,4 +262,5 @@ export default function HomePage() {
   );
 }
 
+    
     
