@@ -70,7 +70,7 @@ export default function ContactPage() {
           
           {/* Contact Info */}
           <div className="space-y-8">
-             <Card>
+             <Card className="shadow-lg rounded-xl">
                 <CardHeader><CardTitle className="text-2xl font-headline">Kontaktné údaje</CardTitle></CardHeader>
                 <CardContent className="space-y-4 text-lg">
                     <p className="flex items-center gap-4">
@@ -99,7 +99,7 @@ export default function ContactPage() {
              </Card>
 
             {/* Placeholder for Map */}
-            <div className="aspect-video w-full bg-muted rounded-lg overflow-hidden relative shadow-lg">
+            <div className="aspect-video w-full bg-muted rounded-xl overflow-hidden relative shadow-lg">
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2659.582390956554!2d17.14798331565108!3d48.20458997922961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476c8edb5da8d5a9%3A0x8a914a22b7987daf!2sKarpatsk%C3%A9%20n%C3%A1mestie%2010a%2C%20831%2006%20Bratislava!5e0!3m2!1ssk!2ssk!4v1684321654879!5m2!1ssk!2ssk!4v1684321654879!5m2!1ssk!2ssk" 
                     width="100%" 
@@ -114,7 +114,7 @@ export default function ContactPage() {
           </div>
 
           {/* Contact Form */}
-          <Card className="p-6 md:p-8">
+          <Card className="p-6 md:p-8 shadow-lg rounded-xl">
              <CardHeader className="p-0 mb-6">
                 <CardTitle className="text-3xl font-headline text-primary">Napíšte Nám</CardTitle>
                 <p className="text-muted-foreground">Odpovieme vám čo najskôr.</p>

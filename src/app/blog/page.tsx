@@ -41,7 +41,7 @@ export default function BlogPage() {
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {sortedPosts.map((post) => (
-              <Card key={post.slug} className="flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <Card key={post.slug} className="flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-xl">
                 <Link href={`/blog/${post.slug}`} className="block">
                   <div className="relative h-56 w-full">
                     <Image

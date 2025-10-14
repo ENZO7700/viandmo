@@ -67,7 +67,7 @@ const OtherPosts = ({ currentSlug }: { currentSlug: string }) => {
         <h2 className="text-2xl md:text-3xl font-headline text-primary mb-6">Prečítajte si tiež</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {other.map(post => (
-                 <Card key={post.slug} className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                 <Card key={post.slug} className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-xl">
                  <Link href={`/blog/${post.slug}`} className="block">
                    <div className="relative h-48 w-full">
                      <Image
