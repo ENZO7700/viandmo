@@ -89,14 +89,25 @@ const ServicesSection = () => (
 // Why Us Section Component
 const WhyUsSection = () => (
   <section id="preco-my" className="py-16 md:py-24 bg-muted/30 text-foreground">
-    <div className="container text-center">
-      <h2 className="text-3xl md:text-4xl font-headline text-primary mb-2">Prečo VI&MO</h2>
-      <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">Sme tu pre vás už 7 rokov. Našou prioritou je vaša spokojnosť a bezstarostný priebeh celej akcie.</p>
-      <div className="max-w-3xl mx-auto">
-        <p className="text-xl leading-relaxed text-foreground/80">
-          Hľadáte spoľahlivú firmu na sťahovanie? Sťahujeme byty, domy, kancelárie aj celé firmy, odvezieme nepotrebné veci a postaráme sa o dokonalý poriadok. Pracujeme rýchlo, efektívne a s ľudským prístupom. S nami máte istotu, že o vaše veci bude postarané ako o vlastné.
-        </p>
-      </div>
+    <div className="container grid md:grid-cols-2 gap-12 items-center">
+        <div>
+            <h2 className="text-3xl md:text-4xl font-headline text-primary mb-4">Prečo VI&MO</h2>
+            <p className="text-muted-foreground mb-4 leading-relaxed">
+              Sme tu pre vás už 7 rokov. Hľadáte spoľahlivú firmu na sťahovanie? Sťahujeme byty, domy, kancelárie aj celé firmy. Pracujeme rýchlo, efektívne a s ľudským prístupom. S nami máte istotu, že o vaše veci bude postarané ako o vlastné.
+            </p>
+            <p className="text-muted-foreground leading-relaxed">
+                Našou prioritou je vaša spokojnosť a bezstarostný priebeh celej akcie. Postaráme sa aj o vypratanie nepotrebných vecí a dokonalý poriadok po práci.
+            </p>
+        </div>
+        <div className="relative h-80 w-full rounded-lg overflow-hidden shadow-xl">
+             <Image
+                src="https://picsum.photos/800/600?random=22"
+                alt="Tím VI&MO pri práci"
+                fill
+                className="object-cover"
+                data-ai-hint="team working moving"
+             />
+        </div>
     </div>
   </section>
 );
@@ -176,17 +187,17 @@ const FaqSection = () => (
 
 // CTA Section Component
 const CtaSection = () => (
-  <section className="bg-secondary text-secondary-foreground">
+  <section className="bg-primary text-primary-foreground">
     <div className="container py-16 md:py-20 text-center">
       <h2 className="text-3xl md:text-4xl font-headline mb-4">
-        Nezáväzná cenová ponuka už dnes
+        Pripravení na zmenu?
       </h2>
-      <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto text-secondary-foreground/80">
-        Plánujete sťahovanie v Bratislave alebo okolí? Vyplňte krátky formulár a my Vám bezplatne pripravíme cenovú ponuku šitú presne na Vaše potreby. Žiadne záväzky, len rýchle a férové informácie.
+      <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto text-primary-foreground/80">
+        Nechajte starosti so sťahovaním na nás. Vyplňte krátky formulár a my vám obratom pripravíme cenovú ponuku šitú na mieru. Rýchlo, férovo a bez záväzkov.
       </p>
       <Link href="/contact" passHref>
-        <Button size="lg" variant="default" className="px-8 py-6 text-lg transition-colors duration-300 bg-primary hover:bg-primary/90 text-primary-foreground rounded-full shadow-lg">
-          Získať cenovú ponuku
+        <Button size="lg" variant="secondary" className="px-8 py-6 text-lg transition-transform duration-300 hover:scale-105 rounded-full shadow-lg">
+          Chcem nezáväznú ponuku
         </Button>
       </Link>
     </div>
