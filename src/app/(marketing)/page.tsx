@@ -72,13 +72,13 @@ const ServicesSection = () => (
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {services.map((service, index) => (
-          <Card key={index} className={`text-left p-6 flex flex-col items-start shadow-lg rounded-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 ${service.featured ? 'bg-primary text-primary-foreground' : 'bg-card'}`}>
-             <div className={`p-3 rounded-full mb-4 ${service.featured ? 'bg-primary-foreground/20' : 'bg-primary/10'}`}>
+          <Card key={index} className={`text-left p-6 flex flex-col items-start shadow-lg rounded-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 bg-card`}>
+             <div className={`p-3 rounded-full mb-4 bg-primary/10`}>
                 {service.icon}
             </div>
-            <CardTitle className={`text-xl font-headline mb-2 ${service.featured ? 'text-primary-foreground' : 'text-foreground'}`}>{service.title}</CardTitle>
-            <p className={`flex-grow ${service.featured ? 'text-primary-foreground/80' : 'text-muted-foreground'}`}>{service.description}</p>
-             <Button asChild variant={service.featured ? 'secondary' : 'default'} className="mt-6 w-full rounded-full shadow-lg transition-transform duration-300 hover:scale-105">
+            <CardTitle className={`text-xl font-headline mb-2 text-foreground`}>{service.title}</CardTitle>
+            <p className={`flex-grow text-muted-foreground`}>{service.description}</p>
+             <Button asChild variant={service.featured ? 'default' : 'outline'} className="mt-6 w-full rounded-full shadow-lg transition-transform duration-300 hover:scale-105">
                 <Link href="/contact">{service.featured ? 'Cenová ponuka' : 'Viac o službách'}</Link>
             </Button>
           </Card>
@@ -261,3 +261,5 @@ export default function HomePage() {
     </>
   );
 }
+
+    
