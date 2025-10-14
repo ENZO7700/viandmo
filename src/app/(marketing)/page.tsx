@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
@@ -13,7 +14,16 @@ export const metadata: Metadata = {
 
 // Hero Section Component
 const HeroSection = () => (
-  <section className="relative h-[60vh] w-full flex items-center justify-center text-center bg-[#00202e] text-foreground">
+  <section className="relative h-[60vh] w-full flex items-center justify-center text-center text-primary-foreground">
+     <Image
+        src="https://picsum.photos/1920/1080?random=10"
+        alt="Sťahovanie v Bratislave"
+        fill
+        priority
+        className="object-cover object-center"
+        data-ai-hint="moving truck city"
+      />
+      <div className="absolute inset-0 bg-black/60" />
     <div className="relative z-10 p-4 flex flex-col items-center">
        <div className="mb-6">
          <Image src="/viandmo_logo.png" alt="VI&MO Logo" width={240} height={63} priority data-ai-hint="logo"/>
@@ -223,7 +233,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <main className="bg-white">
+      <main>
         <ServicesSection />
         <WhyUsSection />
         <PricingSection />
