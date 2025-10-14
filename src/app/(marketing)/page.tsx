@@ -26,7 +26,7 @@ const HeroSection = () => (
       <div className="absolute inset-0 bg-black/60" />
     <div className="relative z-10 p-4 flex flex-col items-center">
        <div className="mb-6">
-         <Image src="/viandmo_logo.png" alt="VI&MO Logo" width={240} height={63} priority data-ai-hint="logo"/>
+         <Image src="https://viandmo.com/wp-content/uploads/viandmo_logo_regular_white.svg" alt="VI&MO Logo" width={240} height={63} priority data-ai-hint="logo"/>
        </div>
        <h1 className="text-5xl md:text-7xl font-headline leading-tight text-primary-foreground text-shadow-lg">
           Pevné ruky & poctivý prístup
@@ -73,7 +73,7 @@ const ServicesSection = () => (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {services.map((service, index) => (
           <Card key={index} className={`text-left p-6 flex flex-col items-start shadow-lg rounded-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 bg-card`}>
-             <div className={`p-3 rounded-full mb-4 bg-primary/10`}>
+             <div className={`p-3 rounded-full mb-4 ${service.featured ? 'bg-primary/10' : 'bg-primary/10'}`}>
                 {service.icon}
             </div>
             <CardTitle className={`text-xl font-headline mb-2 text-foreground`}>{service.title}</CardTitle>
@@ -261,5 +261,3 @@ export default function HomePage() {
     </>
   );
 }
-
-    
