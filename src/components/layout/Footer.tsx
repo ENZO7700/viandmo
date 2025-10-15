@@ -32,17 +32,17 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-semibold mb-4 font-headline text-primary-foreground">Kontakt</h3>
           <ul className="space-y-2 text-primary-foreground/80">
-            <li className="flex items-center justify-center md:justify-start">
-              <Phone className="h-4 w-4 mr-2 text-primary" />
-              <a href="tel:+421911275755" className="hover:text-primary transition-colors">
-                +421 911 275 755 (Sťahovanie)
-              </a>
-            </li>
-             <li className="flex items-center justify-center md:justify-start">
-              <Phone className="h-4 w-4 mr-2 text-primary" />
-              <a href="tel:+421918895730" className="hover:text-primary transition-colors">
-                +421 918 895 730 (Upratovanie)
-              </a>
+            <li className="flex items-center justify-center md:justify-start gap-2">
+              <Phone className="h-4 w-4 text-primary mt-1 flex-shrink-0" />
+              <div>
+                 <a href="tel:+421911275755" className="hover:text-primary transition-colors">
+                    +421 911 275 755 (Sťahovanie)
+                 </a>
+                 <br/>
+                 <a href="tel:+421918895730" className="hover:text-primary transition-colors">
+                    +421 918 895 730 (Upratovanie)
+                 </a>
+              </div>
             </li>
             <li className="flex items-center justify-center md:justify-start">
               <Mail className="h-4 w-4 mr-2 text-primary" />

@@ -73,7 +73,7 @@ const ServicesSection = () => (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {services.map((service, index) => (
           <Card key={index} className={`text-left p-6 flex flex-col items-start shadow-lg rounded-xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 bg-card`}>
-             <div className={`p-3 rounded-full mb-4 ${service.featured ? 'bg-primary/10' : 'bg-primary/10'}`}>
+             <div className={`p-3 rounded-full mb-4 bg-primary/10`}>
                 {service.icon}
             </div>
             <CardTitle className={`text-xl font-headline mb-2 text-foreground`}>{service.title}</CardTitle>
@@ -250,14 +250,14 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <main>
+      <>
         <ServicesSection />
         <WhyUsSection />
         <PricingSection />
         <TestimonialsSection />
         <FaqSection />
         <CtaSection />
-      </main>
+      </>
     </>
   );
 }
