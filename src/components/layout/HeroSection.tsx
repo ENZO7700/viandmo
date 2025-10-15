@@ -1,4 +1,3 @@
-
 'use client';
 
 import Image from 'next/image';
@@ -31,10 +30,10 @@ const HeroSection = () => {
              data-ai-hint="logo"
            />
          </div>
-         <h1 className="text-5xl md:text-7xl font-headline leading-tight text-primary-foreground text-shadow-lg">
+         <h1 className="text-5xl md:text-7xl font-headline leading-tight text-white text-shadow-lg">
             Pevné ruky & poctivý prístup
          </h1>
-        <p className="mt-2 text-lg md:text-xl max-w-3xl mx-auto text-primary-foreground text-shadow">
+        <p className="mt-2 text-lg md:text-xl max-w-3xl mx-auto text-white text-shadow">
           Sťahovanie, odvoz odpadu a upratovanie v Bratislave a okolí
         </p>
       </motion.div>
