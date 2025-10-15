@@ -24,7 +24,7 @@ export default function BlogPage() {
           fill
           priority
           className="object-cover object-center brightness-50"
-          data-ai-hint="writing keyboard"
+          data-ai-hint="writing blog"
         />
         <div className="relative z-10 p-4">
           <h1 className="text-5xl md:text-7xl font-headline leading-tight text-primary-foreground drop-shadow-lg">
@@ -49,6 +49,7 @@ export default function BlogPage() {
                       alt={post.image_alt}
                       fill
                       className="object-cover"
+                      data-ai-hint={post.image_alt.toLowerCase().includes('krabice') ? 'moving boxes' : 'moving city'}
                     />
                   </div>
                 </Link>

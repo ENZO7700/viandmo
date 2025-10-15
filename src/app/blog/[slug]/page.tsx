@@ -75,6 +75,7 @@ const OtherPosts = ({ currentSlug }: { currentSlug: string }) => {
                        alt={post.image_alt}
                        fill
                        className="object-cover"
+                       data-ai-hint={post.image_alt}
                      />
                    </div>
                  </Link>
@@ -129,6 +130,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             fill
             priority
             className="object-cover"
+            data-ai-hint={post.image_alt}
           />
         </div>
 

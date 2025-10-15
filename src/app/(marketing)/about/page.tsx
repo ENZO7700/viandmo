@@ -26,7 +26,7 @@ export default function AboutPage() {
           fill
           priority
           className="object-cover object-center"
-          data-ai-hint="team moving boxes"
+          data-ai-hint="moving team"
         />
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 p-4">
@@ -57,7 +57,7 @@ export default function AboutPage() {
                 alt="Detail práce pri balení"
                 fill
                 className="object-cover"
-                data-ai-hint="packing box detail"
+                data-ai-hint="packing box"
              />
           </div>
         </div>

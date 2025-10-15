@@ -82,7 +82,7 @@ const WhyUsSection = () => (
                 alt="Tím VI&MO pri práci"
                 fill
                 className="object-cover"
-                data-ai-hint="team working moving"
+                data-ai-hint="moving team working"
              />
         </div>
     </div>

@@ -92,7 +92,7 @@ export function DashboardHeader() {
                     <DropdownMenuTrigger asChild>
                         <Button variant="secondary" size="icon" className="rounded-full">
                             <Avatar>
-                                <AvatarImage src="https://picsum.photos/100/100" data-ai-hint="man portrait" />
+                                <AvatarImage src="https://picsum.photos/100/100" data-ai-hint="admin portrait" />
                                 <AvatarFallback>A</AvatarFallback>
                             </Avatar>
                             <span className="sr-only">Toggle user menu</span>
