@@ -12,7 +12,7 @@ export default function AdminLayout({
 
   return (
     <AdminProviders>
-      <div className="test-theme flex min-h-screen w-full flex-col bg-background text-foreground">
+      <div className="flex min-h-screen w-full flex-col bg-background text-foreground">
         <DashboardHeader />
         <div className="flex flex-1">
           <DashboardNav />
