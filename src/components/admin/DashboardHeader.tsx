@@ -2,7 +2,6 @@
 import {
     Avatar,
     AvatarFallback,
-    AvatarImage,
 } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import {
@@ -21,7 +20,6 @@ import { Input } from "../ui/input"
 import Logo from "../layout/Logo"
 import { ThemeSwitcher } from "./ThemeSwitcher"
 import { logout } from "./actions";
-import imageData from '@/lib/placeholder-images.json';
 
 export function DashboardHeader() {
     return (
@@ -93,8 +91,7 @@ export function DashboardHeader() {
                     <DropdownMenuTrigger asChild>
                         <Button variant="secondary" size="icon" className="rounded-full">
                             <Avatar>
-                                <AvatarImage src={imageData.adminAvatar.src} data-ai-hint={imageData.adminAvatar.hint} />
-                                <AvatarFallback>A</AvatarFallback>
+                                <AvatarFallback>AD</AvatarFallback>
                             </Avatar>
                             <span className="sr-only">Toggle user menu</span>
                         </Button>
