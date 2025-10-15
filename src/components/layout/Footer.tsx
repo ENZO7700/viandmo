@@ -55,7 +55,7 @@ export default function Footer() {
 
         <div>
           <h3 className="text-lg font-semibold mb-4 font-headline text-primary-foreground">Obchodné údaje</h3>
-           <div className="text-sm text-primary-foreground/80">
+           <div className="text-sm text-primary-foreground/80 space-y-1">
                 <p>VI and MO s. r. o.</p>
                 <p>Karpatské námestie 7770/10A</p>
                 <p>831 06 Bratislava - Rača</p>

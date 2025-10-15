@@ -25,9 +25,10 @@ export default function AboutPage() {
           alt="Tím VI&MO v akcii"
           fill
           priority
-          className="object-cover object-center brightness-50"
+          className="object-cover object-center"
           data-ai-hint="team moving boxes"
         />
+        <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 p-4">
           <h1 className="text-5xl md:text-7xl font-headline leading-tight text-primary-foreground drop-shadow-lg">
             Náš Príbeh
@@ -73,7 +74,7 @@ export default function AboutPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-2xl mx-auto">
             {team.map((member) => (
-              <div key={member.name} className="text-center p-6 border rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <div key={member.name} className="text-center p-6 border rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 bg-card">
                 <div className="relative w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden border-4 border-primary/50 shadow-lg">
                     <Image
                       src={member.img}
