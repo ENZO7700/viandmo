@@ -8,18 +8,18 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-transparent text-primary-foreground/80 py-12">
+    <footer className="bg-transparent text-primary-foreground py-12">
       <div className="container grid grid-cols-1 gap-8 text-center md:grid-cols-4 md:text-left">
         <div className="flex flex-col items-center md:items-start">
             <Logo />
-          <p className="text-sm text-primary-foreground/60 max-w-xs mt-4">
+          <p className="text-sm text-primary-foreground/80 max-w-xs mt-4">
             Spoľahlivé sťahovanie, vypratávanie a upratovanie v Bratislave a okolí. Rýchlo, efektívne a s ľudským prístupom.
           </p>
         </div>
 
         <div>
           <h3 className="text-lg font-semibold mb-4 font-headline text-primary-foreground">Rýchle odkazy</h3>
-          <ul className="space-y-2 text-primary-foreground/80">
+          <ul className="space-y-2 text-primary-foreground">
             <li><Link href="/#sluzby" className="hover:text-primary transition-colors">Služby</Link></li>
             <li><Link href="/#cennik" className="hover:text-primary transition-colors">Cenník</Link></li>
             <li><Link href="/blog" className="hover:text-primary transition-colors">Blog</Link></li>
@@ -31,7 +31,7 @@ export default function Footer() {
 
         <div>
           <h3 className="text-lg font-semibold mb-4 font-headline text-primary-foreground">Kontakt</h3>
-          <ul className="space-y-2 text-primary-foreground/80">
+          <ul className="space-y-2 text-primary-foreground">
             <li className="flex items-center justify-center md:justify-start gap-2">
               <Phone className="h-4 w-4 text-primary mt-1 flex-shrink-0" />
               <div>
@@ -55,7 +55,7 @@ export default function Footer() {
 
         <div>
           <h3 className="text-lg font-semibold mb-4 font-headline text-primary-foreground">Obchodné údaje</h3>
-           <div className="text-sm text-primary-foreground/80 space-y-1">
+           <div className="text-sm text-primary-foreground space-y-1">
                 <p>VI and MO s. r. o.</p>
                 <p>Karpatské námestie 7770/10A</p>
                 <p>831 06 Bratislava - Rača</p>
@@ -67,7 +67,7 @@ export default function Footer() {
 
       <Separator className="my-8 bg-primary-foreground/20" />
 
-      <div className="container text-center text-sm text-primary-foreground/60">
+      <div className="container text-center text-sm text-primary-foreground/80">
         &copy; {currentYear} VI and MO s. r. o. Všetky práva vyhradené.
         <span className="mx-2">|</span>
         <Link href="/privacy-policy" className="hover:text-primary transition-colors">
