@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
-import { Inter } from 'next/font/google';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 
 const APP_NAME = "VI&MO | Sťahovanie a Upratovanie Bratislava";
 const APP_DEFAULT_TITLE = "VI&MO | Sťahovanie a Upratovanie Bratislava";
@@ -49,10 +49,11 @@ export const viewport: Viewport = {
 };
 
 
-const inter = Inter({
+const mainFont = Plus_Jakarta_Sans({
   subsets: ['latin-ext'],
   variable: '--font-body',
   display: 'swap',
+  weight: ['400', '600', '700', '800'],
 });
 
 
@@ -62,7 +63,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="sk" className={cn(inter.variable)} suppressHydrationWarning>
+    <html lang="sk" className={cn(mainFont.variable)} suppressHydrationWarning>
       <head />
       <body className={cn('font-body antialiased')}>
         {children}

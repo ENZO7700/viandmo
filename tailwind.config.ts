@@ -18,8 +18,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        body: ['var(--font-body)', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
-        headline: ['var(--font-body)', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+        body: ['var(--font-body)', 'system-ui', 'sans-serif'],
+        headline: ['var(--font-body)', 'system-ui', 'sans-serif'],
         code: ['monospace'],
       },
       colors: {
