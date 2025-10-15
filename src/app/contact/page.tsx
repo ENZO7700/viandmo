@@ -7,7 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { useFormState } from 'react-dom';
+import { useActionState } from 'react';
 import { submitContactForm, type ContactFormState } from '../actions';
 import { useEffect, useRef } from 'react';
 import { useToast } from '@/hooks/use-toast';
@@ -21,7 +21,7 @@ export default function ContactPage() {
         message: "",
     };
 
-    const [state, formAction] = useFormState(submitContactForm, initialState);
+    const [state, formAction] = useActionState(submitContactForm, initialState);
 
     useEffect(() => {
         if (state.message && !state.issues) {
