@@ -17,7 +17,7 @@ const HeroSection = () => {
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
   
-  const motionProps = shouldReduceMotion ? {} : { y, opacity };
+  const motionProps = shouldReduceMotion ? {} : { style: { y, opacity } };
   
   const logoVariants = {
     hidden: { opacity: 0, y: -20 },
@@ -34,7 +34,7 @@ const HeroSection = () => {
       ref={targetRef}
       className="relative h-auto w-full flex items-center justify-center text-center text-primary-foreground bg-[#00202e] py-20 md:py-32"
     >
-      <motion.div style={motionProps} className="relative z-10 p-4 flex flex-col items-center">
+      <motion.div {...motionProps} className="relative z-10 p-4 flex flex-col items-center">
          <motion.div 
             className="mb-6"
             variants={shouldReduceMotion ? undefined : logoVariants}
