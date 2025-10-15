@@ -78,7 +78,7 @@ const WhyUsSection = () => (
         </div>
         <div className="relative h-80 w-full rounded-lg overflow-hidden shadow-xl">
              <Image
-                src="https://viandmo.com/wp-content/uploads/viandmo_logo_regular_white.svg"
+                src="/viandmo.png"
                 alt="VI&MO Logo"
                 fill
                 className="object-contain p-8"
