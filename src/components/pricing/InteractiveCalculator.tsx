@@ -243,10 +243,8 @@ export function InteractiveCalculator() {
            variants={itemVariants}
            className="lg:col-span-1 sticky top-24"
         >
-        <motion.div
+        <div
            className="rounded-2xl bg-gradient-to-br from-primary to-secondary text-primary-foreground shadow-2xl shadow-primary/30"
-           transition={{ duration: 0.5, ease: 'easeOut' }}
-           whileHover={{ scale: 1.05, y: -10, boxShadow: '0px 25px 50px -12px rgba(53, 216, 109, 0.4)' }}
         >
         <Card className="bg-transparent border-0 relative overflow-hidden">
          <div className="absolute inset-0 bg-black/10"></div>
@@ -261,13 +259,13 @@ export function InteractiveCalculator() {
              <p className="text-white/80 text-sm mt-2">vrátane DPH</p>
           </CardContent>
           <CardFooter className="flex-col gap-4 px-8 pb-8 relative z-10">
-             <Button asChild size="lg" className="w-full bg-white text-primary hover:bg-white/90 rounded-full transition-transform duration-300 hover:scale-105 shadow-lg">
+             <Button asChild size="lg" className="w-full bg-white text-black hover:bg-white/90 rounded-full transition-transform duration-300 hover:scale-105 shadow-lg">
                 <Link href="/contact">Chcem presnú ponuku</Link>
              </Button>
              <p className="text-xs text-white/70 text-center pt-2">Toto je len orientačná cena. Pre finálnu cenovú ponuku nás, prosím, kontaktujte.</p>
           </CardFooter>
         </Card>
-        </motion.div>
+        </div>
       </motion.div>
     </motion.div>
   );
