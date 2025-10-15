@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -45,7 +46,7 @@ function AnimatedPrice({ value }: { value: number }) {
     const node = ref.current;
     if (!node) return;
 
-    const previousValue = parseInt(node.textContent || '0', 10);
+    const previousValue = parseInt(node.textContent?.replace(/\s|€/g, '') || '0', 10);
     const controls = animate(previousValue, value, {
       duration: 1.2,
       ease: "circOut",
@@ -126,24 +127,6 @@ export function InteractiveCalculator() {
   }, [fromDistrict, toDistrict, propertyType, fromFloor, toFloor, fromElevator, toElevator, workers, assembly, distance]);
 
   const isOutOfBratislava = fromDistrict === 'Mimo Bratislavy' || toDistrict === 'Mimo Bratislavy';
-
-  const priceCardRef = useRef<HTMLDivElement>(null);
-  const motionX = useMotionValue(0);
-  const motionY = useMotionValue(0);
-  const rotateX = useTransform(motionY, [-100, 100], [-10, 10]);
-  const rotateY = useTransform(motionX, [-100, 100], [10, -10]);
-
-  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
-      if (!priceCardRef.current) return;
-      const { left, top, width, height } = priceCardRef.current.getBoundingClientRect();
-      motionX.set(e.clientX - left - width / 2);
-      motionY.set(e.clientY - top - height / 2);
-  }
-
-  function handleMouseLeave() {
-      motionX.set(0);
-      motionY.set(0);
-  }
 
   return (
     <motion.div 
@@ -257,12 +240,8 @@ export function InteractiveCalculator() {
       </motion.div>
 
       <motion.div
-           ref={priceCardRef}
            variants={itemVariants}
            className="lg:col-span-1 sticky top-24"
-           style={{ rotateX, rotateY }}
-           onMouseMove={handleMouseMove}
-           onMouseLeave={handleMouseLeave}
         >
         <motion.div
            className="rounded-2xl bg-gradient-to-br from-primary to-secondary text-primary-foreground shadow-2xl shadow-primary/30"
@@ -293,5 +272,3 @@ export function InteractiveCalculator() {
     </motion.div>
   );
 }
-
-    
