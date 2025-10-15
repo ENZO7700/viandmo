@@ -78,11 +78,11 @@ const WhyUsSection = () => (
         </div>
         <div className="relative h-80 w-full rounded-lg overflow-hidden shadow-xl">
              <Image
-                src="https://picsum.photos/800/600?random=22"
-                alt="Tím VI&MO pri práci"
+                src="/viandmo_logo.png"
+                alt="VI&MO Logo"
                 fill
-                className="object-cover"
-                data-ai-hint="moving team working"
+                className="object-contain p-8"
+                data-ai-hint="logo"
              />
         </div>
     </div>
