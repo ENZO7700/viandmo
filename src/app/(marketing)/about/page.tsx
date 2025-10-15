@@ -1,4 +1,3 @@
-
 'use client'
 
 import Image from 'next/image';
@@ -115,7 +114,8 @@ export default function AboutPage() {
                         <Image
                           src={member.img}
                           alt={member.name}
-                          fill
+                          width={member.width}
+                          height={member.height}
                           className="object-cover"
                           data-ai-hint={member.hint}
                         />
