@@ -1,3 +1,4 @@
+
 'use client';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
@@ -12,7 +13,7 @@ export default function Footer() {
       <div className="container grid grid-cols-1 gap-8 text-center md:grid-cols-4 md:text-left">
         <div className="flex flex-col items-center md:items-start">
             <Logo />
-          <p className="text-sm text-primary-foreground/80 max-w-xs mt-4">
+          <p className="text-sm text-primary-foreground max-w-xs mt-4">
             Spoľahlivé sťahovanie, vypratávanie a upratovanie v Bratislave a okolí. Rýchlo, efektívne a s ľudským prístupom.
           </p>
         </div>
@@ -67,7 +68,7 @@ export default function Footer() {
 
       <Separator className="my-8 bg-primary-foreground/20" />
 
-      <div className="container text-center text-sm text-primary-foreground/80">
+      <div className="container text-center text-sm text-primary-foreground">
         &copy; {currentYear} VI and MO s. r. o. Všetky práva vyhradené.
         <span className="mx-2">|</span>
         <Link href="/privacy-policy" className="hover:text-primary transition-colors">
