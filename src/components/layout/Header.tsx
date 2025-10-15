@@ -24,7 +24,7 @@ const SocialIcon = ({ href, children, ariaLabel }: { href: string, children: Rea
         href={href} 
         target="_blank" 
         rel="noopener noreferrer" 
-        className="text-primary-foreground/70 hover:text-primary transition-colors duration-200"
+        className="text-white/70 hover:text-gray-300 transition-colors duration-200"
         aria-label={ariaLabel}
     >
         {children}
@@ -38,7 +38,7 @@ export default function Header() {
   const NavLink = ({ href, label }: { href: string, label:string }) => (
     <Button asChild variant="link" className={cn(
       "text-sm font-semibold uppercase tracking-wider",
-       (pathname === href || (href === '/blog' && pathname.startsWith('/blog'))) ? "text-primary" : "text-primary-foreground hover:text-primary",
+       (pathname === href || (href === '/blog' && pathname.startsWith('/blog'))) ? "text-primary" : "text-white hover:text-gray-300",
       "transition-colors duration-200"
     )}>
       <Link href={href}>{label}</Link>
@@ -46,7 +46,7 @@ export default function Header() {
   );
   
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-primary-foreground/10 bg-transparent">
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-transparent">
       <div className="container flex h-20 items-center">
         <Logo />
         <nav className="hidden md:flex flex-grow justify-end items-center gap-4">
