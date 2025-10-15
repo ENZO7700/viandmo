@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter, CardDescription } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
@@ -9,8 +9,9 @@ import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Calculator } from 'lucide-react';
+import { motion, AnimatePresence, useMotionValue, useSpring, animate } from 'framer-motion';
+import { Calculator, ArrowRight, Building, Users, Home, HardHat, Car } from 'lucide-react';
+import { Separator } from '@/components/ui/separator';
 
 const bratislavaDistricts = [
   'Staré Mesto', 'Ružinov', 'Vrakuňa', 'Podunajské Biskupice', 'Nové Mesto', 
@@ -19,21 +20,15 @@ const bratislavaDistricts = [
 ];
 
 const propertyTypes = {
-  'Garsónka': { basePrice: 65, estimatedHours: 2 },
-  '1-izbový byt': { basePrice: 70, estimatedHours: 2.5 },
-  '2-izbový byt': { basePrice: 140, estimatedHours: 4 },
-  '3-izbový byt': { basePrice: 240, estimatedHours: 6 },
-  '4-izbový byt': { basePrice: 350, estimatedHours: 8 },
-  'Rodinný dom': { basePrice: 450, estimatedHours: 10 },
+  'Garsónka': { basePrice: 65, estimatedHours: 2, icon: <Home className="w-5 h-5"/> },
+  '1-izbový byt': { basePrice: 70, estimatedHours: 2.5, icon: <Home className="w-5 h-5"/> },
+  '2-izbový byt': { basePrice: 140, estimatedHours: 4, icon: <Home className="w-5 h-5"/> },
+  '3-izbový byt': { basePrice: 240, estimatedHours: 6, icon: <Building className="w-5 h-5"/> },
+  '4-izbový byt': { basePrice: 350, estimatedHours: 8, icon: <Building className="w-5 h-5"/> },
+  'Rodinný dom': { basePrice: 450, estimatedHours: 10, icon: <Building className="w-5 h-5"/> },
 };
 
-const workerRates: { [key: number]: number } = {
-  1: 40,
-  2: 50,
-  3: 65, // Estimated
-  4: 80, // Estimated
-  5: 95, // Estimated
-};
+const workerRates: { [key: number]: number } = { 1: 40, 2: 50, 3: 65, 4: 80, 5: 95 };
 
 const MIN_CHARGE = 70;
 const FLOOR_CHARGE = 8;
@@ -42,6 +37,28 @@ const TRANSPORT_FLAT_RATE = 30;
 const KM_RATE = 0.8;
 
 type PropertyType = keyof typeof propertyTypes;
+
+function AnimatedPrice({ value }: { value: number }) {
+  const ref = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+
+    const controls = animate(0, value, {
+      duration: 1,
+      ease: "easeOut",
+      onUpdate(latest) {
+        node.textContent = `${Math.round(latest).toLocaleString('sk-SK')} €`;
+      },
+    });
+
+    return () => controls.stop();
+  }, [value]);
+
+  return <p ref={ref} className="text-5xl font-bold tracking-tighter text-white" />;
+}
+
 
 export function InteractiveCalculator() {
   const [fromDistrict, setFromDistrict] = useState(bratislavaDistricts[0]);
@@ -61,27 +78,17 @@ export function InteractiveCalculator() {
     let price = 0;
     const selectedProperty = propertyTypes[propertyType];
 
-    // 1. Base price from property type
     let basePrice = selectedProperty.basePrice;
 
-    // 2. Worker cost
     let hours = selectedProperty.estimatedHours;
-    if (assembly) {
-      hours += ASSEMBLY_HOURS;
-    }
+    if (assembly) hours += ASSEMBLY_HOURS;
     const workerRate = workerRates[workers[0]] || 50;
     const workCost = hours * workerRate;
 
-    // 3. Floor charge
     let floorCost = 0;
-    if (!fromElevator) {
-      floorCost += fromFloor[0] * FLOOR_CHARGE;
-    }
-    if (!toElevator) {
-      floorCost += toFloor[0] * FLOOR_CHARGE;
-    }
+    if (!fromElevator) floorCost += fromFloor[0] * FLOOR_CHARGE;
+    if (!toElevator) floorCost += toFloor[0] * FLOOR_CHARGE;
     
-    // 4. Transport cost
     let transportCost = TRANSPORT_FLAT_RATE;
     if (fromDistrict === 'Mimo Bratislavy' || toDistrict === 'Mimo Bratislavy') {
       transportCost = distance * KM_RATE;
@@ -89,137 +96,150 @@ export function InteractiveCalculator() {
     
     price = basePrice + workCost + floorCost + transportCost;
 
-    // 5. Check against minimum charge
-    if (price < MIN_CHARGE) {
-      price = MIN_CHARGE;
-    }
+    if (price < MIN_CHARGE) price = MIN_CHARGE;
 
-    setTotalPrice(Math.round(price));
+    setTotalPrice(price);
 
   }, [fromDistrict, toDistrict, propertyType, fromFloor, toFloor, fromElevator, toElevator, workers, assembly, distance]);
 
   const isOutOfBratislava = fromDistrict === 'Mimo Bratislavy' || toDistrict === 'Mimo Bratislavy';
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-      {/* Calculator Inputs */}
-      <Card className="lg:col-span-2 shadow-lg rounded-xl">
-        <CardHeader>
-          <CardTitle className="font-headline text-2xl">Parametre sťahovania</CardTitle>
-          <CardDescription>Zadajte detaily pre čo najpresnejší odhad.</CardDescription>
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
+      className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start"
+    >
+      <Card className="lg:col-span-2 shadow-xl rounded-xl border-border/50">
+        <CardHeader className="p-8">
+          <CardTitle className="font-headline text-2xl">Parametre vášho sťahovania</CardTitle>
+          <CardDescription>Zadajte detaily a získajte okamžitý odhad.</CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                    <Label htmlFor="from-district">Odkiaľ?</Label>
-                    <Select value={fromDistrict} onValueChange={setFromDistrict}>
-                        <SelectTrigger id="from-district"><SelectValue/></SelectTrigger>
-                        <SelectContent>
-                            {[...bratislavaDistricts, 'Mimo Bratislavy'].map(d => <SelectItem key={`from-${d}`} value={d}>{d}</SelectItem>)}
-                        </SelectContent>
-                    </Select>
-                </div>
-                <div className="space-y-2">
-                    <Label htmlFor="to-district">Kam?</Label>
-                    <Select value={toDistrict} onValueChange={setToDistrict}>
-                        <SelectTrigger id="to-district"><SelectValue /></SelectTrigger>
-                        <SelectContent>
-                             {[...bratislavaDistricts, 'Mimo Bratislavy'].map(d => <SelectItem key={`to-${d}`} value={d}>{d}</SelectItem>)}
-                        </SelectContent>
-                    </Select>
+        <CardContent className="space-y-8 px-8 pb-8">
+            
+            <div className="space-y-4">
+                <Label className="font-semibold text-lg">Trasa sťahovania</Label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
+                    <div className="space-y-2">
+                        <Label htmlFor="from-district">Odkiaľ?</Label>
+                        <Select value={fromDistrict} onValueChange={setFromDistrict}>
+                            <SelectTrigger id="from-district" className="transition-all duration-300"><SelectValue/></SelectTrigger>
+                            <SelectContent>
+                                {[...bratislavaDistricts, 'Mimo Bratislavy'].map(d => <SelectItem key={`from-${d}`} value={d}>{d}</SelectItem>)}
+                            </SelectContent>
+                        </Select>
+                    </div>
+                    <div className="space-y-2">
+                        <Label htmlFor="to-district">Kam?</Label>
+                        <Select value={toDistrict} onValueChange={setToDistrict}>
+                            <SelectTrigger id="to-district" className="transition-all duration-300"><SelectValue /></SelectTrigger>
+                            <SelectContent>
+                                {[...bratislavaDistricts, 'Mimo Bratislavy'].map(d => <SelectItem key={`to-${d}`} value={d}>{d}</SelectItem>)}
+                            </SelectContent>
+                        </Select>
+                    </div>
                 </div>
             </div>
 
              <AnimatePresence>
                 {isOutOfBratislava && (
                     <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
+                        initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                        animate={{ opacity: 1, height: 'auto', marginTop: '1rem' }}
+                        exit={{ opacity: 0, height: 0, marginTop: 0 }}
                         className="space-y-2 overflow-hidden"
                     >
-                        <Label htmlFor="distance">Vzdialenosť mimo Bratislavy (km)</Label>
-                        <Input id="distance" type="number" value={distance} onChange={(e) => setDistance(Number(e.target.value))} placeholder="Zadajte počet kilometrov"/>
+                         <Label htmlFor="distance" className="flex items-center gap-2 font-semibold"><Car className="w-5 h-5 text-primary"/> Vzdialenosť mimo Bratislavy (jedna cesta, v km)</Label>
+                        <Input id="distance" type="number" value={distance} onChange={(e) => setDistance(Math.max(0, Number(e.target.value)))} placeholder="Zadajte počet kilometrov"/>
                     </motion.div>
                 )}
             </AnimatePresence>
-
-            <div className="space-y-2">
-                <Label htmlFor="property-type">Typ nehnuteľnosti</Label>
-                <Select value={propertyType} onValueChange={(val) => setPropertyType(val as PropertyType)}>
-                    <SelectTrigger id="property-type"><SelectValue/></SelectTrigger>
-                    <SelectContent>
-                        {Object.keys(propertyTypes).map(p => <SelectItem key={p} value={p}>{p}</SelectItem>)}
-                    </SelectContent>
-                </Select>
-            </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-4">
-                    <Label>Adresa nakládky</Label>
-                    <div className="space-y-2">
-                        <div className="flex justify-between items-center">
-                            <Label htmlFor="from-floor" className="text-sm font-normal">Poschodie: {fromFloor[0]}</Label>
+            <Separator />
+
+            <div className="space-y-4">
+                <Label className="font-semibold text-lg">Detaily nehnuteľnosti</Label>
+                <div className="space-y-2">
+                    <Label htmlFor="property-type">Typ nehnuteľnosti</Label>
+                    <Select value={propertyType} onValueChange={(val) => setPropertyType(val as PropertyType)}>
+                        <SelectTrigger id="property-type" className="transition-all duration-300"><SelectValue/></SelectTrigger>
+                        <SelectContent>
+                            {Object.entries(propertyTypes).map(([p, data]) => <SelectItem key={p} value={p}><span className="flex items-center gap-2">{data.icon} {p}</span></SelectItem>)}
+                        </SelectContent>
+                    </Select>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                    <div className="space-y-4 p-4 border rounded-lg bg-muted/30">
+                        <Label className="font-medium">Adresa nakládky</Label>
+                        <div className="space-y-2">
+                             <Label htmlFor="from-floor" className="text-sm font-normal flex justify-between">Poschodie: <span className="font-bold text-primary">{fromFloor[0]}</span></Label>
+                            <Slider id="from-floor" value={fromFloor} onValueChange={setFromFloor} max={15} step={1} />
                         </div>
-                        <Slider id="from-floor" value={fromFloor} onValueChange={setFromFloor} max={15} step={1} />
-                    </div>
-                     <div className="flex items-center space-x-2">
-                        <Switch id="from-elevator" checked={fromElevator} onCheckedChange={setFromElevator} />
-                        <Label htmlFor="from-elevator">K dispozícii je výťah</Label>
-                    </div>
-                </div>
-                 <div className="space-y-4">
-                    <Label>Adresa vykládky</Label>
-                    <div className="space-y-2">
-                        <div className="flex justify-between items-center">
-                            <Label htmlFor="to-floor" className="text-sm font-normal">Poschodie: {toFloor[0]}</Label>
+                        <div className="flex items-center space-x-2 pt-2">
+                            <Switch id="from-elevator" checked={fromElevator} onCheckedChange={setFromElevator} />
+                            <Label htmlFor="from-elevator" className="text-sm font-normal">K dispozícii je výťah</Label>
                         </div>
-                        <Slider id="to-floor" value={toFloor} onValueChange={setToFloor} max={15} step={1} />
                     </div>
-                     <div className="flex items-center space-x-2">
-                        <Switch id="to-elevator" checked={toElevator} onCheckedChange={setToElevator} />
-                        <Label htmlFor="to-elevator">K dispozícii je výťah</Label>
+                    <div className="space-y-4 p-4 border rounded-lg bg-muted/30">
+                        <Label className="font-medium">Adresa vykládky</Label>
+                        <div className="space-y-2">
+                            <Label htmlFor="to-floor" className="text-sm font-normal flex justify-between">Poschodie: <span className="font-bold text-primary">{toFloor[0]}</span></Label>
+                            <Slider id="to-floor" value={toFloor} onValueChange={setToFloor} max={15} step={1} />
+                        </div>
+                        <div className="flex items-center space-x-2 pt-2">
+                            <Switch id="to-elevator" checked={toElevator} onCheckedChange={setToElevator} />
+                            <Label htmlFor="to-elevator" className="text-sm font-normal">K dispozícii je výťah</Label>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                    <Label htmlFor="workers">Počet pracovníkov</Label>
-                    <span className="font-bold text-lg">{workers[0]}</span>
+            <Separator />
+            
+            <div className="space-y-4">
+                 <Label className="font-semibold text-lg">Pracovníci a doplnkové služby</Label>
+                 <div className="space-y-2">
+                    <div className="flex justify-between items-center">
+                        <Label htmlFor="workers" className="flex items-center gap-2"><Users className="w-5 h-5 text-primary"/> Počet pracovníkov</Label>
+                        <span className="font-bold text-primary text-lg">{workers[0]}</span>
+                    </div>
+                    <Slider id="workers" value={workers} onValueChange={setWorkers} min={1} max={5} step={1} />
                 </div>
-                <Slider id="workers" value={workers} onValueChange={setWorkers} min={1} max={5} step={1} />
+                <div className="flex items-center space-x-3 pt-4">
+                    <Switch id="assembly" checked={assembly} onCheckedChange={setAssembly} />
+                    <Label htmlFor="assembly" className="flex items-center gap-2 text-sm font-normal"><HardHat className="w-5 h-5 text-primary"/> Požadujem demontáž a montáž nábytku</Label>
+                </div>
             </div>
-
-            <div className="flex items-center space-x-2 pt-2">
-                <Switch id="assembly" checked={assembly} onCheckedChange={setAssembly} />
-                <Label htmlFor="assembly">Požadujem demontáž a montáž nábytku</Label>
-            </div>
-
         </CardContent>
       </Card>
 
-      {/* Price Summary */}
       <div className="lg:col-span-1 sticky top-24">
-        <Card className="shadow-lg rounded-xl bg-muted/50">
-          <CardHeader className="text-center">
-            <div className="mx-auto bg-primary/10 p-3 rounded-full w-fit">
-                <Calculator className="h-8 w-8 text-primary" />
+        <motion.div
+           whileHover={{ scale: 1.02, y: -5 }}
+           transition={{ duration: 0.3 }}
+           className="rounded-xl bg-gradient-to-br from-primary to-secondary text-primary-foreground shadow-2xl shadow-primary/30"
+        >
+        <Card className="bg-transparent border-0">
+          <CardHeader className="text-center items-center p-8">
+            <div className="mx-auto bg-white/20 p-4 rounded-full w-fit mb-2">
+                <Calculator className="h-8 w-8 text-white" />
             </div>
-            <CardTitle className="font-headline text-2xl pt-2">Odhadovaná cena</CardTitle>
+            <CardTitle className="font-headline text-2xl text-white">Odhadovaná cena</CardTitle>
           </CardHeader>
           <CardContent className="text-center">
-             <p className="text-5xl font-bold tracking-tighter text-primary">{totalPrice} €</p>
-             <p className="text-muted-foreground text-sm mt-2">vrátane DPH</p>
+             <AnimatedPrice value={totalPrice} />
+             <p className="text-white/80 text-sm mt-2">vrátane DPH</p>
           </CardContent>
-          <CardFooter className="flex-col gap-4 px-6 pb-6">
-             <Button asChild size="lg" className="w-full">
+          <CardFooter className="flex-col gap-4 px-8 pb-8">
+             <Button asChild size="lg" className="w-full bg-white text-primary hover:bg-white/90 rounded-full transition-transform duration-300 hover:scale-105 shadow-lg">
                 <Link href="/contact">Chcem presnú ponuku</Link>
              </Button>
-             <p className="text-xs text-muted-foreground text-center px-4">Toto je len orientačná cena. Pre finálnu cenovú ponuku nás, prosím, kontaktujte.</p>
+             <p className="text-xs text-white/70 text-center pt-2">Toto je len orientačná cena. Pre finálnu cenovú ponuku nás, prosím, kontaktujte.</p>
           </CardFooter>
         </Card>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }

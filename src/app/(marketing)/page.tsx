@@ -265,16 +265,18 @@ const PricingSection = () => {
     return (
         <motion.section
             id="cennik"
-            className="py-16 md:py-24 bg-background text-foreground"
+            className="py-16 md:py-24 bg-muted/40 text-foreground"
             variants={shouldReduceMotion ? undefined : sectionVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
         >
             <div className="container">
-                <div className="text-center mb-12">
+                <div className="text-center mb-12 max-w-3xl mx-auto">
                     <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary">Interaktívna cenová ponuka</h2>
-                    <p className="text-muted-foreground mt-2 text-lg max-w-3xl mx-auto">Získajte okamžitý odhad ceny vášho sťahovania. Pre presnú ponuku nás neváhajte kontaktovať.</p>
+                    <p className="text-muted-foreground mt-3 text-lg">
+                        Vyskúšajte našu kalkulačku a získajte okamžitý odhad ceny vášho sťahovania. Pre presnú ponuku šitú na mieru nás neváhajte kontaktovať.
+                    </p>
                 </div>
                 <InteractiveCalculator />
             </div>
