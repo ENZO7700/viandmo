@@ -53,7 +53,7 @@ const ServicesSection = () => (
             </div>
             <CardTitle className={`text-xl font-headline mb-2 text-foreground`}>{service.title}</CardTitle>
             <p className={`flex-grow text-muted-foreground`}>{service.description}</p>
-             <Button asChild variant={service.featured ? 'default' : 'outline'} className="mt-6 w-full rounded-full shadow-lg transition-transform duration-300 hover:scale-105">
+             <Button asChild variant={service.featured ? 'secondary' : 'default'} className="mt-6 w-full rounded-full shadow-lg transition-transform duration-300 hover:scale-105">
                 <Link href="/contact">{service.featured ? 'Cenová ponuka' : 'Viac o službách'}</Link>
             </Button>
           </Card>
@@ -236,3 +236,5 @@ export default function HomePage() {
     </>
   );
 }
+
+    
