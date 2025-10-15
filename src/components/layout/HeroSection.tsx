@@ -32,7 +32,7 @@ const HeroSection = () => {
   return (
     <section 
       ref={targetRef}
-      className="relative h-auto w-full flex items-center justify-center text-center text-primary-foreground bg-[#00202e] py-20 md:py-32"
+      className="relative h-screen w-full flex items-center justify-center text-center text-primary-foreground bg-[#00202e]"
     >
       <motion.div {...motionProps} className="relative z-10 p-4 flex flex-col items-center">
          <motion.div 
