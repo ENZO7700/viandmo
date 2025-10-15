@@ -1,4 +1,3 @@
-
 'use client';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
@@ -9,45 +8,45 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-transparent text-primary-foreground py-12">
+    <footer className="bg-transparent text-white py-12">
       <div className="container grid grid-cols-1 gap-8 text-center md:grid-cols-4 md:text-left">
         <div className="flex flex-col items-center md:items-start">
             <Logo />
-          <p className="text-sm text-primary-foreground max-w-xs mt-4">
+          <p className="text-sm text-white max-w-xs mt-4">
             Spoľahlivé sťahovanie, vypratávanie a upratovanie v Bratislave a okolí. Rýchlo, efektívne a s ľudským prístupom.
           </p>
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold mb-4 font-headline text-primary-foreground">Rýchle odkazy</h3>
-          <ul className="space-y-2 text-primary-foreground">
-            <li><Link href="/#sluzby" className="hover:text-primary transition-colors">Služby</Link></li>
-            <li><Link href="/#cennik" className="hover:text-primary transition-colors">Cenník</Link></li>
-            <li><Link href="/blog" className="hover:text-primary transition-colors">Blog</Link></li>
-            <li><Link href="/about" className="hover:text-primary transition-colors">O nás</Link></li>
-            <li><Link href="/#faq" className="hover:text-primary transition-colors">FAQ</Link></li>
-            <li><Link href="/contact" className="hover:text-primary transition-colors">Kontakt</Link></li>
+          <h3 className="text-lg font-semibold mb-4 font-headline text-white">Rýchle odkazy</h3>
+          <ul className="space-y-2 text-white">
+            <li><Link href="/#sluzby" className="hover:text-gray-300 transition-colors">Služby</Link></li>
+            <li><Link href="/#cennik" className="hover:text-gray-300 transition-colors">Cenník</Link></li>
+            <li><Link href="/blog" className="hover:text-gray-300 transition-colors">Blog</Link></li>
+            <li><Link href="/about" className="hover:text-gray-300 transition-colors">O nás</Link></li>
+            <li><Link href="/#faq" className="hover:text-gray-300 transition-colors">FAQ</Link></li>
+            <li><Link href="/contact" className="hover:text-gray-300 transition-colors">Kontakt</Link></li>
           </ul>
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold mb-4 font-headline text-primary-foreground">Kontakt</h3>
-          <ul className="space-y-2 text-primary-foreground">
+          <h3 className="text-lg font-semibold mb-4 font-headline text-white">Kontakt</h3>
+          <ul className="space-y-2 text-white">
             <li className="flex items-center justify-center md:justify-start gap-2">
               <Phone className="h-4 w-4 text-primary mt-1 flex-shrink-0" />
               <div>
-                 <a href="tel:+421911275755" className="hover:text-primary transition-colors">
+                 <a href="tel:+421911275755" className="hover:text-gray-300 transition-colors">
                     +421 911 275 755 (Sťahovanie)
                  </a>
                  <br/>
-                 <a href="tel:+421918895730" className="hover:text-primary transition-colors">
+                 <a href="tel:+421918895730" className="hover:text-gray-300 transition-colors">
                     +421 918 895 730 (Upratovanie)
                  </a>
               </div>
             </li>
             <li className="flex items-center justify-center md:justify-start">
               <Mail className="h-4 w-4 mr-2 text-primary" />
-              <a href="mailto:info@viandmo.com" className="hover:text-primary transition-colors">
+              <a href="mailto:info@viandmo.com" className="hover:text-gray-300 transition-colors">
                 info@viandmo.com
               </a>
             </li>
@@ -55,8 +54,8 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold mb-4 font-headline text-primary-foreground">Obchodné údaje</h3>
-           <div className="text-sm text-primary-foreground space-y-1">
+          <h3 className="text-lg font-semibold mb-4 font-headline text-white">Obchodné údaje</h3>
+           <div className="text-sm text-white space-y-1">
                 <p>VI and MO s. r. o.</p>
                 <p>Karpatské námestie 7770/10A</p>
                 <p>831 06 Bratislava - Rača</p>
@@ -66,12 +65,12 @@ export default function Footer() {
         </div>
       </div>
 
-      <Separator className="my-8 bg-primary-foreground/20" />
+      <Separator className="my-8 bg-white/20" />
 
-      <div className="container text-center text-sm text-primary-foreground">
+      <div className="container text-center text-sm text-white">
         &copy; {currentYear} VI and MO s. r. o. Všetky práva vyhradené.
         <span className="mx-2">|</span>
-        <Link href="/privacy-policy" className="hover:text-primary transition-colors">
+        <Link href="/privacy-policy" className="hover:text-gray-300 transition-colors">
           Ochrana osobných údajov
         </Link>
       </div>
