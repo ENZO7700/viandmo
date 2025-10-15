@@ -1,4 +1,3 @@
-
 'use client'
 
 import { Button } from '@/components/ui/button';
@@ -146,30 +145,46 @@ const PricingSection = () => {
                     <h2 className="text-3xl md:text-4xl font-headline font-bold">Cenník</h2>
                     <p className="text-muted-foreground mt-2 text-lg">Transparentné ceny bez skrytých poplatkov.</p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                    <Card className="p-6 bg-card shadow-lg rounded-xl">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    {/* Flat prices */}
+                    <Card className="p-6 bg-card shadow-lg rounded-xl lg:col-span-1">
+                        <CardHeader className="p-0 mb-4">
+                            <CardTitle className="font-headline font-semibold text-2xl text-foreground">Základný cenník</CardTitle>
+                        </CardHeader>
+                        <CardContent className="p-0 space-y-3 text-lg text-muted-foreground">
+                            <p>Garsónka: <span className="font-bold text-foreground">od 65 € *</span></p>
+                            <p>1 izbový byt: <span className="font-bold text-foreground">od 70 € *</span></p>
+                            <p>2 izbový byt: <span className="font-bold text-foreground">od 140 € *</span></p>
+                            <p>3 izbový byt: <span className="font-bold text-foreground">od 240 € *</span></p>
+                            <p>4 izbový byt: <span className="font-bold text-foreground">od 350 € *</span></p>
+                            <p>Rodinný dom: <span className="font-bold text-primary">Cenová ponuka</span></p>
+                        </CardContent>
+                    </Card>
+                    {/* Worker prices */}
+                    <Card className="p-6 bg-card shadow-lg rounded-xl lg:col-span-1">
                         <CardHeader className="p-0 mb-4">
                             <CardTitle className="font-headline font-semibold text-2xl text-foreground">Cena pracovníkov</CardTitle>
                         </CardHeader>
                         <CardContent className="p-0 space-y-3 text-lg text-muted-foreground">
                             <p>Jeden pracovník - šofér + sťahovák: <span className="font-bold text-foreground">40 € / hod.</span></p>
-                            <p>Dvaja pracovníci od: <span className="font-bold text-foreground">50 € / hod.</span></p>
-                            <p>Traja a viac pracovníkov: <span className="font-bold text-foreground">cena dohodou</span></p>
+                            <p>Dvaja pracovníci: <span className="font-bold text-foreground">od 50 € / hod.</span></p>
+                            <p>Traja a viac pracovníkov: <span className="font-bold text-primary">cena dohodou</span></p>
                         </CardContent>
                     </Card>
-                    <Card className="p-6 bg-card shadow-lg rounded-xl">
+                    {/* Transport prices */}
+                    <Card className="p-6 bg-card shadow-lg rounded-xl lg:col-span-1">
                         <CardHeader className="p-0 mb-4">
                             <CardTitle className="font-headline font-semibold text-2xl text-foreground">Cena dopravy</CardTitle>
                         </CardHeader>
                         <CardContent className="p-0 space-y-3 text-lg text-muted-foreground">
-                            <p>Cena dopravy v rámci Bratislavy: <span className="font-bold text-foreground">do 30 €</span></p>
-                            <p>Cena dopravy mimo mesta: <span className="font-bold text-foreground">0,80 € / kilometer</span></p>
-                            <p>Minimálna suma výjazdu na zákazku: <span className="font-bold text-foreground">70 €</span></p>
+                            <p>Doprava v rámci Bratislavy: <span className="font-bold text-foreground">do 30 €</span></p>
+                            <p>Doprava mimo mesta: <span className="font-bold text-foreground">0,80 € / kilometer</span></p>
+                            <p>Minimálny výjazd na zákazku: <span className="font-bold text-foreground">70 €</span></p>
                         </CardContent>
                     </Card>
                 </div>
                  <div className="text-center mt-8 text-muted-foreground">
-                    <p>Uvedené ceny sú bez DPH. Nie sme platci DPH.</p>
+                    <p>Uvedené ceny sú bez DPH. Nie sme platci DPH. * Orientačné ceny.</p>
                 </div>
             </div>
         </motion.section>
