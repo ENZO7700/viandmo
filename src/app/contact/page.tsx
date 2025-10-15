@@ -53,7 +53,7 @@ export default function ContactPage() {
           fill
           priority
           className="object-cover object-center brightness-50"
-          data-ai-hint="contact office"
+          data-ai-hint="office contact"
         />
         <div className="relative z-10 p-4">
           <h1 className="text-5xl md:text-7xl font-headline leading-tight text-primary-foreground drop-shadow-lg">

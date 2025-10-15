@@ -57,7 +57,7 @@ export default function AboutPage() {
                 alt="Detail práce pri balení"
                 fill
                 className="object-cover"
-                data-ai-hint="packing box"
+                data-ai-hint="packing supplies"
              />
           </div>
         </div>

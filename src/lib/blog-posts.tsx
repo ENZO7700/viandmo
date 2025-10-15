@@ -20,7 +20,7 @@ export const blogPosts: BlogPost[] = [
     date: '2024-05-20',
     author: 'Tím VI&MO',
     image: 'https://picsum.photos/1200/630?random=31',
-    image_alt: 'moving boxes truck',
+    image_alt: 'moving truck',
     content: (
       <>
         <p>Plánujete sťahovanie v Bratislave a neviete, kde začať? Výber spoľahlivej sťahovacej firmy je kľúčový krok, ktorý ovplyvní celý priebeh vášho presunu. Aby sme vám rozhodovanie uľahčili, pripravili sme pre vás 5 praktických tipov, na čo sa zamerať.</p>
@@ -70,7 +70,7 @@ export const blogPosts: BlogPost[] = [
     date: '2024-05-10',
     author: 'Tím VI&MO',
     image: 'https://picsum.photos/1200/630?random=33',
-    image_alt: 'city buildings',
+    image_alt: 'moving city',
     content: (
       <>
         <p>Sťahovanie bytu v Petržalke, najľudnatejšej mestskej časti Slovenska, si vyžaduje špecifickú prípravu. Vysoká hustota obyvateľstva, parkovacia politika a logistika vo výškových budovách sú faktory, na ktoré treba myslieť vopred. Ako to celé zvládnuť čo najhladšie?</p>
