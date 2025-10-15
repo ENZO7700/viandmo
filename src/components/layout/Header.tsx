@@ -76,7 +76,7 @@ export default function Header() {
                 {navLinks.map(link => (
                     <Button asChild variant="link" className={cn(
                       "text-lg font-semibold",
-                      (pathname === link.href || (link.href === '/blog' && pathname.startsWith('/blog'))) ? "text-primary" : "text-primary-foreground hover:text-primary",
+                      (pathname === link.href || (link.href === '/blog' && pathname.startsWith('/blog'))) ? "text-primary" : "text-white hover:text-gray-300",
                     )} key={link.href}>
                         <Link href={link.href}>{link.label}</Link>
                     </Button>
