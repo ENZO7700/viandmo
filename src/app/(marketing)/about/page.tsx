@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Phone, Mail } from 'lucide-react';
 import type { Metadata } from 'next';
+import imageData from '@/lib/placeholder-images.json';
 
 export const metadata: Metadata = {
   title: 'Náš príbeh a tím | VI&MO Sťahovanie a Upratovanie',
@@ -10,8 +11,8 @@ export const metadata: Metadata = {
 };
 
 const team = [
-    { name: "Miroslav Danihel", role: "Sťahovanie", phone: "+421 911 275 755", img: "https://picsum.photos/200/200?random=1", hint: "man portrait" },
-    { name: "Partner", role: "Upratovanie", phone: "+421 918 895 730", img: "https://picsum.photos/200/200?random=2", hint: "woman portrait" },
+    { name: "Miroslav Danihel", role: "Sťahovanie", phone: "+421 911 275 755", img: imageData.teamMember1.src, width: imageData.teamMember1.width, height: imageData.teamMember1.height, hint: imageData.teamMember1.hint },
+    { name: "Partner", role: "Upratovanie", phone: "+421 918 895 730", img: imageData.teamMember2.src, width: imageData.teamMember2.width, height: imageData.teamMember2.height, hint: imageData.teamMember2.hint },
 ];
 
 
@@ -21,12 +22,12 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="relative h-96 w-full flex items-center justify-center text-center text-white">
         <Image
-          src="https://picsum.photos/1920/1080?random=20"
+          src={imageData.aboutHero.src}
           alt="Tím VI&MO v akcii"
           fill
           priority
           className="object-cover object-center"
-          data-ai-hint="moving team"
+          data-ai-hint={imageData.aboutHero.hint}
         />
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative z-10 p-4">
@@ -53,11 +54,11 @@ export default function AboutPage() {
           </div>
           <div className="relative h-80 w-full rounded-lg overflow-hidden shadow-xl">
              <Image
-                src="https://picsum.photos/800/600?random=21"
+                src={imageData.aboutPacking.src}
                 alt="Detail práce pri balení"
                 fill
                 className="object-cover"
-                data-ai-hint="packing supplies"
+                data-ai-hint={imageData.aboutPacking.hint}
              />
           </div>
         </div>

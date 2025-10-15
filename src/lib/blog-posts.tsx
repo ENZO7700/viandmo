@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import Image from 'next/image';
+import imageData from '@/lib/placeholder-images.json';
 
 export interface BlogPost {
   slug: string;
@@ -19,8 +20,8 @@ export const blogPosts: BlogPost[] = [
     summary: 'Sťahovanie môže byť stresujúce, no výber správnej firmy vám ušetrí čas aj nervy. Zistite, na aké kľúčové faktory sa zamerať pri výbere sťahovacej služby v hlavnom meste.',
     date: '2024-05-20',
     author: 'Tím VI&MO',
-    image: 'https://picsum.photos/1200/630?random=31',
-    image_alt: 'moving truck',
+    image: imageData.blogPost1.src,
+    image_alt: imageData.blogPost1.hint,
     content: (
       <>
         <p>Plánujete sťahovanie v Bratislave a neviete, kde začať? Výber spoľahlivej sťahovacej firmy je kľúčový krok, ktorý ovplyvní celý priebeh vášho presunu. Aby sme vám rozhodovanie uľahčili, pripravili sme pre vás 5 praktických tipov, na čo sa zamerať.</p>
@@ -44,8 +45,8 @@ export const blogPosts: BlogPost[] = [
     summary: 'Sťahovanie v rušnom meste ako Bratislava prináša svoje špecifiká. Prečítajte si o najčastejších chybách, ktorých sa ľudia dopúšťajú, a zistite, ako si proces zjednodušiť.',
     date: '2024-05-15',
     author: 'Tím VI&MO',
-    image: 'https://picsum.photos/1200/630?random=32',
-    image_alt: 'moving boxes',
+    image: imageData.blogPost2.src,
+    image_alt: imageData.blogPost2.hint,
     content: (
       <>
         <p>Sťahovanie je komplexný proces a v dynamickom prostredí Bratislavy to platí dvojnásobne. Zlá organizácia môže viesť k zbytočnému stresu, strate času a dokonca aj k finančným stratám. Pozrite sa s nami na najčastejšie chyby a ako sa im vyhnúť.</p>
@@ -69,8 +70,8 @@ export const blogPosts: BlogPost[] = [
     summary: 'Petržalka má svoje špecifiká, od parkovania až po logistiku vo výškových budovách. Pripravili sme pre vás praktické rady, ako zvládnuť sťahovanie v najväčšej mestskej časti Bratislavy bez stresu.',
     date: '2024-05-10',
     author: 'Tím VI&MO',
-    image: 'https://picsum.photos/1200/630?random=33',
-    image_alt: 'moving city',
+    image: imageData.blogPost3.src,
+    image_alt: imageData.blogPost3.hint,
     content: (
       <>
         <p>Sťahovanie bytu v Petržalke, najľudnatejšej mestskej časti Slovenska, si vyžaduje špecifickú prípravu. Vysoká hustota obyvateľstva, parkovacia politika a logistika vo výškových budovách sú faktory, na ktoré treba myslieť vopred. Ako to celé zvládnuť čo najhladšie?</p>

@@ -11,6 +11,7 @@ import { useFormState } from 'react-dom';
 import { submitContactForm, type ContactFormState } from '../actions';
 import { useEffect, useRef } from 'react';
 import { useToast } from '@/hooks/use-toast';
+import imageData from '@/lib/placeholder-images.json';
 
 export default function ContactPage() {
     const { toast } = useToast();
@@ -48,12 +49,12 @@ export default function ContactPage() {
     <>
       <section className="relative h-96 w-full flex items-center justify-center text-center text-white">
         <Image
-          src="https://picsum.photos/1920/1080?random=40"
+          src={imageData.contactHero.src}
           alt="Kontaktujte nás"
           fill
           priority
           className="object-cover object-center brightness-50"
-          data-ai-hint="office contact"
+          data-ai-hint={imageData.contactHero.hint}
         />
         <div className="relative z-10 p-4">
           <h1 className="text-5xl md:text-7xl font-headline leading-tight text-primary-foreground drop-shadow-lg">

@@ -21,6 +21,7 @@ import { Input } from "../ui/input"
 import Logo from "../layout/Logo"
 import { ThemeSwitcher } from "./ThemeSwitcher"
 import { logout } from "./actions";
+import imageData from '@/lib/placeholder-images.json';
 
 export function DashboardHeader() {
     return (
@@ -92,7 +93,7 @@ export function DashboardHeader() {
                     <DropdownMenuTrigger asChild>
                         <Button variant="secondary" size="icon" className="rounded-full">
                             <Avatar>
-                                <AvatarImage src="https://picsum.photos/100/100" data-ai-hint="admin portrait" />
+                                <AvatarImage src={imageData.adminAvatar.src} data-ai-hint={imageData.adminAvatar.hint} />
                                 <AvatarFallback>A</AvatarFallback>
                             </Avatar>
                             <span className="sr-only">Toggle user menu</span>

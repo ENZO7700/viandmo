@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import type { Metadata } from 'next';
 import { ArrowRight } from 'lucide-react';
+import imageData from '@/lib/placeholder-images.json';
 
 export const metadata: Metadata = {
   title: 'Blog: Tipy a Rady pre Sťahovanie a Upratovanie | VI&MO',
@@ -19,12 +20,12 @@ export default function BlogPage() {
       {/* Hero Section */}
       <section className="relative h-96 w-full flex items-center justify-center text-center text-white">
         <Image
-          src="https://picsum.photos/1920/1080?random=50"
+          src={imageData.blogListHero.src}
           alt="Písanie na klávesnici"
           fill
           priority
           className="object-cover object-center brightness-50"
-          data-ai-hint="writing post"
+          data-ai-hint={imageData.blogListHero.hint}
         />
         <div className="relative z-10 p-4">
           <h1 className="text-5xl md:text-7xl font-headline leading-tight text-primary-foreground drop-shadow-lg">
