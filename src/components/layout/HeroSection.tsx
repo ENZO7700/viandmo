@@ -35,7 +35,7 @@ const HeroSection = () => {
       ref={targetRef}
       className="relative h-screen w-full flex items-center justify-center text-center text-primary-foreground bg-[#00202e]"
     >
-      <motion.div {...motionProps} className="relative z-10 p-4 flex flex-col items-center -translate-y-[15%]">
+      <motion.div {...motionProps} className="relative z-10 p-4 flex flex-col items-center -translate-y-[35%]">
          <motion.div 
             className="mb-6"
             variants={shouldReduceMotion ? undefined : logoVariants}
