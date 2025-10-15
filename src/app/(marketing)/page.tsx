@@ -6,28 +6,12 @@ import { Truck, Box, Trash2, Sparkles, Phone, Star, Quote } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
+import HeroSection from '@/components/layout/HeroSection';
 
 export const metadata: Metadata = {
   title: 'VI&MO | Sťahovanie a Upratovanie Bratislava - Pevné ruky & poctivý prístup',
   description: 'Spoľahlivé sťahovanie bytov, domov a firiem, vypratávanie a profesionálne upratovacie služby v Bratislave a okolí. Získajte nezáväznú cenovú ponuku.',
 };
-
-// Hero Section Component
-const HeroSection = () => (
-  <section className="relative h-auto w-full flex items-center justify-center text-center text-primary-foreground bg-[#00202e] py-20 md:py-32">
-    <div className="relative z-10 p-4 flex flex-col items-center">
-       <div className="mb-6">
-         <Image src="https://viandmo.com/wp-content/uploads/viandmo_logo_regular_white.svg" alt="VI&MO Logo" width={240} height={63} priority data-ai-hint="logo"/>
-       </div>
-       <h1 className="text-5xl md:text-7xl font-headline leading-tight text-primary-foreground text-shadow-lg">
-          Pevné ruky & poctivý prístup
-       </h1>
-      <p className="mt-2 text-lg md:text-xl max-w-3xl mx-auto text-primary-foreground/80">
-        Sťahovanie, odvoz odpadu a upratovanie v Bratislave a okolí
-      </p>
-    </div>
-  </section>
-);
 
 // Services Section Component
 const services = [
