@@ -1,3 +1,4 @@
+
 import { MetadataRoute } from 'next'
 import { blogPosts } from '@/lib/blog-posts.tsx';
 
@@ -13,7 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ].map((route) => ({
     url: `${siteUrl}${route}`,
     lastModified: new Date().toISOString(),
-    changeFrequency: 'weekly',
+    changeFrequency: 'weekly' as const,
     priority: route === '/' ? 1.0 : 0.8,
   }));
 
@@ -21,9 +22,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const blogRoutes = blogPosts.map((post) => ({
     url: `${siteUrl}/blog/${post.slug}`,
     lastModified: new Date(post.date).toISOString(),
-    changeFrequency: 'monthly',
+    changeFrequency: 'monthly' as const,
     priority: 0.7,
   }));
 
   return [...staticRoutes, ...blogRoutes];
 }
+
+    

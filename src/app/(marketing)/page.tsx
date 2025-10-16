@@ -1,3 +1,4 @@
+
 'use client'
 
 import { Button } from '@/components/ui/button';
@@ -79,15 +80,6 @@ const HeroSection = () => {
       ref={targetRef}
       className="relative h-screen w-full flex items-center justify-center text-center text-primary-foreground bg-[#00202e]"
     >
-        <Image
-            src={imageData.aboutHero.src}
-            alt="Tím VI&MO pri sťahovaní nábytku z dodávky v Bratislave"
-            fill
-            priority
-            className="absolute inset-0 object-cover opacity-20"
-            data-ai-hint="moving team with truck"
-        />
-        <div className="absolute inset-0 bg-black/60" />
       <motion.div {...motionProps} className="relative z-10 p-4 flex flex-col items-center -translate-y-[35%]">
          <motion.div 
             className="mb-6"
@@ -326,3 +318,5 @@ export default function HomePage() {
     </>
   );
 }
+
+    

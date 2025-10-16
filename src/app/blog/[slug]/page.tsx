@@ -1,3 +1,4 @@
+
 import { blogPosts } from '@/lib/blog-posts.tsx';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
@@ -148,3 +149,5 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     </article>
   );
 }
+
+    

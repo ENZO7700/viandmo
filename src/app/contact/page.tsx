@@ -1,3 +1,4 @@
+
 'use client';
 
 import Image from 'next/image';
@@ -63,7 +64,7 @@ export default function ContactPage() {
             Kontaktujte Nás
           </h1>
           <p className="mt-4 text-lg md:text-2xl max-w-3xl mx-auto drop-shadow-md">
-            Sme tu pre vás. Napíšte nám a získajte nezáväznú cenovú ponuku.
+            Sme tu pre vás. Napíšte nám a získajte nezáväznú cenovú ponuku na sťahovanie v Bratislave.
           </p>
         </div>
       </section>
@@ -157,3 +158,15 @@ export default function ContactPage() {
     </>
   );
 }
+
+export const metadata: Metadata = {
+  title: 'Kontakt a Cenová Ponuka na Sťahovanie | VI&MO Bratislava',
+  description: 'Kontaktujte nás pre nezáväznú cenovú ponuku na sťahovanie, vypratávanie alebo upratovanie v Bratislave. Sme tu pre vás telefonicky, emailom alebo cez formulár.',
+   openGraph: {
+    title: 'Kontakt a Cenová Ponuka na Sťahovanie | VI&MO Bratislava',
+    description: 'Kontaktujte nás pre nezáväznú cenovú ponuku na sťahovanie, vypratávanie alebo upratovanie v Bratislave.',
+    url: '/contact',
+  },
+};
+
+    

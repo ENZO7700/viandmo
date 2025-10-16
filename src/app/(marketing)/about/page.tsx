@@ -1,3 +1,4 @@
+
 'use client'
 
 import Image from 'next/image';
@@ -72,7 +73,7 @@ export default function AboutPage() {
             transition={{ duration: 0.5, ease: "easeOut" }}
         >
           <h1 className="text-5xl md:text-7xl font-headline font-extrabold leading-tight text-primary-foreground drop-shadow-lg">
-            Náš Príbeh
+            Náš Príbeh: Pevné ruky a poctivý prístup
           </h1>
           <p className="mt-4 text-lg md:text-2xl max-w-3xl mx-auto drop-shadow-md">
             Spoznajte ľudí a prístup, ktorý stojí za úspechom VI&MO.
@@ -207,3 +208,15 @@ export default function AboutPage() {
     </>
   );
 }
+
+export const metadata: Metadata = {
+  title: 'O nás - Náš príbeh a filozofia | VI&MO Sťahovanie Bratislava',
+  description: 'Spoznajte tím a príbeh VI&MO. Viac ako 7 rokov skúseností so sťahovaním v Bratislave. Zistite viac o našich hodnotách, férovom prístupe a spoľahlivosti.',
+  openGraph: {
+    title: 'O nás - Náš príbeh a filozofia | VI&MO Sťahovanie Bratislava',
+    description: 'Spoznajte tím a príbeh VI&MO. Viac ako 7 rokov skúseností so sťahovaním v Bratislave.',
+    url: '/about',
+  },
+};
+
+    

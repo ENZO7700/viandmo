@@ -1,3 +1,4 @@
+
 import Footer from '@/components/layout/Footer';
 import Header from '@/components/layout/Header';
 import InstallBanner from '@/components/pwa/InstallBanner';
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Sťahovanie Bytov a Firiem Bratislava | VI&MO',
     description: 'Spoľahlivé sťahovacie a upratovacie služby v Bratislave.',
+    type: 'website',
   },
 };
 
@@ -37,3 +39,5 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
     </div>
   );
 }
+
+    

@@ -1,3 +1,4 @@
+
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { cn } from '@/lib/utils';
@@ -6,7 +7,7 @@ import { Plus_Jakarta_Sans } from 'next/font/google';
 const APP_NAME = "VI&MO";
 const APP_DEFAULT_TITLE = "Sťahovanie Bytov a Firiem Bratislava | VI&MO";
 const APP_TITLE_TEMPLATE = "%s | VI&MO";
-const APP_DESCRIPTION = "Spoľahlivé sťahovanie bytov, domov a firiem, vypratávanie a profesionálne upratovacie služby v Bratislave a okolí. Získajte nezáväznú cenovú ponuku.";
+const APP_DESCRIPTION = "Profesionálne sťahovanie bytov, domov a firiem v Bratislave a okolí. Ponúkame aj vypratávanie a upratovacie služby. Získajte nezáväznú cenovú ponuku.";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.viandmo.com';
 
@@ -132,3 +133,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+    
