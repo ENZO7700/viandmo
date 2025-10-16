@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from "next/link";
@@ -18,23 +19,24 @@ const navLinks = [
   { href: "/contact", label: "Kontakt" },
 ];
 
-const SocialIcon = ({ href, children, ariaLabel }: { href: string, children: React.ReactNode, ariaLabel: string }) => (
-    <a 
-        href={href} 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        aria-label={ariaLabel}
-        className="text-white/70 hover:text-gray-300 transition-colors duration-200"
-    >
-        {children}
-    </a>
-);
-
-
 export default function Header() {
   const pathname = usePathname();
   
-  const NavLink = ({ href, label }: { href: string, label:string }) => {
+  const SocialIcon = ({ href, children, ariaLabel }: { href: string, children: React.ReactNode, ariaLabel: string }) => {
+    return (
+        <a 
+            href={href} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            aria-label={ariaLabel}
+            className="text-white/70 hover:text-gray-300 transition-colors duration-200"
+        >
+            {children}
+        </a>
+    );
+  };
+  
+  const NavLink = ({ href, label }: { href: string, label: string }) => {
     const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
     return (
       <Button asChild variant="link" className={cn(
@@ -54,7 +56,7 @@ export default function Header() {
         <nav className="hidden md:flex flex-grow justify-end items-center gap-4">
           {navLinks.map(link => <NavLink key={link.href} {...link} />)}
            <div className="flex items-center gap-3 ml-4">
-               <SocialIcon href="https://www.facebook.com" ariaLabel="Facebook">
+               <SocialIcon href="https://www.facebook.com/p/VI-MO-stahovanie-upratovanie-100063524682338/" ariaLabel="Facebook">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" ><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm3.5 8.2h-2.1c-.5 0-.8.2-.8.8v1.4h2.9l-.4 2.8h-2.5v7.2h-3V13.2H7.7v-2.8h2.2V9c0-1.6.8-2.8 2.6-2.8H15.5v2z"></path></svg>
                </SocialIcon>
                <SocialIcon href="https://wa.me/421911275755" ariaLabel="WhatsApp">
