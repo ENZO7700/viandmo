@@ -1,13 +1,14 @@
+
 'use client'
 
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Phone, Mail } from 'lucide-react';
-import type { Metadata } from 'next';
+import { Phone, Mail, Truck, Box, Trash2, Sparkles } from 'lucide-react';
 import imageData from '@/lib/placeholder-images.json';
 import { motion } from 'framer-motion';
 import { useReducedMotion } from '@/hooks/use-reduced-motion';
+import { Card, CardTitle } from '@/components/ui/card';
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -26,6 +27,28 @@ const team = [
     { name: "Partner", role: "Upratovanie", phone: "+421 918 895 730", img: imageData.teamMember2.src, width: imageData.teamMember2.width, height: imageData.teamMember2.height, hint: imageData.teamMember2.hint },
 ];
 
+const services = [
+  {
+    icon: <Truck className="w-10 h-10 text-primary" />,
+    title: "Sťahovanie bytov a rodinných domov",
+    description: "Presťahujeme vás bez stresu a zbytočných starostí.",
+  },
+  {
+    icon: <Box className="w-10 h-10 text-primary" />,
+    title: "Sťahovanie firiem, skladov a prevádzok",
+    description: "Efektívne plánovanie a spoľahlivá logistika pre minimálny výpadok prevádzky.",
+  },
+  {
+    icon: <Trash2 className="w-10 h-10 text-primary" />,
+    title: "Vypratávanie, likvidácia a odvoz odpadu",
+    description: "Kompletné vypratávacie služby vrátane ekologickej likvidácie.",
+  },
+  {
+    icon: <Sparkles className="w-10 h-10 text-primary" />,
+    title: "Profesionálne upratovacie práce",
+    description: "Jednorazové aj pravidelné upratovanie pre čistotu, na ktorú sa môžete spoľahnúť.",
+  }
+];
 
 export default function AboutPage() {
     const shouldReduceMotion = useReducedMotion();
@@ -69,10 +92,10 @@ export default function AboutPage() {
           <div>
             <h2 className="text-3xl md:text-4xl font-headline font-bold mb-4 text-primary">Naša Filozofia</h2>
             <p className="text-muted-foreground mb-4 leading-relaxed">
-              Vo VI&MO veríme, že sťahovanie alebo upratovanie nemusí byť stresujúca udalosť. Našim poslaním je poskytovať spoľahlivé, efektívne a cenovo dostupné služby s ľudským a poctivým prístupom. Ku každej zákazke pristupujeme s maximálnou zodpovednosťou, či už ide o sťahovanie malého bytu alebo upratovanie veľkej firmy.
+              Sme silná partia v oblasti "moving & logistic" služieb. Disponujeme viac než <strong className="text-foreground">7-ročnými skúsenosťami</strong> v oblasti profesionálneho sťahovania, odvozu ekologického odpadu a nadštandardných upratovacích služieb. Sťahujeme byty, domy, kancelárie aj celé firmy, odvezieme nepotrebné veci a postaráme sa o dokonalý poriadok.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              Zakladáme si na pevných rukách, ktoré odnesú vaše starosti, a na precíznosti, ktorá zanechá vaše priestory dokonale čisté. Vaša spokojnosť je našou najväčšou odmenou a motorom pre neustále zlepšovanie našich služieb.
+              Pracujeme <strong className="text-foreground">rýchlo, efektívne a s ľudským prístupom</strong>. Pôsobíme najmä v Bratislave a okolí a zakladáme si na <strong className="text-foreground">férovom prístupe, spoľahlivosti a poctivej práci</strong>.
             </p>
           </div>
           <div className="relative h-80 w-full rounded-lg overflow-hidden shadow-xl">
@@ -87,9 +110,44 @@ export default function AboutPage() {
         </div>
       </motion.section>
 
+      {/* Services Section */}
+      <motion.section 
+        id="sluzby" 
+        className="py-16 md:py-24 bg-background text-foreground"
+        variants={shouldReduceMotion ? undefined : sectionVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+      >
+        <div className="container">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary mb-2">Naše Služby</h2>
+             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">Ponúkame komplexné riešenia pre vaše sťahovanie, vypratávanie a čistotu.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {services.map((service, index) => (
+               <motion.div
+                key={index}
+                whileHover={shouldReduceMotion ? {} : { y: -5, scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                  <Card className={`text-left p-6 flex flex-col items-start shadow-lg rounded-xl transition-all duration-300 h-full bg-card`}>
+                     <div className={`p-3 rounded-full mb-4 bg-primary/10`}>
+                        {service.icon}
+                    </div>
+                    <CardTitle className={`text-xl font-headline font-semibold mb-2 text-foreground`}>{service.title}</CardTitle>
+                    <p className={`flex-grow text-muted-foreground`}>{service.description}</p>
+                  </Card>
+               </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+
        {/* Team Section */}
       <motion.section 
-        className="py-16 md:py-24"
+        className="py-16 md:py-24 bg-muted/30"
         variants={shouldReduceMotion ? undefined : sectionVariants}
         initial="hidden"
         whileInView="visible"
@@ -151,3 +209,5 @@ export default function AboutPage() {
     </>
   );
 }
+
+    
