@@ -6,11 +6,11 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Truck, Box, Trash2, Sparkles, Phone, Star, Quote, Award, Clock, ShieldCheck, Handshake, CalendarCheck, Wallet, UserCheck, Check } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import type { Metadata } from 'next';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useReducedMotion } from '@/hooks/use-reduced-motion';
 import imageData from '@/lib/placeholder-images.json';
 import { InteractiveCalculator } from '@/components/pricing/InteractiveCalculator';
+import { useRef } from 'react';
 
 
 // Services Section Component
@@ -51,33 +51,75 @@ const sectionVariants = {
 };
 
 const HeroSection = () => {
-    return (
-        <section className="relative h-screen w-full flex items-center justify-center text-center text-primary-foreground bg-[#00202e]">
-            <Image
-                src={imageData.aboutHero.src}
-                alt="Tím VI&MO pri sťahovaní nábytku z dodávky v Bratislave"
-                fill
-                priority
-                className="absolute inset-0 object-cover opacity-20"
-                data-ai-hint="moving team with truck"
-            />
-            <div className="absolute inset-0 bg-black/60" />
-            <motion.div 
-                className="relative z-10 p-4 -translate-y-[35%]"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-            >
-                <h1 className="text-4xl md:text-6xl font-headline font-extrabold leading-tight text-white text-shadow-lg">
-                    Sťahovanie Bytov a Firiem Bratislava
-                </h1>
-                <p className="mt-4 text-lg md:text-2xl max-w-3xl mx-auto text-primary-foreground/80 text-shadow">
-                    Profesionálne sťahovanie bytov, domov a kancelárií. Rýchlo, spoľahlivo a za férové ceny.
-                </p>
-            </motion.div>
-        </section>
-    )
-}
+  const targetRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ['start start', 'end start'],
+  });
+  
+  const shouldReduceMotion = useReducedMotion();
+
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+  
+  const motionProps = shouldReduceMotion ? {} : { style: { y, opacity } };
+  
+  const logoVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  };
+
+  const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.2, ease: "easeOut" } },
+  };
+
+  return (
+    <section 
+      ref={targetRef}
+      className="relative h-screen w-full flex items-center justify-center text-center text-primary-foreground bg-[#00202e]"
+    >
+        <Image
+            src={imageData.aboutHero.src}
+            alt="Tím VI&MO pri sťahovaní nábytku z dodávky v Bratislave"
+            fill
+            priority
+            className="absolute inset-0 object-cover opacity-20"
+            data-ai-hint="moving team with truck"
+        />
+        <div className="absolute inset-0 bg-black/60" />
+      <motion.div {...motionProps} className="relative z-10 p-4 flex flex-col items-center -translate-y-[35%]">
+         <motion.div 
+            className="mb-6"
+            variants={shouldReduceMotion ? undefined : logoVariants}
+            initial="hidden"
+            animate="visible"
+          >
+           <Image 
+             src="https://viandmo.com/wp-content/uploads/viandmo_logo_regular_white.svg" 
+             alt="Logo VI&MO - Sťahovanie a upratovanie Bratislava" 
+             width={240} 
+             height={63} 
+             priority 
+             data-ai-hint="logo"
+           />
+         </motion.div>
+         <motion.div
+            variants={shouldReduceMotion ? undefined : textVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <h1 className="text-4xl md:text-6xl font-headline font-extrabold leading-tight text-white text-shadow-lg">
+                Sťahovanie Bytov a Firiem Bratislava
+            </h1>
+            <p className="mt-4 text-lg md:text-2xl max-w-3xl mx-auto text-primary-foreground/80 text-shadow">
+              Profesionálne sťahovanie bytov, domov a kancelárií. Rýchlo, spoľahlivo a za férové ceny.
+            </p>
+         </motion.div>
+      </motion.div>
+    </section>
+  );
+};
 
 const ServicesSection = () => {
     const shouldReduceMotion = useReducedMotion();
