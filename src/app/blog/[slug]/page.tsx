@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
     };
   }
 
-  const siteUrl = 'https://www.viandmo.com';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.viandmo.com';
   const imageUrl = post.image.startsWith('http') ? post.image : `${siteUrl}${post.image}`;
 
   return {

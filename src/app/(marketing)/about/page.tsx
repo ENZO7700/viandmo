@@ -62,7 +62,7 @@ export default function AboutPage() {
           fill
           priority
           className="object-cover object-center"
-          data-ai-hint={imageData.aboutHero.hint}
+          data-ai-hint="moving team action"
         />
         <div className="absolute inset-0 bg-black/60" />
         <motion.div 
@@ -99,10 +99,10 @@ export default function AboutPage() {
           <div className="relative h-80 w-full rounded-lg overflow-hidden shadow-xl">
              <Image
                 src={imageData.aboutPacking.src}
-                alt="Pracovník baliaci krehké predmety do krabice pri sťahovaní"
+                alt="Pracovník baliaci krehké predmety do krabice pri sťahovaní v Bratislave"
                 fill
                 className="object-cover"
-                data-ai-hint={imageData.aboutPacking.hint}
+                data-ai-hint="packing fragile items"
              />
           </div>
         </div>
@@ -133,7 +133,7 @@ export default function AboutPage() {
                      <div className={`p-3 rounded-full mb-4 bg-primary/10`}>
                         {service.icon}
                     </div>
-                    <CardTitle as="h3" className={`text-xl font-headline font-semibold mb-2 text-foreground`}>{service.title}</CardTitle>
+                    <h3 className={`text-xl font-headline font-semibold mb-2 text-foreground`}>{service.title}</h3>
                     <p className={`flex-grow text-muted-foreground`}>{service.description}</p>
                   </Card>
                </motion.div>
@@ -169,7 +169,7 @@ export default function AboutPage() {
                     <div className="relative w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden border-4 border-primary/50 shadow-lg">
                         <Image
                           src={member.img}
-                          alt={`Portrét člena tímu VI&MO - ${member.name}`}
+                          alt={`Portrét člena tímu VI&MO - ${member.name}, sťahovanie Bratislava`}
                           width={member.width}
                           height={member.height}
                           className="object-cover"
@@ -195,7 +195,7 @@ export default function AboutPage() {
             Máte otázky alebo si želáte ponuku?
           </h2>
           <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto text-primary-foreground/80">
-            Neváhajte nás kontaktovať. Radi vám poradíme a pripravíme nezáväznú cenovú ponuku.
+            Neváhajte nás kontaktovať. Radi vám poradíme a pripravíme nezáväznú cenovú ponuku na sťahovanie v Bratislave.
           </p>
           <Link href="/contact" passHref>
             <Button size="lg" variant="secondary" className="px-8 py-6 text-lg transition-transform duration-300 hover:scale-105 rounded-full shadow-lg">
@@ -207,4 +207,3 @@ export default function AboutPage() {
     </>
   );
 }
-

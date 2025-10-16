@@ -59,7 +59,7 @@ const HeroSection = () => {
                 fill
                 priority
                 className="absolute inset-0 object-cover opacity-20"
-                data-ai-hint="moving team truck"
+                data-ai-hint="moving team with truck"
             />
             <div className="absolute inset-0 bg-black/60" />
             <motion.div 
@@ -69,10 +69,10 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, ease: "easeOut" }}
             >
                 <h1 className="text-4xl md:text-6xl font-headline font-extrabold leading-tight text-white text-shadow-lg">
-                    Sťahovanie firiem a kancelárií Bratislava
+                    Sťahovanie Bytov a Firiem Bratislava
                 </h1>
                 <p className="mt-4 text-lg md:text-2xl max-w-3xl mx-auto text-primary-foreground/80 text-shadow">
-                    Profesionálne sťahovanie firiem a kancelárií
+                    Profesionálne sťahovanie bytov, domov a kancelárií. Rýchlo, spoľahlivo a za férové ceny.
                 </p>
             </motion.div>
         </section>
@@ -107,7 +107,7 @@ const ServicesSection = () => {
                      <div className={`p-3 rounded-full mb-4 bg-primary/10`}>
                         {service.icon}
                     </div>
-                    <CardTitle as="h3" className={`text-xl font-headline font-semibold mb-2 text-foreground`}>{service.title}</CardTitle>
+                    <h3 className={`text-xl font-headline font-semibold mb-2 text-foreground`}>{service.title}</h3>
                     <p className={`flex-grow text-muted-foreground`}>{service.description}</p>
                      <Button asChild variant={service.featured ? 'secondary' : 'default'} className="mt-6 w-full rounded-full shadow-lg transition-transform duration-300 hover:scale-105">
                         <Link href="/contact">{service.featured ? 'Cenová ponuka' : 'Viac o službách'}</Link>
@@ -203,7 +203,7 @@ const GuaranteesSection = () => {
                                 <div className="p-4 rounded-full mb-4 bg-primary/10 text-primary">
                                     {item.icon}
                                 </div>
-                                <CardTitle as="h3" className="text-xl font-headline font-semibold mb-2">{item.title}</CardTitle>
+                                <h3 className="text-xl font-headline font-semibold mb-2">{item.title}</h3>
                                 <p className="flex-grow text-muted-foreground text-sm">{item.description}</p>
                             </Card>
                          </motion.div>

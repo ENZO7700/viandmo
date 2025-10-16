@@ -3,8 +3,8 @@ import './globals.css';
 import { cn } from '@/lib/utils';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 
-const APP_NAME = "VI&MO | Sťahovanie a Upratovanie Bratislava";
-const APP_DEFAULT_TITLE = "VI&MO | Sťahovanie Bytov a Firiem Bratislava, Upratovanie";
+const APP_NAME = "VI&MO";
+const APP_DEFAULT_TITLE = "Sťahovanie Bytov a Firiem Bratislava | VI&MO";
 const APP_TITLE_TEMPLATE = "%s | VI&MO";
 const APP_DESCRIPTION = "Spoľahlivé sťahovanie bytov, domov a firiem, vypratávanie a profesionálne upratovacie služby v Bratislave a okolí. Získajte nezáväznú cenovú ponuku.";
 

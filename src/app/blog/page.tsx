@@ -26,11 +26,11 @@ export default function BlogPage() {
       <section className="relative h-96 w-full flex items-center justify-center text-center text-white">
         <Image
           src={imageData.blogListHero.src}
-          alt="Písanie na klávesnici notebooku - blog o sťahovaní"
+          alt="Písanie na klávesnici notebooku - blog o sťahovaní v Bratislave"
           fill
           priority
           className="object-cover object-center brightness-50"
-          data-ai-hint={imageData.blogListHero.hint}
+          data-ai-hint="writing blog post"
         />
         <div className="relative z-10 p-4">
           <h1 className="text-5xl md:text-7xl font-headline leading-tight text-primary-foreground drop-shadow-lg">
@@ -60,11 +60,11 @@ export default function BlogPage() {
                   </div>
                 </Link>
                 <CardHeader>
-                  <CardTitle as="h2" className="text-xl font-headline leading-snug">
+                  <h2 className="text-xl font-headline leading-snug">
                     <Link href={`/blog/${post.slug}`} className="hover:text-primary transition-colors">
                       {post.title}
                     </Link>
-                  </CardTitle>
+                  </h2>
                    <p className="text-sm text-muted-foreground pt-2">
                     Publikované {new Date(post.date).toLocaleDateString('sk-SK')}
                   </p>
