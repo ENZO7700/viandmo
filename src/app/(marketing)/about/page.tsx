@@ -218,5 +218,3 @@ export const metadata: Metadata = {
     url: '/about',
   },
 };
-
-    
