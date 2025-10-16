@@ -19,8 +19,7 @@ const navLinks = [
   { href: "/contact", label: "Kontakt" },
 ];
 
-const SocialIcon = ({ href, children, ariaLabel }: { href: string; children: React.ReactNode; ariaLabel: string }) => {
-  return (
+const SocialIcon = ({ href, children, ariaLabel }: { href: string; children: React.ReactNode; ariaLabel: string }) => (
     <a
       href={href}
       target="_blank"
@@ -30,8 +29,8 @@ const SocialIcon = ({ href, children, ariaLabel }: { href: string; children: Rea
     >
       {children}
     </a>
-  );
-};
+);
+
 
 const NavLink = ({ href, label }: { href: string; label: string }) => {
   const pathname = usePathname();
