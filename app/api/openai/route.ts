@@ -30,6 +30,7 @@ export async function POST(req: NextRequest) {
 
 export async function GET() {
   return new Response(JSON.stringify({ ok: true }), {
-    status: 200, headers: { "Content-Type": "application/json" }
+    status: 200,
+    headers: { "Content-Type": "application/json" }
   });
 }
