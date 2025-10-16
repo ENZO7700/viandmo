@@ -70,10 +70,16 @@ const HeroSection = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
   };
 
-  const textVariants = {
+  const headingVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.2, ease: "easeOut" } },
   };
+
+  const paragraphVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.4, ease: "easeOut" } },
+  };
+
 
   return (
     <section 
@@ -96,18 +102,23 @@ const HeroSection = () => {
              data-ai-hint="logo"
            />
          </motion.div>
-         <motion.div
-            variants={shouldReduceMotion ? undefined : textVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <h1 className="text-4xl md:text-6xl font-headline font-extrabold leading-tight text-white text-shadow-lg">
+         
+            <motion.h1 
+                className="text-4xl md:text-6xl font-headline font-extrabold leading-tight text-white text-shadow-lg"
+                variants={shouldReduceMotion ? undefined : headingVariants}
+                initial="hidden"
+                animate="visible"
+            >
                 Sťahovanie Bytov a Firiem Bratislava
-            </h1>
-            <p className="mt-4 text-lg md:text-2xl max-w-3xl mx-auto text-primary-foreground/80 text-shadow">
+            </motion.h1>
+            <motion.p 
+                className="mt-4 text-lg md:text-2xl max-w-3xl mx-auto text-primary-foreground/80 text-shadow"
+                variants={shouldReduceMotion ? undefined : paragraphVariants}
+                initial="hidden"
+                animate="visible"
+            >
               Profesionálne sťahovanie bytov, domov a kancelárií. Rýchlo, spoľahlivo a za férové ceny.
-            </p>
-         </motion.div>
+            </motion.p>
       </motion.div>
     </section>
   );
@@ -318,3 +329,5 @@ export default function HomePage() {
     </>
   );
 }
+
+    
