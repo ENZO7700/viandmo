@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from "next/link";
@@ -24,8 +23,8 @@ const SocialIcon = ({ href, children, ariaLabel }: { href: string, children: Rea
         href={href} 
         target="_blank" 
         rel="noopener noreferrer" 
-        className="text-white/70 hover:text-gray-300 transition-colors duration-200"
         aria-label={ariaLabel}
+        className="text-white/70 hover:text-gray-300 transition-colors duration-200"
     >
         {children}
     </a>
@@ -35,15 +34,18 @@ const SocialIcon = ({ href, children, ariaLabel }: { href: string, children: Rea
 export default function Header() {
   const pathname = usePathname();
   
-  const NavLink = ({ href, label }: { href: string, label:string }) => (
-    <Button asChild variant="link" className={cn(
-      "text-sm font-semibold uppercase tracking-wider",
-       (pathname === href || (href === '/blog' && pathname.startsWith('/blog'))) ? "text-primary" : "text-white hover:text-gray-300",
-      "transition-colors duration-200"
-    )}>
-      <Link href={href}>{label}</Link>
-    </Button>
-  );
+  const NavLink = ({ href, label }: { href: string, label:string }) => {
+    const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
+    return (
+      <Button asChild variant="link" className={cn(
+        "text-sm font-semibold uppercase tracking-wider",
+        isActive ? "text-primary" : "text-white hover:text-gray-300",
+        "transition-colors duration-200"
+      )}>
+        <Link href={href}>{label}</Link>
+      </Button>
+    );
+  };
   
   return (
     <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-transparent">
@@ -80,14 +82,17 @@ export default function Header() {
                  <Logo />
                </div>
               <nav className="flex flex-col items-start gap-4">
-                {navLinks.map(link => (
-                    <Button asChild variant="link" className={cn(
-                      "text-lg font-semibold",
-                      (pathname === link.href || (link.href === '/blog' && pathname.startsWith('/blog'))) ? "text-primary" : "text-white hover:text-gray-300",
-                    )} key={link.href}>
-                        <Link href={link.href}>{link.label}</Link>
-                    </Button>
-                ))}
+                {navLinks.map(link => {
+                    const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
+                    return (
+                        <Button asChild variant="link" className={cn(
+                        "text-lg font-semibold",
+                        isActive ? "text-primary" : "text-white hover:text-gray-300",
+                        )} key={link.href}>
+                            <Link href={link.href}>{link.label}</Link>
+                        </Button>
+                    );
+                })}
               </nav>
             </SheetContent>
           </Sheet>
