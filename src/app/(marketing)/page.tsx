@@ -136,12 +136,12 @@ const ServicesSection = () => {
                 whileHover={shouldReduceMotion ? {} : { y: -5, scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
-                  <Card className={`text-left p-6 flex flex-col items-start shadow-lg rounded-xl transition-all duration-300 h-full bg-card`}>
-                     <div className={`p-3 rounded-full mb-4 bg-primary/10`}>
+                  <Card className={'text-left p-6 flex flex-col items-start shadow-lg rounded-xl transition-all duration-300 h-full bg-card'}>
+                     <div className={'p-3 rounded-full mb-4 bg-primary/10'}>
                         {service.icon}
                     </div>
-                    <h3 className={`text-xl font-headline font-semibold mb-2 text-foreground`}>{service.title}</h3>
-                    <p className={`flex-grow text-muted-foreground`}>{service.description}</p>
+                    <h3 className={'text-xl font-headline font-semibold mb-2 text-foreground'}>{service.title}</h3>
+                    <p className={'flex-grow text-muted-foreground'}>{service.description}</p>
                      <Button asChild variant={service.featured ? 'secondary' : 'default'} className="mt-6 w-full rounded-full shadow-lg transition-transform duration-300 hover:scale-105">
                         <Link href="/contact">{service.featured ? 'Cenová ponuka' : 'Viac o službách'}</Link>
                     </Button>
