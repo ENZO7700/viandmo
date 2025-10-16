@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Truck, Box, Trash2, Sparkles, Phone, Star, Quote } from 'lucide-react';
+import { Truck, Box, Trash2, Sparkles, Phone, Star, Quote, Award, Clock, ShieldCheck, Handshake, CalendarCheck, Wallet, UserCheck, Check } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
@@ -94,6 +94,13 @@ const ServicesSection = () => {
 }
 
 // Why Us Section Component
+const whyUsPoints = [
+    { icon: <Award className="w-6 h-6 text-primary" />, text: "Viac ako 7 rokov preverených skúseností" },
+    { icon: <UserCheck className="w-6 h-6 text-primary" />, text: "Silný a zodpovedný tím profesionálov" },
+    { icon: <Wallet className="w-6 h-6 text-primary" />, text: "Férové ceny bez skrytých poplatkov" },
+    { icon: <ShieldCheck className="w-6 h-6 text-primary" />, text: "Plné poistenie zodpovednosti za škodu" },
+];
+
 const WhyUsSection = () => {
     const shouldReduceMotion = useReducedMotion();
     return (
@@ -107,74 +114,79 @@ const WhyUsSection = () => {
       >
         <div className="container grid md:grid-cols-2 gap-12 items-center">
             <div>
-                <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary mb-4">Prečo VI&MO</h2>
-                <p className="text-muted-foreground mb-4 leading-relaxed">
-                  Sme tu pre vás už 7 rokov. Hľadáte spoľahlivú firmu na sťahovanie? Sťahujeme byty, domy, kancelárie aj celé firmy. Pracujeme rýchlo, efektívne a s ľudským prístupom. S nami máte istotu, že o vaše veci bude postarané ako o vlastné.
-                </p>
-                <p className="text-muted-foreground leading-relaxed">
-                    Našou prioritou je vaša spokojnosť a bezstarostný priebeh celej akcie. Postaráme sa aj o vypratanie nepotrebných vecí a dokonalý poriadok po práci.
-                </p>
+                <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary mb-4">Prečo si vybrať VI&MO?</h2>
+                <div className="space-y-4 text-muted-foreground leading-relaxed">
+                  <p>Hľadáte spoľahlivú firmu na sťahovanie v Bratislave, na ktorú sa môžete na 100% spoľahnúť? Sme tu pre vás už <strong className="text-foreground">viac ako 7 rokov</strong>. Počas tejto doby sme úspešne zrealizovali stovky sťahovaní – od malých bytov až po rozsiahle firemné priestory. Naše meno je synonymom pre <strong className="text-foreground">kvalitu, rýchlosť a ľudský prístup</strong>.</p>
+                  <p>Vieme, že sťahovanie je viac než len prenos vecí. Je to začiatok novej etapy. Preto ku každej zákazke pristupujeme s maximálnou zodpovednosťou, aby bol váš prechod do nového čo najpríjemnejší. Postaráme sa o všetko – demontáž nábytku, precízne zabalenie, bezpečnú prepravu, a dokonca aj o finálne upratovanie.</p>
+                </div>
             </div>
-            <div className="relative h-80 w-full rounded-lg overflow-hidden shadow-xl">
-                 <Image
-                    src="/viandmo.png"
-                    alt="VI&MO Logo"
-                    fill
-                    className="object-contain p-8"
-                    data-ai-hint="logo"
-                 />
+            <div className="space-y-6">
+                {whyUsPoints.map((point, index) => (
+                    <div key={index} className="flex items-start gap-4">
+                        <div className="flex-shrink-0 mt-1 bg-primary/10 p-3 rounded-full">
+                           {point.icon}
+                        </div>
+                        <div>
+                            <h3 className="text-lg font-semibold text-foreground">{point.text}</h3>
+                            <p className="text-muted-foreground">Naša prax a zohratý tím sú zárukou, že vaše veci sú v najlepších rukách. Procesy máme vyladené do detailov.</p>
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
       </motion.section>
     );
 }
 
-
-// FAQ Section Component
-const faqs = [
-    {
-        question: "Ako si objednám vaše služby?",
-        answer: "Najjednoduchší spôsob je vyplniť náš kontaktný formulár alebo nám zavolať. Pripravíme vám nezáväznú cenovú ponuku."
-    },
-    {
-        question: "Pracujete aj počas víkendov?",
-        answer: "Áno, po dohode pracujeme aj počas víkendov a sviatkov, aby sme sa maximálne prispôsobili vašim potrebám."
-    },
-    {
-        question: "Je v cene zahrnutý aj baliaci materiál?",
-        answer: "Baliaci materiál nie je štandardne v cene, ale vieme ho po dohode zabezpečiť. Odporúčame prekonzultovať detaily pri objednávke."
-    },
+// Guarantees Section
+const guarantees = [
+    { icon: <Handshake className="w-8 h-8"/>, title: "Férové Ceny", description: "Naša cenová politika je transparentná. Získate detailnú ponuku bez nečakaných poplatkov. To, na čom sa dohodneme, platí." },
+    { icon: <Clock className="w-8 h-8"/>, title: "Rýchla Komunikácia", description: "Váš čas je pre nás dôležitý. Na dopyty reagujeme obratom a sme vám k dispozícii počas celého procesu." },
+    { icon: <CalendarCheck className="w-8 h-8"/>, title: "Expresný Termín", description: "Potrebujete sa presťahovať urgentne? Po dohode vieme zabezpečiť aj expresné termíny, aby sme vyhoveli vašim potrebám." },
+    { icon: <ShieldCheck className="w-8 h-8"/>, title: "Poistenie Zodpovednosti", description: "Váš majetok je u nás v bezpečí. Disponujeme plným poistením zodpovednosti za škodu pre váš úplný pokoj." },
+    { icon: <UserCheck className="w-8 h-8"/>, title: "Lokálny Tím", description: "Sme tím z Bratislavy, ktorý dokonale pozná mesto. Vyhneme sa dopravným nástrahám a ušetríme váš čas." },
+    { icon: <Award className="w-8 h-8"/>, title: "Servis na Kľúč", description: "Od balenia a demontáže až po finálne upratanie. Ponúkame kompletný servis, aby ste sa nemuseli o nič starať." },
 ];
 
-const FaqSection = () => {
+const GuaranteesSection = () => {
     const shouldReduceMotion = useReducedMotion();
     return (
         <motion.section 
-            id="faq" 
-            className="py-16 md:py-24 bg-muted/30 text-foreground"
+            id="garancie"
+            className="py-16 md:py-24 bg-background text-foreground"
             variants={shouldReduceMotion ? undefined : sectionVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
         >
-            <div className="container max-w-3xl mx-auto">
+            <div className="container">
                 <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-4xl font-headline font-bold">Časté otázky (FAQ)</h2>
+                    <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary">Naše Garancie a Výhody</h2>
+                    <p className="text-muted-foreground text-lg max-w-2xl mx-auto mt-2">Poskytujeme viac než len sťahovanie. Poskytujeme istotu a spoľahlivosť.</p>
                 </div>
-                <Accordion type="single" collapsible className="w-full">
-                    {faqs.map((faq, index) => (
-                        <AccordionItem value={`item-${index}`} key={index}>
-                            <AccordionTrigger className="text-lg text-left text-foreground font-semibold">{faq.question}</AccordionTrigger>
-                            <AccordionContent className="text-base text-muted-foreground">
-                                {faq.answer}
-                            </AccordionContent>
-                        </AccordionItem>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {guarantees.map((item, index) => (
+                         <motion.div
+                            key={index}
+                            whileHover={shouldReduceMotion ? {} : { y: -5, scale: 1.02 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <Card className="text-center p-6 flex flex-col items-center shadow-lg rounded-xl h-full bg-card/50">
+                                <div className="p-4 rounded-full mb-4 bg-primary/10 text-primary">
+                                    {item.icon}
+                                </div>
+                                <CardTitle className="text-xl font-headline font-semibold mb-2">{item.title}</CardTitle>
+                                <p className="flex-grow text-muted-foreground text-sm">{item.description}</p>
+                            </Card>
+                         </motion.div>
                     ))}
-                </Accordion>
+                </div>
             </div>
         </motion.section>
     );
-}
+};
+
+
 // CTA Section Component
 const CtaSection = () => {
     const shouldReduceMotion = useReducedMotion();
@@ -202,53 +214,6 @@ const CtaSection = () => {
           </motion.div>
         </motion.div>
       </section>
-    );
-}
-
-// Testimonials Section
-const TestimonialsSection = () => {
-    const shouldReduceMotion = useReducedMotion();
-    return (
-        <motion.section 
-            className="py-16 md:py-24 bg-muted/30 text-foreground"
-            variants={shouldReduceMotion ? undefined : sectionVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-        >
-            <div className="container">
-                <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-4xl font-headline font-bold">Povedali o nás</h2>
-                     <p className="text-muted-foreground text-lg max-w-2xl mx-auto mt-2">Zistite, prečo sú naši klienti s našou prácou spokojní.</p>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <Card className="p-6 text-left bg-card shadow-md rounded-lg relative overflow-hidden">
-                        <Quote className="absolute -top-2 -right-2 w-20 h-20 text-primary/10" />
-                        <div className="flex mb-2">
-                            {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
-                        </div>
-                        <p className="text-muted-foreground italic mb-4">"Super rýchla a profesionálna partia. Sťahovanie prebehlo hladko a bez jediného škrabanca. Odporúčam!"</p>
-                        <p className="font-bold text-foreground">- Martin J.</p>
-                    </Card>
-                     <Card className="p-6 text-left bg-card shadow-md rounded-lg relative overflow-hidden">
-                        <Quote className="absolute -top-2 -right-2 w-20 h-20 text-primary/10" />
-                        <div className="flex mb-2">
-                            {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
-                        </div>
-                        <p className="text-muted-foreground italic mb-4">"Využili sme upratovacie služby po rekonštrukcii. Byt bol dokonale čistý. Skvelá práca a komunikácia."</p>
-                        <p className="font-bold text-foreground">- Zuzana K.</p>
-                    </Card>
-                     <Card className="p-6 text-left bg-card shadow-md rounded-lg relative overflow-hidden">
-                        <Quote className="absolute -top-2 -right-2 w-20 h-20 text-primary/10" />
-                        <div className="flex mb-2">
-                            {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />)}
-                        </div>
-                        <p className="text-muted-foreground italic mb-4">"Potreboval som odviezť starý nábytok z pivnice. Chlapci boli veľmi ochotní a všetko rýchlo vypratali. Maximálna spokojnosť."</p>
-                        <p className="font-bold text-foreground">- Peter V.</p>
-                    </Card>
-                </div>
-            </div>
-        </motion.section>
     );
 }
 
@@ -293,9 +258,8 @@ export default function HomePage() {
       <>
         <ServicesSection />
         <WhyUsSection />
+        <GuaranteesSection />
         <PricingSection />
-        <TestimonialsSection />
-        <FaqSection />
         <CtaSection />
       </>
     </>

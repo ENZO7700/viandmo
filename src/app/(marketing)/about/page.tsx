@@ -90,12 +90,10 @@ export default function AboutPage() {
         <div className="container grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-3xl md:text-4xl font-headline font-bold mb-4 text-primary">Naša Filozofia</h2>
-            <p className="text-muted-foreground mb-4 leading-relaxed">
-              Sme silná partia v oblasti "moving & logistic" služieb. Disponujeme viac než <strong className="text-foreground">7-ročnými skúsenosťami</strong> v oblasti profesionálneho sťahovania, odvozu ekologického odpadu a nadštandardných upratovacích služieb. Sťahujeme byty, domy, kancelárie aj celé firmy, odvezieme nepotrebné veci a postaráme sa o dokonalý poriadok.
-            </p>
-            <p className="text-muted-foreground leading-relaxed">
-              Pracujeme <strong className="text-foreground">rýchlo, efektívne a s ľudským prístupom</strong>. Pôsobíme najmä v Bratislave a okolí a zakladáme si na <strong className="text-foreground">férovom prístupe, spoľahlivosti a poctivej práci</strong>.
-            </p>
+            <div className="space-y-4 text-muted-foreground leading-relaxed">
+              <p>Sme silná partia v oblasti "moving & logistic" služieb. Jadrom našej identity je viac než <strong className="text-foreground">7 rokov skúseností</strong>, počas ktorých sme sa vyprofilovali na expertov v profesionálnom sťahovaní, ekologickej likvidácii odpadu a nadštandardných upratovacích prácach. Či už potrebujete presťahovať malý byt, rozsiahle kancelárie alebo celú firmu, náš prístup zostáva rovnaký – precízny, zodpovedný a s citom pre detail.</p>
+              <p>Zakladáme si na tom, že pracujeme <strong className="text-foreground">rýchlo, efektívne a s ľudským prístupom</strong>. Pre nás to nie sú len prázdne slová. Znamená to, že rešpektujeme váš čas, majetok a individuálne potreby. Naše slovo platí a ku každej zákazke pristupujeme s maximálnou vážnosťou. Naším pôsobiskom je najmä Bratislava a okolie, kde sme si vybudovali meno založené na <strong className="text-foreground">férovom prístupe, transparentných cenách a poctivej práci</strong>, na ktorú sa môžete stopercentne spoľahnúť.</p>
+            </div>
           </div>
           <div className="relative h-80 w-full rounded-lg overflow-hidden shadow-xl">
              <Image
