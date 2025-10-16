@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function Logo({ className }: { className?: string }) {
   return (
-    <Link href="/" className={cn("relative h-8 w-24", className)}>
+    <Link href="/" className={cn("relative h-16 w-40", className)}>
       <Image 
         src="https://viandmo.com/wp-content/uploads/viandmo_logo_regular_white.svg" 
         alt="VI&MO Logo" 
