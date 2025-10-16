@@ -7,7 +7,6 @@ import { Truck, Box, Trash2, Sparkles, Phone, Star, Quote, Award, Clock, ShieldC
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
-import HeroSection from '@/components/layout/HeroSection';
 import { motion } from 'framer-motion';
 import { useReducedMotion } from '@/hooks/use-reduced-motion';
 import imageData from '@/lib/placeholder-images.json';
@@ -19,23 +18,23 @@ const services = [
   {
     icon: <Truck className="w-10 h-10 text-primary" />,
     title: "Sťahovanie bytov a rodinných domov",
-    description: "Bezstarostné sťahovanie bytov a domov v Bratislave a okolí.",
+    description: "Presťahujeme vás bez stresu a zbytočných starostí.",
     featured: true,
   },
   {
     icon: <Box className="w-10 h-10 text-primary" />,
     title: "Sťahovanie firiem, skladov a prevádzok",
-    description: "Efektívne sťahovanie firiem a kancelárií bez zdržania.",
+    description: "Efektívne plánovanie a spoľahlivá logistika pre minimálny výpadok prevádzky.",
   },
   {
     icon: <Trash2 className="w-10 h-10 text-primary" />,
-    title: "Vypratávanie, odvoz a likvidácia odpadu",
-    description: "Vypratávanie a ekologický odvoz odpadu – bez starostí.",
+    title: "Vypratávanie, likvidácia a odvoz odpadu",
+    description: "Kompletné vypratávacie služby vrátane ekologickej likvidácie.",
   },
   {
     icon: <Sparkles className="w-10 h-10 text-primary" />,
-    title: "Profesionálne čistiace a upratovacie práce",
-    description: "Čisté bývanie a pracovisko – pravidelne alebo jednorazovo.",
+    title: "Profesionálne upratovacie práce",
+    description: "Jednorazové aj pravidelné upratovanie pre čistotu, na ktorú sa môžete spoľahnúť.",
   }
 ];
 
@@ -50,6 +49,35 @@ const sectionVariants = {
     }
   },
 };
+
+const HeroSection = () => {
+    return (
+        <section className="relative h-screen w-full flex items-center justify-center text-center text-primary-foreground bg-[#00202e]">
+            <Image
+                src={imageData.aboutHero.src}
+                alt="Tím VI&MO pri sťahovaní nábytku z dodávky v Bratislave"
+                fill
+                priority
+                className="absolute inset-0 object-cover opacity-20"
+                data-ai-hint="moving team truck"
+            />
+            <div className="absolute inset-0 bg-black/60" />
+            <motion.div 
+                className="relative z-10 p-4 -translate-y-[35%]"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+                <h1 className="text-4xl md:text-6xl font-headline font-extrabold leading-tight text-white text-shadow-lg">
+                    Sťahovanie firiem a kancelárií Bratislava
+                </h1>
+                <p className="mt-4 text-lg md:text-2xl max-w-3xl mx-auto text-primary-foreground/80 text-shadow">
+                    Profesionálne sťahovanie firiem a kancelárií
+                </p>
+            </motion.div>
+        </section>
+    )
+}
 
 const ServicesSection = () => {
     const shouldReduceMotion = useReducedMotion();
@@ -79,7 +107,7 @@ const ServicesSection = () => {
                      <div className={`p-3 rounded-full mb-4 bg-primary/10`}>
                         {service.icon}
                     </div>
-                    <CardTitle className={`text-xl font-headline font-semibold mb-2 text-foreground`}>{service.title}</CardTitle>
+                    <CardTitle as="h3" className={`text-xl font-headline font-semibold mb-2 text-foreground`}>{service.title}</CardTitle>
                     <p className={`flex-grow text-muted-foreground`}>{service.description}</p>
                      <Button asChild variant={service.featured ? 'secondary' : 'default'} className="mt-6 w-full rounded-full shadow-lg transition-transform duration-300 hover:scale-105">
                         <Link href="/contact">{service.featured ? 'Cenová ponuka' : 'Viac o službách'}</Link>
@@ -114,7 +142,7 @@ const WhyUsSection = () => {
       >
         <div className="container grid md:grid-cols-2 gap-12 items-center">
             <div>
-                <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary mb-4">Prečo si vybrať VI&MO?</h2>
+                <h2 className="text-3xl md:text-4xl font-headline font-bold text-primary mb-4">Prečo si vybrať VI&MO na sťahovanie v Bratislave?</h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>Hľadáte spoľahlivú firmu na sťahovanie v Bratislave, na ktorú sa môžete na 100% spoľahnúť? Sme tu pre vás už <strong className="text-foreground">viac ako 7 rokov</strong>. Počas tejto doby sme úspešne zrealizovali stovky sťahovaní – od malých bytov až po rozsiahle firemné priestory. Naše meno je synonymom pre <strong className="text-foreground">kvalitu, rýchlosť a ľudský prístup</strong>.</p>
                   <p>Vieme, že sťahovanie je viac než len prenos vecí. Je to začiatok novej etapy. Preto ku každej zákazke pristupujeme s maximálnou zodpovednosťou, aby bol váš prechod do nového čo najpríjemnejší. Postaráme sa o všetko – demontáž nábytku, precízne zabalenie, bezpečnú prepravu, a dokonca aj o finálne upratovanie.</p>
@@ -175,7 +203,7 @@ const GuaranteesSection = () => {
                                 <div className="p-4 rounded-full mb-4 bg-primary/10 text-primary">
                                     {item.icon}
                                 </div>
-                                <CardTitle className="text-xl font-headline font-semibold mb-2">{item.title}</CardTitle>
+                                <CardTitle as="h3" className="text-xl font-headline font-semibold mb-2">{item.title}</CardTitle>
                                 <p className="flex-grow text-muted-foreground text-sm">{item.description}</p>
                             </Card>
                          </motion.div>
@@ -217,14 +245,6 @@ const CtaSection = () => {
     );
 }
 
-// Dummy Metadata component for client pages that need it.
-const HomePageMetadata = () => (
-    <div style={{ display: 'none' }}>
-        <title>VI&MO | Sťahovanie a Upratovanie Bratislava - Pevné ruky & poctivý prístup</title>
-        <meta name="description" content="Spoľahlivé sťahovanie bytov, domov a firiem, vypratávanie a profesionálne upratovacie služby v Bratislave a okolí. Získajte nezáväznú cenovú ponuku." />
-    </div>
-);
-
 const PricingSection = () => {
     const shouldReduceMotion = useReducedMotion();
     return (
@@ -253,7 +273,6 @@ const PricingSection = () => {
 export default function HomePage() {
   return (
     <>
-      <HomePageMetadata />
       <HeroSection />
       <>
         <ServicesSection />

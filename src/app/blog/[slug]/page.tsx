@@ -20,18 +20,22 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
     };
   }
 
+  const siteUrl = 'https://www.viandmo.com';
+  const imageUrl = post.image.startsWith('http') ? post.image : `${siteUrl}${post.image}`;
+
   return {
     title: post.title,
     description: post.summary,
     openGraph: {
       title: post.title,
       description: post.summary,
+      url: `${siteUrl}/blog/${post.slug}`,
       type: 'article',
       publishedTime: new Date(post.date).toISOString(),
       authors: [post.author],
       images: [
         {
-          url: post.image,
+          url: imageUrl,
           width: 1200,
           height: 630,
           alt: post.image_alt,
@@ -42,7 +46,7 @@ export async function generateMetadata({ params }: Props, parent: ResolvingMetad
       card: 'summary_large_image',
       title: post.title,
       description: post.summary,
-      images: [post.image],
+      images: [imageUrl],
     },
   };
 }
@@ -135,7 +139,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         </div>
 
         {/* Content */}
-        <div className="prose prose-lg max-w-none text-foreground/90 prose-h3:text-primary prose-h3:font-headline prose-p:leading-relaxed">
+        <div className="prose prose-lg max-w-none text-foreground/90 prose-h2:font-headline prose-h2:text-primary prose-h3:font-headline prose-h3:text-primary prose-p:leading-relaxed">
            {post.content}
         </div>
 

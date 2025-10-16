@@ -12,6 +12,18 @@ import { submitContactForm, type ContactFormState } from '../actions';
 import { useEffect, useRef } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import imageData from '@/lib/placeholder-images.json';
+import type { Metadata } from 'next';
+
+// Statická metadáta pre túto klientskú stránku
+export const metadata: Metadata = {
+  title: 'Kontakt a Cenová Ponuka | VI&MO Sťahovanie Bratislava',
+  description: 'Kontaktujte nás pre nezáväznú cenovú ponuku na sťahovanie, vypratávanie alebo upratovanie v Bratislave a okolí. Zavolajte nám alebo vyplňte formulár.',
+   openGraph: {
+      title: 'Kontakt a Cenová Ponuka | VI&MO Sťahovanie Bratislava',
+      description: 'Získajte rýchlu a nezáväznú cenovú ponuku na sťahovacie a upratovacie služby. Sme tu pre vás.',
+      url: '/contact',
+  }
+};
 
 export default function ContactPage() {
     const { toast } = useToast();
@@ -50,7 +62,7 @@ export default function ContactPage() {
       <section className="relative h-96 w-full flex items-center justify-center text-center text-white">
         <Image
           src={imageData.contactHero.src}
-          alt="Kontaktujte nás"
+          alt="Kontaktujte VI&MO pre sťahovanie v Bratislave"
           fill
           priority
           className="object-cover object-center brightness-50"
@@ -72,7 +84,7 @@ export default function ContactPage() {
           {/* Contact Info */}
           <div className="space-y-8">
              <Card className="shadow-lg rounded-xl">
-                <CardHeader><CardTitle className="text-2xl font-headline">Kontaktné údaje</CardTitle></CardHeader>
+                <CardHeader><CardTitle as="h2" className="text-2xl font-headline">Kontaktné údaje</CardTitle></CardHeader>
                 <CardContent className="space-y-4 text-lg">
                     <p className="flex items-center gap-4">
                         <Phone className="w-6 h-6 text-primary flex-shrink-0" />
@@ -109,7 +121,7 @@ export default function ContactPage() {
                     allowFullScreen={true}
                     loading="lazy" 
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="Mapa polohy VI&MO"
+                    title="Mapa polohy VI&MO - Sťahovanie Bratislava"
                 ></iframe>
             </div>
           </div>
@@ -117,7 +129,7 @@ export default function ContactPage() {
           {/* Contact Form */}
           <Card className="p-6 md:p-8 shadow-lg rounded-xl">
              <CardHeader className="p-0 mb-6">
-                <CardTitle className="text-3xl font-headline text-primary">Napíšte Nám</CardTitle>
+                <CardTitle as="h2" className="text-3xl font-headline text-primary">Napíšte Nám</CardTitle>
                 <p className="text-muted-foreground">Odpovieme vám čo najskôr.</p>
              </CardHeader>
              <CardContent className="p-0">

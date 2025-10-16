@@ -1,15 +1,17 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { cn } from '@/lib/utils';
-import { Toaster } from '@/components/ui/toaster';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 
 const APP_NAME = "VI&MO | Sťahovanie a Upratovanie Bratislava";
-const APP_DEFAULT_TITLE = "VI&MO | Sťahovanie a Upratovanie Bratislava";
+const APP_DEFAULT_TITLE = "VI&MO | Sťahovanie Bytov a Firiem Bratislava, Upratovanie";
 const APP_TITLE_TEMPLATE = "%s | VI&MO";
-const APP_DESCRIPTION = "Spoľahlivé sťahovanie, odvoz odpadu a profesionálne upratovacie služby v Bratislave a okolí. Pevné ruky & poctivý prístup.";
+const APP_DESCRIPTION = "Spoľahlivé sťahovanie bytov, domov a firiem, vypratávanie a profesionálne upratovacie služby v Bratislave a okolí. Získajte nezáväznú cenovú ponuku.";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.viandmo.com';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   applicationName: APP_NAME,
   title: {
     default: APP_DEFAULT_TITLE,
@@ -33,14 +35,29 @@ export const metadata: Metadata = {
       template: APP_TITLE_TEMPLATE,
     },
     description: APP_DESCRIPTION,
+    url: siteUrl,
+    images: [
+      {
+        url: '/og-image.jpg', // Odkaz na predvolený OG obrázok
+        width: 1200,
+        height: 630,
+        alt: 'VI&MO Sťahovanie a Upratovanie v Bratislave',
+      },
+    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: {
       default: APP_DEFAULT_TITLE,
       template: APP_TITLE_TEMPLATE,
     },
     description: APP_DESCRIPTION,
+     images: [
+      {
+        url: '/og-image.jpg',
+        alt: 'VI&MO Sťahovanie a Upratovanie v Bratislave',
+      },
+    ],
   },
 };
 
@@ -48,13 +65,52 @@ export const viewport: Viewport = {
   themeColor: "#00202e",
 };
 
-
 const mainFont = Plus_Jakarta_Sans({
   subsets: ['latin-ext'],
   variable: '--font-body',
   display: 'swap',
   weight: ['400', '600', '700', '800'],
 });
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'VI and MO s. r. o.',
+  image: `${siteUrl}/viandmo_logo.png`,
+  '@id': siteUrl,
+  url: siteUrl,
+  telephone: '+421 911 275 755',
+  priceRange: '€€',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Karpatské námestie 7770/10A',
+    addressLocality: 'Bratislava',
+    postalCode: '831 06',
+    addressCountry: 'SK',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 48.2045899,
+    longitude: 17.1479833,
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: [
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
+      'Saturday',
+      'Sunday',
+    ],
+    opens: '00:00',
+    closes: '23:59',
+  },
+  sameAs: [
+    'https://www.facebook.com/p/VI-MO-stahovanie-upratovanie-100063524682338/'
+  ],
+};
 
 
 export default function RootLayout({
@@ -64,7 +120,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="sk" className={cn(mainFont.variable)} suppressHydrationWarning>
-      <head />
+      <head>
+         <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={cn('font-body antialiased')}>
         {children}
       </body>

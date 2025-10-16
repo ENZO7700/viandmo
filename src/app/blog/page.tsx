@@ -10,6 +10,11 @@ import imageData from '@/lib/placeholder-images.json';
 export const metadata: Metadata = {
   title: 'Blog: Tipy a Rady pre Sťahovanie a Upratovanie | VI&MO',
   description: 'Prečítajte si naše tipy, triky a užitočné informácie týkajúce sa sťahovania, vypratávania a upratovacích služieb v Bratislave a okolí.',
+  openGraph: {
+      title: 'Blog: Tipy a Rady pre Sťahovanie a Upratovanie | VI&MO',
+      description: 'Na našom blogu nájdete praktické rady pre sťahovanie v Bratislave, tipy na vypratávanie a ďalšie užitočné informácie.',
+      url: '/blog',
+  }
 };
 
 export default function BlogPage() {
@@ -21,7 +26,7 @@ export default function BlogPage() {
       <section className="relative h-96 w-full flex items-center justify-center text-center text-white">
         <Image
           src={imageData.blogListHero.src}
-          alt="Písanie na klávesnici"
+          alt="Písanie na klávesnici notebooku - blog o sťahovaní"
           fill
           priority
           className="object-cover object-center brightness-50"
@@ -55,7 +60,7 @@ export default function BlogPage() {
                   </div>
                 </Link>
                 <CardHeader>
-                  <CardTitle className="text-xl font-headline leading-snug">
+                  <CardTitle as="h2" className="text-xl font-headline leading-snug">
                     <Link href={`/blog/${post.slug}`} className="hover:text-primary transition-colors">
                       {post.title}
                     </Link>

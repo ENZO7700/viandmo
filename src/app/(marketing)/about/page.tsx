@@ -8,6 +8,7 @@ import imageData from '@/lib/placeholder-images.json';
 import { motion } from 'framer-motion';
 import { useReducedMotion } from '@/hooks/use-reduced-motion';
 import { Card, CardTitle } from '@/components/ui/card';
+import type { Metadata } from 'next';
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -57,7 +58,7 @@ export default function AboutPage() {
       <section className="relative h-96 w-full flex items-center justify-center text-center text-white">
         <Image
           src={imageData.aboutHero.src}
-          alt="Tím VI&MO v akcii"
+          alt="Tím VI&MO v akcii pri sťahovaní v Bratislave"
           fill
           priority
           className="object-cover object-center"
@@ -98,7 +99,7 @@ export default function AboutPage() {
           <div className="relative h-80 w-full rounded-lg overflow-hidden shadow-xl">
              <Image
                 src={imageData.aboutPacking.src}
-                alt="Detail práce pri balení"
+                alt="Pracovník baliaci krehké predmety do krabice pri sťahovaní"
                 fill
                 className="object-cover"
                 data-ai-hint={imageData.aboutPacking.hint}
@@ -132,7 +133,7 @@ export default function AboutPage() {
                      <div className={`p-3 rounded-full mb-4 bg-primary/10`}>
                         {service.icon}
                     </div>
-                    <CardTitle className={`text-xl font-headline font-semibold mb-2 text-foreground`}>{service.title}</CardTitle>
+                    <CardTitle as="h3" className={`text-xl font-headline font-semibold mb-2 text-foreground`}>{service.title}</CardTitle>
                     <p className={`flex-grow text-muted-foreground`}>{service.description}</p>
                   </Card>
                </motion.div>
@@ -168,7 +169,7 @@ export default function AboutPage() {
                     <div className="relative w-40 h-40 mx-auto mb-4 rounded-full overflow-hidden border-4 border-primary/50 shadow-lg">
                         <Image
                           src={member.img}
-                          alt={member.name}
+                          alt={`Portrét člena tímu VI&MO - ${member.name}`}
                           width={member.width}
                           height={member.height}
                           className="object-cover"
@@ -206,3 +207,4 @@ export default function AboutPage() {
     </>
   );
 }
+

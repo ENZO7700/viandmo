@@ -44,7 +44,7 @@ const HeroSection = () => {
           >
            <Image 
              src="https://viandmo.com/wp-content/uploads/viandmo_logo_regular_white.svg" 
-             alt="VI&MO Logo" 
+             alt="Logo VI&MO - Sťahovanie a upratovanie Bratislava" 
              width={240} 
              height={63} 
              priority 
