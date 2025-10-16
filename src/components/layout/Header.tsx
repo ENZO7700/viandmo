@@ -2,7 +2,6 @@
 'use client';
 
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Logo from "./Logo";
 import { Menu } from "lucide-react";
@@ -22,19 +21,17 @@ const navLinks = [
 export default function Header() {
   const pathname = usePathname();
   
-  const SocialIcon = ({ href, children, ariaLabel }: { href: string, children: React.ReactNode, ariaLabel: string }) => {
-    return (
-        <a 
-            href={href} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            aria-label={ariaLabel}
-            className="text-white/70 hover:text-gray-300 transition-colors duration-200"
-        >
-            {children}
-        </a>
-    );
-  };
+  const SocialIcon = ({ href, children, ariaLabel }: { href: string, children: React.ReactNode, ariaLabel: string }) => (
+    <a 
+        href={href} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        aria-label={ariaLabel}
+        className="text-white/70 hover:text-gray-300 transition-colors duration-200"
+    >
+        {children}
+    </a>
+  );
   
   const NavLink = ({ href, label }: { href: string, label: string }) => {
     const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
